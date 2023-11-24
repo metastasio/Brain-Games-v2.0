@@ -1,3 +1,5 @@
+// import EvenNumber from "./games/evenNumber";
+
 const Games = () => {
   return (
     <section>
