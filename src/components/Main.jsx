@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import routes from "../routes";
+
 const Main = () => {
   return (
     <main>
@@ -6,10 +10,10 @@ const Main = () => {
           Welcome to the <span>Brain Games.</span>
         </h2>
         <p>
-          A place where you can train your brain daily with up to 5 random small games aimed to improve the speed of
-          processing and problem solving.
+          A place where you can train your brain daily with up to 5 random small
+          games aimed to improve the speed of processing and problem solving.
         </p>
-        <a href="#">Start now!</a>
+        <Link to={routes.games()}>Start now!</Link>
       </section>
     </main>
   );

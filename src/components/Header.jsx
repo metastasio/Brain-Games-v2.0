@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import routes from '../routes';
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
         <ul>
           <li>
             <h1>
-              <a href={routes.mainPage()}>Brain Games</a>
+              <Link to={routes.mainPage()}>&#127922; Brain Games</Link>
             </h1>
           </li>
           <li>

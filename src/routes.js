@@ -3,7 +3,8 @@ const routes = {
   signInPage: () => '/signin',
   signUpPage: () => '/signup',
   games: () => '/games',
-  evenNumber: () => 'even',
+  evenNumber: () => '/even',
+  congrats: () => '/congrats',
 };
 
 export default routes;

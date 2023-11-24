@@ -11,6 +11,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import NotFound from './components/NotFound';
 import Even from './components/games/Even.jsx';
+import Congrats from './components/games/Congrats.jsx';
 import routes from './routes';
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path={routes.signInPage()} element={<SignIn />} />
           <Route path={routes.signUpPage()} element={<SignUp />} />
           <Route path={routes.evenNumber()} element={<Even />} />
+          <Route path={routes.congrats()} element={<Congrats />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
