@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import routes from "../routes";
 
-const Main = () => {
+export const Main = () => {
   return (
     <main>
       <section>
@@ -18,4 +18,3 @@ const Main = () => {
     </main>
   );
 };
-export default Main;

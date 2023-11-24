@@ -1,4 +1,4 @@
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer>
       <nav>
@@ -27,4 +27,4 @@ const Footer = () => {
     </footer>
   );
 };
-export default Footer;
+

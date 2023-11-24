@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import routes from "../routes";
 
-const Games = () => {
+export const Games = () => {
   return (
     <section>
       <h2>Here are your games for today</h2>
@@ -17,4 +17,4 @@ const Games = () => {
   );
 };
 
-export default Games;
+
