@@ -1,0 +1,22 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    signedIn: false,
+    totalScore: 0,
+    currentGameScore: 0,
+    progress: 0,
+  },
+  reducers: {
+    increaseCurrentScore(state) {
+      state.currentGameScore += 100;
+    },
+    decreaseCurrentScore(state) {
+      state.currentGameScore -= 5;
+    },
+  },
+});
+export const { increaseCurrentScore, decreaseCurrentScore } = userSlice.actions;
+
+export default userSlice.reducer;

@@ -10,7 +10,7 @@ import Games from './components/Games';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import NotFound from './components/NotFound';
-import { Even } from './components/games/Even.jsx';
+import Even from './components/games/Even.jsx';
 import routes from './routes';
 import './App.css';
 
