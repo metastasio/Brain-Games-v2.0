@@ -1,11 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types 
-const Congrats = ({ name, setCounter }) => {
+import routes from '../../services/routes';
+import { resetCurrentGameScore, updateTotalScore } from '../../store/userSlice';
+import { useEffect } from 'react';
+
+const Congrats = ({ name, resetCounter, resetStatus }) => {
+  const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
-  const handleCounter = () => {
-    setCounter(0);
-  };
+
+  useEffect(() => {
+    dispatch(updateTotalScore(currentGameScore)),
+      dispatch(resetCurrentGameScore());
+  }, [currentGameScore, dispatch]);
 
   return (
     <section>
@@ -16,8 +23,16 @@ const Congrats = ({ name, setCounter }) => {
       </p>
       <p>You gained {currentGameScore} points</p>
       <div>
-        <button>Next game</button>
-        <button onClick={handleCounter}>Play again</button>
+        <button>
+          <Link to={routes.games()}>Next game</Link>
+        </button>
+        <button
+          onClick={() => {
+            resetCounter(), resetStatus();
+          }}
+        >
+          Play again
+        </button>
       </div>
     </section>
   );

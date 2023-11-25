@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import routes from "../routes";
+import routes from '../services/routes';
 
 export const Games = () => {
   return (
@@ -9,12 +9,12 @@ export const Games = () => {
       <div className='card'>
         <Link to={routes.evenNumber()}>Even numbers</Link>
       </div>
-      <div className='card'></div>
+      <div className='card'>
+        <Link to={routes.calc()}>Calculations</Link>
+      </div>
       <div className='card'></div>
       <div className='card'></div>
       <div className='card'></div>
     </section>
   );
 };
-
-

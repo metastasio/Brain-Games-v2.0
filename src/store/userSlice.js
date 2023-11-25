@@ -7,6 +7,7 @@ const userSlice = createSlice({
     totalScore: 0,
     currentGameScore: 0,
     progress: 0,
+    a: '',
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -15,8 +16,20 @@ const userSlice = createSlice({
     decreaseCurrentScore(state) {
       state.currentGameScore -= 5;
     },
+    resetCurrentGameScore(state) {
+      state.currentGameScore = 0;
+    },
+    updateTotalScore(state, { payload }) {
+      state.a = payload;
+      state.totalScore += payload;
+    },
   },
 });
-export const { increaseCurrentScore, decreaseCurrentScore } = userSlice.actions;
+export const {
+  increaseCurrentScore,
+  decreaseCurrentScore,
+  resetCurrentGameScore,
+  updateTotalScore,
+} = userSlice.actions;
 
 export default userSlice.reducer;

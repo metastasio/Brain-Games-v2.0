@@ -4,6 +4,7 @@ const routes = {
   signUpPage: () => '/signup',
   games: () => '/games',
   evenNumber: () => '/even',
+  calc: ()=> '/calc',
   congrats: () => '/congrats',
 };
 

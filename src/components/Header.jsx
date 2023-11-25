@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import routes from '../routes';
+import routes from '../services/routes';
 
 export const Header = () => {
   return (
@@ -24,5 +24,3 @@ export const Header = () => {
     </>
   );
 };
-
-

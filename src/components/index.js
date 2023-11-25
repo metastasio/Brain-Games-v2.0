@@ -6,4 +6,4 @@ export { SignIn } from './SignIn';
 export { SignUp } from './SignUp';
 export { NotFound } from './NotFound';
 
-export * from './Header';
+// export * from './Header';
