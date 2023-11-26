@@ -22,6 +22,7 @@ const userSlice = createSlice({
     updateTotalScore(state, { payload }) {
       state.currentGameScore = 0;
       state.totalScore += payload;
+      state.progress++;
     },
   },
 });

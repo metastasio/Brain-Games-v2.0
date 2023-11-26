@@ -11,6 +11,7 @@ import {
 } from './components';
 import Even from './components/games/Even.jsx';
 import { Calc } from './components/games/Calc.jsx';
+import { Progression } from './components/games/Progression.jsx';
 import Congrats from './components/games/Congrats.jsx';
 import routes from './services/routes.js';
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
           <Route path={routes.signUpPage()} element={<SignUp />} />
           <Route path={routes.evenNumber()} element={<Even />} />
           <Route path={routes.calc()} element={<Calc />} />
+          <Route path={routes.progression()} element={<Progression />} />
           <Route path={routes.congrats()} element={<Congrats />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

@@ -25,4 +25,16 @@ const getExpression = (number1, number2, sign) => {
   }
   return expression;
 };
-export { getRandomNumber, getRandomSign, getExpression };
+
+const getRandomLine = () => {
+  const number = getRandomNumber();
+  let newLine = 0;
+  const arr = [];
+
+  for (let i = 0; i < 10; i += 1) {
+    newLine += number;
+    arr.push(newLine);
+  }
+  return arr;
+};
+export { getRandomNumber, getRandomSign, getExpression, getRandomLine };

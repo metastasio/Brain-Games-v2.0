@@ -3,38 +3,35 @@ import { useDispatch } from 'react-redux';
 
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { getExpression, getRandomSign } from '../../services/utils';
-import { useValue, useStatus, useRandomNumber, useCounter } from '../../hooks/';
+import { getRandomLine } from '../../services/utils';
+import { useValue, useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Calc = () => {
+export const Progression = () => {
   const dispatch = useDispatch();
-  const [status, setStatus] = useStatus();
-  const [counter, setCounter] = useCounter();
-  const [number1, setNumber1] = useRandomNumber();
-  const [number2, setNumber2] = useRandomNumber();
+  const { status, setStatus, counter, setCounter } = useGameValues();
+  const [number, setNumber] = useRandomNumber();
   const [value, setValue] = useValue();
+  const [randomLine, setRandomLine] = useState(() => getRandomLine());
 
-  const correctAnswer = getExpression(number1, number2);
+  const index = number - 1;
+  const correctAnswer = String(randomLine[index]);
+  randomLine[index] = '..';
+  const incompleteLine = randomLine.join(' ');
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
 
-  const isCorrect = (userAnswer, correctAnswer) => {
-    return userAnswer === correctAnswer;
-  };
-
-  const handleChange = (e) => setValue(e.target.value);
+  const handleChange = (e) => setValue(e.target.valueAsNumber);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const userAnswer = data.get('result');
+    const userAnswer = value;
 
-    if (isCorrect(Number(userAnswer), correctAnswer)) {
+    if ((userAnswer, correctAnswer)) {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
@@ -43,9 +40,8 @@ export const Calc = () => {
       setStatus('failed');
     }
     setValue('');
-    setNumber1();
-    setNumber2();
-    setSign(getRandomSign());
+    setNumber();
+    setRandomLine(getRandomLine());
   };
 
   if (counter === 5) {
@@ -63,9 +59,7 @@ export const Calc = () => {
         <Task question='What number is missing in the progression?' />
       </div>
       <div>
-        <p>
-          {number1} {sign} {number2} = ...
-        </p>
+        <p>{incompleteLine}</p>
         <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>

@@ -4,7 +4,8 @@ const routes = {
   signUpPage: () => '/signup',
   games: () => '/games',
   evenNumber: () => '/even',
-  calc: ()=> '/calc',
+  calc: () => '/calc',
+  progression: () => '/progression',
   congrats: () => '/congrats',
 };
 
