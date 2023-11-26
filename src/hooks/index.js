@@ -1,4 +1,3 @@
-export { useCounter } from './useCounter';
+export { useGameValues } from './useGameValues';
 export { useRandomNumber } from './useRandomNumber';
-export { useStatus } from './useStatus';
 export { useValue } from './useValue';

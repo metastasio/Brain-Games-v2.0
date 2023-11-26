@@ -4,33 +4,37 @@ import { useDispatch } from 'react-redux';
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
 import { getExpression, getRandomSign } from '../../services/utils';
-import { useValue, useRandomNumber } from '../../hooks/';
+import { useValue, useStatus, useRandomNumber, useCounter } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
-import { useGameValues } from '../../hooks/';
 
 export const Calc = () => {
   const dispatch = useDispatch();
-  const { status, setStatus, counter, setCounter } = useGameValues();
+  const [status, setStatus] = useStatus();
+  const [counter, setCounter] = useCounter();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [value, setValue] = useValue();
-  const [sign, setSign] = useState(() => getRandomSign());
 
-  const correctAnswer = getExpression(number1, number2, sign);
+  const correctAnswer = getExpression(number1, number2);
 
   const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inprogress');
+  const resetStatus = () => setStatus(0);
 
-  const handleChange = (e) => setValue(e.target.valueAsNumber);
+  const isCorrect = (userAnswer, correctAnswer) => {
+    return userAnswer === correctAnswer;
+  };
+
+  const handleChange = (e) => setValue(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userAnswer = value;
+    const data = new FormData(e.target);
+    const userAnswer = data.get('result');
 
-    if (userAnswer === correctAnswer) {
+    if (isCorrect(Number(userAnswer), correctAnswer)) {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
@@ -47,7 +51,7 @@ export const Calc = () => {
   if (counter === 5) {
     return (
       <Congrats
-        name='Calculations'
+        name='Progression'
         resetCounter={resetCounter}
         resetStatus={resetStatus}
       />
@@ -55,7 +59,9 @@ export const Calc = () => {
   }
   return (
     <section>
-      <Task question='What is the result of the expression?' />
+      <div>
+        <Task question='What number is missing in the progression?' />
+      </div>
       <div>
         <p>
           {number1} {sign} {number2} = ...
