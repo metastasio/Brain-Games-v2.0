@@ -14,12 +14,14 @@ export const Progression = () => {
   const dispatch = useDispatch();
   const { status, setStatus, counter, setCounter } = useGameValues();
   const [number, setNumber] = useRandomNumber();
-  const [value, setValue] = useValue();
-  const [randomLine, setRandomLine] = useState(() => getRandomLine());
+  const [userAnswer, setValue] = useValue();
 
-  const index = number - 1;
-  const correctAnswer = String(randomLine[index]);
-  randomLine[index] = '..';
+  const [{ correctAnswer, randomLine }, setRandomLine] = useState(() => {
+    const randomLine = getRandomLine();
+    const correctAnswer = randomLine[number - 1];
+    randomLine[number - 1] = '..';
+    return { correctAnswer, randomLine };
+  });
   const incompleteLine = randomLine.join(' ');
 
   const resetCounter = () => setCounter(0);
@@ -29,9 +31,8 @@ export const Progression = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userAnswer = value;
 
-    if ((userAnswer, correctAnswer)) {
+    if (userAnswer === correctAnswer) {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
@@ -41,7 +42,12 @@ export const Progression = () => {
     }
     setValue('');
     setNumber();
-    setRandomLine(getRandomLine());
+    setRandomLine(() => {
+      const randomLine = getRandomLine();
+      const correctAnswer = randomLine[number - 1];
+      randomLine[number - 1] = '..';
+      return { correctAnswer, randomLine };
+    });
   };
 
   if (counter === 5) {
@@ -66,7 +72,7 @@ export const Progression = () => {
             <input
               name='result'
               type='number'
-              value={value}
+              value={userAnswer}
               onChange={handleChange}
             />
             <button type='submit'>Try</button>

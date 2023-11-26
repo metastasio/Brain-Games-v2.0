@@ -15,7 +15,7 @@ export const Calc = () => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
-  const [value, setValue] = useValue();
+  const [userAnswer, setValue] = useValue();
   const [sign, setSign] = useState(() => getRandomSign());
 
   const correctAnswer = getExpression(number1, number2, sign);
@@ -27,7 +27,7 @@ export const Calc = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userAnswer = value;
+    const userAnswer = userAnswer;
 
     if (userAnswer === correctAnswer) {
       dispatch(increaseCurrentScore());
@@ -65,7 +65,7 @@ export const Calc = () => {
             <input
               name='result'
               type='number'
-              value={value}
+              value={userAnswer}
               onChange={handleChange}
             />
             <button type='submit'>Try</button>
