@@ -20,7 +20,7 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
-      state.a = payload;
+      state.currentGameScore = 0;
       state.totalScore += payload;
     },
   },
@@ -28,8 +28,8 @@ const userSlice = createSlice({
 export const {
   increaseCurrentScore,
   decreaseCurrentScore,
-  resetCurrentGameScore,
   updateTotalScore,
+  resetCurrentGameScore,
 } = userSlice.actions;
 
 export default userSlice.reducer;

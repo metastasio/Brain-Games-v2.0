@@ -2,17 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import routes from '../../services/routes';
-import { resetCurrentGameScore, updateTotalScore } from '../../store/userSlice';
-import { useEffect } from 'react';
+import { updateTotalScore } from '../../store/userSlice';
 
 const Congrats = ({ name, resetCounter, resetStatus }) => {
   const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    dispatch(updateTotalScore(currentGameScore)),
-      dispatch(resetCurrentGameScore());
-  }, [currentGameScore, dispatch]);
+  const handleClick = () => {
+    dispatch(updateTotalScore(currentGameScore));
+    resetCounter();
+    resetStatus();
+  };
 
   return (
     <section>
@@ -23,16 +23,10 @@ const Congrats = ({ name, resetCounter, resetStatus }) => {
       </p>
       <p>You gained {currentGameScore} points</p>
       <div>
-        <button>
+        <button onClick={handleClick}>
           <Link to={routes.games()}>Next game</Link>
         </button>
-        <button
-          onClick={() => {
-            resetCounter(), resetStatus();
-          }}
-        >
-          Play again
-        </button>
+        <button onClick={handleClick}>Play again</button>
       </div>
     </section>
   );
