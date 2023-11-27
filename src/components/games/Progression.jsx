@@ -15,14 +15,11 @@ export const Progression = () => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useValue();
-
   const [{ correctAnswer, randomLine }, setRandomLine] = useState(() => {
     const randomLine = getRandomLine();
     const correctAnswer = randomLine[number - 1];
-    randomLine[number - 1] = '..';
     return { correctAnswer, randomLine };
   });
-  const incompleteLine = randomLine.join(' ');
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
@@ -45,7 +42,6 @@ export const Progression = () => {
     setRandomLine(() => {
       const randomLine = getRandomLine();
       const correctAnswer = randomLine[number - 1];
-      randomLine[number - 1] = '..';
       return { correctAnswer, randomLine };
     });
   };
@@ -65,7 +61,12 @@ export const Progression = () => {
         <Task question='What number is missing in the progression?' />
       </div>
       <div>
-        <p>{incompleteLine}</p>
+        {randomLine.map((item, i) => {
+          if (item === correctAnswer) {
+            return <button key={i}>..</button>;
+          }
+          return <button key={i}>{item}</button>;
+        })}
         <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>

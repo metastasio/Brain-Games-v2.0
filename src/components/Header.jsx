@@ -12,10 +12,10 @@ export const Header = () => {
             </h1>
           </li>
           <li>
-            <a href={routes.games()}> Games</a>
+            <Link to={routes.games()}>Games</Link>
           </li>
           <li>
-            <a href={routes.signInPage()}>Login</a>
+            <Link to={routes.signInPage()}>Login</Link>
           </li>
           <li>Profile</li>
           <li>Lang</li>
