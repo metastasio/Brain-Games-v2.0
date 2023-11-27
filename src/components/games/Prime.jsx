@@ -3,25 +3,26 @@ import { useDispatch } from 'react-redux';
 import { useRandomNumber, useGameValues } from '../../hooks/';
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
+import { isPrime } from '../../services/utils';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Even = () => {
+export const Prime = () => {
   const dispatch = useDispatch();
   const [number, setNumber] = useRandomNumber();
-  const {status, setStatus, counter, setCounter} = useGameValues();
+  const { status, setStatus, counter, setCounter } = useGameValues();
 
-  const isCorrect = (answer, num) => {
-    return (num % 2 === 0) === answer;
-  };
+  //   const isCorrect = (answer, num) => {
+  //     return isPrime(num) === answer;
+  //   };
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus('inprogress');
 
   const handleClick = (value) => {
-    if (isCorrect(value, number)) {
+    if (isPrime(number) === value) {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
@@ -35,7 +36,7 @@ export const Even = () => {
   if (counter === 5) {
     return (
       <Congrats
-        name='Even Number'
+        name='Prime Number'
         resetCounter={resetCounter}
         resetStatus={resetStatus}
       />
@@ -44,13 +45,12 @@ export const Even = () => {
   return (
     <section>
       <Task
-        question='Answer "yes" if the number is even, otherwise answer
-          "no".'
-        hint='Hint: a number is even if it is completely divisible by 2'
+        question='Answer "yes" if the given number is prime. Otherwise answer "no".'
+        hint='A prime number is a natural number greater than 1 which has only two factors, 1 and the number itself'
       />
       <div>
         <p>
-          Is the number <strong>{number}</strong> even?
+          <strong>{number}</strong>
         </p>
         <div>
           <button onClick={() => handleClick(true)}>Yes</button>

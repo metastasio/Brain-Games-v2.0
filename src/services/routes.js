@@ -8,7 +8,7 @@ const routes = {
   progression: () => '/progression',
   gcd: () => '/gcd',
   prime: () => '/prime',
-  squre: () => '/square',
+  square: () => '/square',
   congrats: () => '/congrats',
 };
 

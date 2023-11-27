@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import Congrats from './components/games/Congrats.jsx';
+import routes from './services/routes.js';
 import {
   Header,
   Footer,
@@ -9,13 +11,15 @@ import {
   SignUp,
   NotFound,
 } from './components';
-import Even from './components/games/Even.jsx';
-import { Calc } from './components/games/Calc.jsx';
-import { Progression } from './components/games/Progression.jsx';
-import { Gcd } from './components/games/Gcd.jsx';
-import Congrats from './components/games/Congrats.jsx';
-import routes from './services/routes.js';
 import './App.css';
+import {
+  Calc,
+  Even,
+  Gcd,
+  Prime,
+  Progression,
+  Square,
+} from './components/games/index.js';
 
 function App() {
   return (

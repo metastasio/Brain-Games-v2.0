@@ -18,7 +18,12 @@ export const Games = () => {
       <div className='card'>
         <Link to={routes.gcd()}>Greatest Divisor</Link>
       </div>
-      <div className='card'></div>
+      <div className='card'>
+        <Link to={routes.prime()}>Prime Number</Link>
+      </div>
+      <div className='card'>
+        <Link to={routes.square()}>Find the Square</Link>
+      </div>
     </section>
   );
 };
