@@ -37,4 +37,26 @@ const getRandomLine = () => {
   }
   return arr;
 };
-export { getRandomNumber, getRandomSign, getExpression, getRandomLine };
+
+const gcd = (a, b) => {
+  if (!b) {
+    return a;
+  }
+  return gcd(b, a % b);
+};
+
+const isPrime = (num) => {
+  for (let j = 2, k = Math.sqrt(num); j <= k; j += 1) {
+    if (num % j === 0) return false;
+  }
+  return num > 1;
+};
+
+export {
+  getRandomNumber,
+  getRandomSign,
+  getExpression,
+  getRandomLine,
+  gcd,
+  isPrime,
+};

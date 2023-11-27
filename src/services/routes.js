@@ -6,6 +6,9 @@ const routes = {
   evenNumber: () => '/even',
   calc: () => '/calc',
   progression: () => '/progression',
+  gcd: () => '/gcd',
+  prime: () => '/prime',
+  squre: () => '/square',
   congrats: () => '/congrats',
 };
 

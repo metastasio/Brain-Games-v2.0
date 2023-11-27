@@ -15,7 +15,9 @@ export const Games = () => {
       <div className='card'>
         <Link to={routes.progression()}>Progression</Link>
       </div>
-      <div className='card'></div>
+      <div className='card'>
+        <Link to={routes.gcd()}>Greatest Divisor</Link>
+      </div>
       <div className='card'></div>
     </section>
   );

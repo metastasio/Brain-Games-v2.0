@@ -3,26 +3,24 @@ import { useDispatch } from 'react-redux';
 
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { getRandomLine } from '../../services/utils';
+import { gcd } from '../../services/utils';
 import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Progression = () => {
+export const Gcd = () => {
   const dispatch = useDispatch();
   const { status, setStatus, counter, setCounter } = useGameValues();
-  const [number, setNumber] = useRandomNumber();
+  const [number1, setNumber1] = useRandomNumber();
+  const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
-  const [{ correctAnswer, randomLine }, setRandomLine] = useState(() => {
-    const randomLine = getRandomLine();
-    const correctAnswer = randomLine[number - 1];
-    return { correctAnswer, randomLine };
-  });
+
+  const correctAnswer = gcd(number1, number2);
 
   const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus(0);
+  const resetStatus = () => setStatus('inprogress');
 
   const handleChange = (e) => setValue(e.target.valueAsNumber);
 
@@ -38,18 +36,14 @@ export const Progression = () => {
       setStatus('failed');
     }
     setValue('');
-    setNumber();
-    setRandomLine(() => {
-      const randomLine = getRandomLine();
-      const correctAnswer = randomLine[number - 1];
-      return { correctAnswer, randomLine };
-    });
+    setNumber1();
+    setNumber2();
   };
 
   if (counter === 5) {
     return (
       <Congrats
-        name='Progression'
+        name='Greatest Divisor'
         resetCounter={resetCounter}
         resetStatus={resetStatus}
       />
@@ -57,17 +51,11 @@ export const Progression = () => {
   }
   return (
     <section>
+      <Task question='Find the greatest common divisor for the given numbers.' />
       <div>
-        <Task question='What number is missing in the progression?' />
-      </div>
-      <div>
-        {randomLine.map((item, i) =>
-          item === correctAnswer ? (
-            <button key={i}>..</button>
-          ) : (
-            <button key={i}>{item}</button>
-          ),
-        )}
+        <p>
+          <button>{number1}</button> <button>{number2}</button>
+        </p>
         <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>
@@ -76,6 +64,7 @@ export const Progression = () => {
               type='number'
               value={userAnswer}
               onChange={handleChange}
+              required='required'
             />
             <button type='submit'>Try</button>
           </form>

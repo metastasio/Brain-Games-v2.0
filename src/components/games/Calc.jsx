@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
 import { getExpression, getRandomSign } from '../../services/utils';
-import { useValue, useRandomNumber, useGameValues } from '../../hooks/';
+import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
@@ -15,7 +15,7 @@ export const Calc = () => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
-  const [userAnswer, setValue] = useValue();
+  const [userAnswer, setValue] = useState('');
   const [sign, setSign] = useState(() => getRandomSign());
 
   const correctAnswer = getExpression(number1, number2, sign);
@@ -27,7 +27,6 @@ export const Calc = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userAnswer = userAnswer;
 
     if (userAnswer === correctAnswer) {
       dispatch(increaseCurrentScore());
