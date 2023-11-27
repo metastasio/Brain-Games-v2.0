@@ -76,6 +76,7 @@ export const Progression = () => {
               type='number'
               value={userAnswer}
               onChange={handleChange}
+              required='required'
             />
             <button type='submit'>Try</button>
           </form>
