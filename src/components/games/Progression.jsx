@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useBlocker } from 'react-router-dom';
 
 import Congrats from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
@@ -15,11 +16,13 @@ export const Progression = () => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
-  const [{ correctAnswer, randomLine }, setRandomLine] = useState(() => {
-    const randomLine = getRandomLine();
-    const correctAnswer = randomLine[number - 1];
-    return { correctAnswer, randomLine };
-  });
+  const [randomLine, setRandomLine] = useState(() => getRandomLine());
+  const correctAnswer = randomLine[number - 1];
+
+  let blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
@@ -39,11 +42,7 @@ export const Progression = () => {
     }
     setValue('');
     setNumber();
-    setRandomLine(() => {
-      const randomLine = getRandomLine();
-      const correctAnswer = randomLine[number - 1];
-      return { correctAnswer, randomLine };
-    });
+    setRandomLine(() => getRandomLine());
   };
 
   if (counter === 5) {
@@ -84,6 +83,14 @@ export const Progression = () => {
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>
+
+      {blocker.state === 'blocked' ? (
+        <div>
+          <p>Are you sure you want to leave?</p>
+          <button onClick={() => blocker.proceed()}>Proceed</button>
+          <button onClick={() => blocker.reset()}>Cancel</button>
+        </div>
+      ) : null}
     </section>
   );
 };

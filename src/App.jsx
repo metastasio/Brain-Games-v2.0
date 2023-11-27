@@ -1,4 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+} from 'react-router-dom';
 
 import Congrats from './components/games/Congrats.jsx';
 import routes from './services/routes.js';
@@ -21,29 +25,72 @@ import {
   Square,
 } from './components/games/index.js';
 
+const Layout = () => (
+  <>
+    <Header />
+    <Outlet />
+    <Footer />
+  </>
+);
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: routes.mainPage(),
+        element: <Main />,
+      },
+      {
+        path: routes.games(),
+        element: <Games />,
+      },
+      {
+        path: routes.signInPage(),
+        element: <SignIn />,
+      },
+      {
+        path: routes.signUpPage(),
+        element: <SignUp />,
+      },
+      {
+        path: routes.evenNumber(),
+        element: <Even />,
+      },
+      {
+        path: routes.calc(),
+        element: <Calc />,
+      },
+      {
+        path: routes.progression(),
+        element: <Progression />,
+      },
+      {
+        path: routes.gcd(),
+        element: <Gcd />,
+      },
+      {
+        path: routes.prime(),
+        element: <Prime />,
+      },
+      {
+        path: routes.square(),
+        element: <Square />,
+      },
+      {
+        path: routes.congrats(),
+        element: <Congrats />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path={routes.mainPage()} element={<Main />} />
-          <Route path={routes.games()} element={<Games />} />
-          <Route path={routes.signInPage()} element={<SignIn />} />
-          <Route path={routes.signUpPage()} element={<SignUp />} />
-          <Route path={routes.evenNumber()} element={<Even />} />
-          <Route path={routes.calc()} element={<Calc />} />
-          <Route path={routes.progression()} element={<Progression />} />
-          <Route path={routes.gcd()} element={<Gcd />} />
-          <Route path={routes.prime()} element={<Prime />} />
-          <Route path={routes.square()} element={<Square />} />
-          <Route path={routes.congrats()} element={<Congrats />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export { App };
