@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { gcd } from '../../services/utils';
@@ -10,10 +10,12 @@ import { Task, Feedback, AnswersCount } from './gameUi/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
+  updateTotalScore,
 } from '../../store/userSlice';
 
-export const Gcd = ({ counter, status, setStatus, setCounter }) => {
+export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
   const dispatch = useDispatch();
+  const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -34,6 +36,9 @@ export const Gcd = ({ counter, status, setStatus, setCounter }) => {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
+      if (counter + 1 === 5) {
+        dispatch(updateTotalScore({ currentGameScore, name }));
+      }
     } else {
       dispatch(decreaseCurrentScore());
       setStatus('failed');

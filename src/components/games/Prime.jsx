@@ -1,5 +1,5 @@
 import { useBlocker } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { Modal } from '../Modal';
@@ -9,10 +9,12 @@ import { useRandomNumber } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
+  updateTotalScore,
 } from '../../store/userSlice';
 
-export const Prime = ({ counter, setStatus, setCounter, status }) => {
+export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
   const dispatch = useDispatch();
+  const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -27,6 +29,9 @@ export const Prime = ({ counter, setStatus, setCounter, status }) => {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
+      if (counter + 1 === 5) {
+        dispatch(updateTotalScore({ currentGameScore, name }));
+      }
     } else {
       dispatch(decreaseCurrentScore());
       setStatus('failed');

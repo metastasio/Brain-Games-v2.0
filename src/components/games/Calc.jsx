@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { Modal } from '../Modal';
@@ -10,10 +10,12 @@ import { useRandomNumber } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
+  updateTotalScore,
 } from '../../store/userSlice';
 
-export const Calc = ({ counter, setCounter, status, setStatus }) => {
+export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
   const dispatch = useDispatch();
+  const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -36,6 +38,9 @@ export const Calc = ({ counter, setCounter, status, setStatus }) => {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
+      if (counter + 1 === 5) {
+        dispatch(updateTotalScore({ currentGameScore, name }));
+      }
     } else {
       dispatch(decreaseCurrentScore());
       setStatus('failed');
