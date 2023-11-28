@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 
-import { useRandomNumber, useGameValues } from '../../hooks/';
-import Congrats from './Congrats';
-import { Task, Feedback, AnswersCount } from './gameUi/';
 import { isPrime } from '../../services/utils';
+import { Congrats } from './Congrats';
+import { Task, Feedback, AnswersCount } from './gameUi/';
+import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
@@ -13,10 +13,6 @@ export const Prime = () => {
   const dispatch = useDispatch();
   const [number, setNumber] = useRandomNumber();
   const { status, setStatus, counter, setCounter } = useGameValues();
-
-  //   const isCorrect = (answer, num) => {
-  //     return isPrime(num) === answer;
-  //   };
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus('inprogress');

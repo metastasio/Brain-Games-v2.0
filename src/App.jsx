@@ -1,10 +1,6 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import Congrats from './components/games/Congrats.jsx';
+import { Congrats } from './components/games/Congrats.jsx';
 import routes from './services/routes.js';
 import {
   Header,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import routes from '../../services/routes';
 import { updateTotalScore } from '../../store/userSlice';
 
-const Congrats = ({ name, resetCounter, resetStatus }) => {
+export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
 
@@ -31,4 +31,3 @@ const Congrats = ({ name, resetCounter, resetStatus }) => {
     </section>
   );
 };
-export default Congrats;

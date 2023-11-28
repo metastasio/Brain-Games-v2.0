@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useBlocker } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
-import Congrats from './Congrats';
-import { Task, Feedback, AnswersCount } from './gameUi/';
+import { Modal } from '../Modal';
+import { Congrats } from './Congrats';
 import { getRandomLine } from '../../services/utils';
+import { Task, Feedback, AnswersCount } from './gameUi/';
 import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
@@ -26,6 +28,9 @@ export const Progression = () => {
 
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
+
+  const onLeave = () => blocker.proceed();
+  const onStay = () => blocker.reset();
 
   const handleChange = (e) => setValue(e.target.valueAsNumber);
 
@@ -84,13 +89,12 @@ export const Progression = () => {
         <AnswersCount count={counter} />
       </div>
 
-      {blocker.state === 'blocked' ? (
-        <div>
-          <p>Are you sure you want to leave?</p>
-          <button onClick={() => blocker.proceed()}>Proceed</button>
-          <button onClick={() => blocker.reset()}>Cancel</button>
-        </div>
-      ) : null}
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 };

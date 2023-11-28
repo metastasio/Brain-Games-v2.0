@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 
-import { useRandomNumber, useGameValues } from '../../hooks/';
-import Congrats from './Congrats';
+import { Congrats } from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
+import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
@@ -11,7 +11,7 @@ import {
 export const Even = () => {
   const dispatch = useDispatch();
   const [number, setNumber] = useRandomNumber();
-  const {status, setStatus, counter, setCounter} = useGameValues();
+  const { status, setStatus, counter, setCounter } = useGameValues();
 
   const isCorrect = (answer, num) => {
     return (num % 2 === 0) === answer;

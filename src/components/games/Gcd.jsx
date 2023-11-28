@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Congrats from './Congrats';
-import { Task, Feedback, AnswersCount } from './gameUi/';
 import { gcd } from '../../services/utils';
+import { Congrats } from './Congrats';
+import { Task, Feedback, AnswersCount } from './gameUi/';
 import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
