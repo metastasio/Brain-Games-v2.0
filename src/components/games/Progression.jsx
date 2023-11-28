@@ -4,18 +4,16 @@ import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { Modal } from '../Modal';
-import { Congrats } from './Congrats';
 import { getRandomLine } from '../../services/utils';
+import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Progression = () => {
+export const Progression = ({ counter, setStatus, setCounter, status }) => {
   const dispatch = useDispatch();
-  const { status, setStatus, counter, setCounter } = useGameValues();
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
   const [randomLine, setRandomLine] = useState(() => getRandomLine());
@@ -25,9 +23,6 @@ export const Progression = () => {
     ({ currentLocation, nextLocation }) =>
       counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
   );
-
-  const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus(0);
 
   const onLeave = () => blocker.proceed();
   const onStay = () => blocker.reset();
@@ -50,28 +45,15 @@ export const Progression = () => {
     setRandomLine(() => getRandomLine());
   };
 
-  if (counter === 5) {
-    return (
-      <Congrats
-        name='Progression'
-        resetCounter={resetCounter}
-        resetStatus={resetStatus}
-      />
-    );
-  }
   return (
     <section>
       <div>
         <Task question='What number is missing in the progression?' />
       </div>
       <div>
-        {randomLine.map((item, i) =>
-          item === correctAnswer ? (
-            <button key={i}>..</button>
-          ) : (
-            <button key={i}>{item}</button>
-          ),
-        )}
+        {randomLine.map((item, i) => (
+          <button key={i}>{item === correctAnswer ? '..' : item}</button>
+        ))}
         <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>

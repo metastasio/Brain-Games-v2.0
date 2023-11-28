@@ -7,7 +7,7 @@ const userSlice = createSlice({
     totalScore: 0,
     currentGameScore: 0,
     progress: 0,
-    a: '',
+    alreadyPlayed: [],
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -20,9 +20,10 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
+      console.log(payload);
       state.currentGameScore = 0;
       state.totalScore += payload;
-      state.progress++;
+        state.progress++;
     },
   },
 });

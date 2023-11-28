@@ -1,27 +1,30 @@
 import { useState } from 'react';
+import { useBlocker } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
 import { gcd } from '../../services/utils';
-import { Congrats } from './Congrats';
+import { Modal } from '../Modal';
+import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Gcd = () => {
+export const Gcd = ({ counter, status, setStatus, setCounter }) => {
   const dispatch = useDispatch();
-  const { status, setStatus, counter, setCounter } = useGameValues();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
-
   const correctAnswer = gcd(number1, number2);
+  let blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
 
-  const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inprogress');
-
+  const onLeave = () => blocker.proceed();
+  const onStay = () => blocker.reset();
   const handleChange = (e) => setValue(e.target.valueAsNumber);
 
   const handleSubmit = (e) => {
@@ -40,15 +43,6 @@ export const Gcd = () => {
     setNumber2();
   };
 
-  if (counter === 5) {
-    return (
-      <Congrats
-        name='Greatest Divisor'
-        resetCounter={resetCounter}
-        resetStatus={resetStatus}
-      />
-    );
-  }
   return (
     <section>
       <Task question='Find the greatest common divisor for the given numbers.' />
@@ -72,6 +66,13 @@ export const Gcd = () => {
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>
+
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 };

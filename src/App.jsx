@@ -20,6 +20,7 @@ import {
   Progression,
   Square,
 } from './components/games/index.js';
+import { Game } from './components/Game.jsx';
 
 const Layout = () => (
   <>
@@ -51,27 +52,27 @@ const router = createBrowserRouter([
       },
       {
         path: routes.evenNumber(),
-        element: <Even />,
+        element: <Game CurrentGame={Even} name='Even Numbers' />,
       },
       {
         path: routes.calc(),
-        element: <Calc />,
+        element: <Game CurrentGame={Calc} name='Calculations' />,
       },
       {
         path: routes.progression(),
-        element: <Progression />,
+        element: <Game CurrentGame={Progression} name='Progression' />,
       },
       {
         path: routes.gcd(),
-        element: <Gcd />,
+        element: <Game CurrentGame={Gcd} name='Greatest Divisor' />,
       },
       {
         path: routes.prime(),
-        element: <Prime />,
+        element: <Game CurrentGame={Prime} name='Prime Number' />,
       },
       {
         path: routes.square(),
-        element: <Square />,
+        element: <Game CurrentGame={Square} name='Find the Square' />,
       },
       {
         path: routes.congrats(),

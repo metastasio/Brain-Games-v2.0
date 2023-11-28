@@ -1,24 +1,28 @@
+import { useBlocker } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
-import { Congrats } from './Congrats';
+import { Modal } from '../Modal';
+import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber, useGameValues } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Even = () => {
+export const Even = ({ counter, status, setCounter, setStatus }) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useRandomNumber();
-  const { status, setStatus, counter, setCounter } = useGameValues();
+  let blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
 
+  const onLeave = () => blocker.proceed();
+  const onStay = () => blocker.reset();
   const isCorrect = (answer, num) => {
     return (num % 2 === 0) === answer;
   };
-
-  const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inprogress');
 
   const handleClick = (value) => {
     if (isCorrect(value, number)) {
@@ -32,15 +36,6 @@ export const Even = () => {
     setNumber();
   };
 
-  if (counter === 5) {
-    return (
-      <Congrats
-        name='Even Number'
-        resetCounter={resetCounter}
-        resetStatus={resetStatus}
-      />
-    );
-  }
   return (
     <section>
       <Task
@@ -59,6 +54,13 @@ export const Even = () => {
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>
+
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 };

@@ -1,21 +1,26 @@
+import { useBlocker } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
+import { Modal } from '../Modal';
 import { isPrime } from '../../services/utils';
-import { Congrats } from './Congrats';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber, useGameValues } from '../../hooks/';
+import { useRandomNumber } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Prime = () => {
+export const Prime = ({ counter, setStatus, setCounter, status }) => {
   const dispatch = useDispatch();
   const [number, setNumber] = useRandomNumber();
-  const { status, setStatus, counter, setCounter } = useGameValues();
+  let blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
 
-  const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inprogress');
+  const onLeave = () => blocker.proceed();
+  const onStay = () => blocker.reset();
 
   const handleClick = (value) => {
     if (isPrime(number) === value) {
@@ -29,15 +34,6 @@ export const Prime = () => {
     setNumber();
   };
 
-  if (counter === 5) {
-    return (
-      <Congrats
-        name='Prime Number'
-        resetCounter={resetCounter}
-        resetStatus={resetStatus}
-      />
-    );
-  }
   return (
     <section>
       <Task
@@ -55,6 +51,13 @@ export const Prime = () => {
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>
+
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 };

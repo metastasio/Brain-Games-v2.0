@@ -1,25 +1,29 @@
 import { useState } from 'react';
+import { useBlocker } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
-import { Congrats } from './Congrats';
+import { Modal } from '../Modal';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber, useGameValues } from '../../hooks/';
+import { useRandomNumber } from '../../hooks/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
 } from '../../store/userSlice';
 
-export const Square = () => {
+export const Square = ({ counter, setStatus, setCounter }) => {
   const dispatch = useDispatch();
-  const { status, setStatus, counter, setCounter } = useGameValues();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
-
   const correctAnswer = number1 * number2;
+  let blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
 
-  const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inprogress');
+  const onLeave = () => blocker.proceed();
+  const onStay = () => blocker.reset();
 
   const handleChange = (e) => setValue(e.target.valueAsNumber);
 
@@ -39,15 +43,6 @@ export const Square = () => {
     setNumber2();
   };
 
-  if (counter === 5) {
-    return (
-      <Congrats
-        name='Greatest Divisor'
-        resetCounter={resetCounter}
-        resetStatus={resetStatus}
-      />
-    );
-  }
   return (
     <section>
       <Task question='Find the area of a rectangle using the given length and width' />
@@ -71,6 +66,12 @@ export const Square = () => {
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
     </section>
   );
 };

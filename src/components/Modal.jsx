@@ -1,5 +1,3 @@
-// import { useBlocker } from 'react-router-dom';
-
 export const Modal = ({ onLeave, onStay }) => {
   return (
     <div>
