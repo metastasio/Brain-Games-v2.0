@@ -17,6 +17,7 @@ export const Game = ({ CurrentGame, name }) => {
   }
   return (
     <CurrentGame
+      name={name}
       counter={counter}
       setCounter={setCounter}
       status={status}

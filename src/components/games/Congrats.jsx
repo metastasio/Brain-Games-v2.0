@@ -1,17 +1,21 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import routes from '../../services/routes';
-import { updateTotalScore } from '../../store/userSlice';
+// import { updateTotalScore } from '../../store/userSlice';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { signedIn, progress } = useSelector((state) => state.user);
   const { currentGameScore } = useSelector((state) => state.user);
 
   const handleClick = () => {
-    dispatch(updateTotalScore(currentGameScore));
     resetCounter();
     resetStatus();
+    if ((signedIn && progress === 5) || (!signedIn && progress === 3)) {
+      navigate(routes.complete());
+    }
   };
 
   return (

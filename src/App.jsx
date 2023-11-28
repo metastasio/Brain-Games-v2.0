@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import { Congrats } from './components/games/Congrats.jsx';
 import routes from './services/routes.js';
 import {
   Header,
@@ -10,6 +9,7 @@ import {
   SignIn,
   SignUp,
   NotFound,
+  Complete,
 } from './components';
 import './App.css';
 import {
@@ -75,8 +75,8 @@ const router = createBrowserRouter([
         element: <Game CurrentGame={Square} name='Find the Square' />,
       },
       {
-        path: routes.congrats(),
-        element: <Congrats />,
+        path: routes.complete(),
+        element: <Complete />,
       },
       {
         path: '*',

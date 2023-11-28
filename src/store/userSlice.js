@@ -20,10 +20,11 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
-      console.log(payload);
-      state.currentGameScore = 0;
-      state.totalScore += payload;
+      if (!state.alreadyPlayed.includes(payload.name)) {
+        state.totalScore += payload.currentGameScore;
         state.progress++;
+        state.alreadyPlayed.push(payload.name);
+      }
     },
   },
 });

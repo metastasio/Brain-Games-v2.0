@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { Modal } from '../Modal';
@@ -10,10 +10,18 @@ import { Task, Feedback, AnswersCount } from './gameUi/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
+  updateTotalScore,
 } from '../../store/userSlice';
 
-export const Progression = ({ counter, setStatus, setCounter, status }) => {
+export const Progression = ({
+  counter,
+  setStatus,
+  setCounter,
+  status,
+  name,
+}) => {
   const dispatch = useDispatch();
+  const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
   const [randomLine, setRandomLine] = useState(() => getRandomLine());
@@ -36,6 +44,9 @@ export const Progression = ({ counter, setStatus, setCounter, status }) => {
       dispatch(increaseCurrentScore());
       setStatus('success');
       setCounter((counter) => counter + 1);
+      if (counter + 1 === 5) {
+        dispatch(updateTotalScore({ currentGameScore, name }));
+      }
     } else {
       dispatch(decreaseCurrentScore());
       setStatus('failed');

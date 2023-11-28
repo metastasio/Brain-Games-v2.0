@@ -9,7 +9,7 @@ const routes = {
   gcd: () => '/gcd',
   prime: () => '/prime',
   square: () => '/square',
-  congrats: () => '/congrats',
+  complete: () => '/complete',
 };
 
 export default routes;
