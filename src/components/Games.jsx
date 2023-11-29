@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+
 import routes from '../services/routes';
 import { getRandomGames } from '../services/getRandomGames';
+import { useTranslation } from 'react-i18next';
 const randomGames = getRandomGames();
 
 export const Games = () => {
   // const { signedIn } = useSelector((store) => store.user);
+  const { t } = useTranslation();
   const gameRoutes = {
     'Even numbers': 'evenNumber',
     Calculations: 'calc',
@@ -16,8 +19,8 @@ export const Games = () => {
 
   return (
     <section>
-      <h2>Here are your games for today</h2>
-      <p>Log in to get access to more games</p>
+      <h2>{t('games.desc')}</h2>
+      <p>{t('games.reminder')}</p>
       {randomGames.map((game, i) => {
         for (let item in gameRoutes) {
           if (game === item) {
@@ -26,7 +29,6 @@ export const Games = () => {
                 <Link to={routes[gameRoutes[item]]()}>{game}</Link>
               </div>
             );
-         
           }
         }
       })}

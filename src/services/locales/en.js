@@ -2,15 +2,15 @@ export default {
   translation: {
     header: {
       games: 'Games',
-      logIn: 'Sing In',
+      logIn: 'Sign In',
       profile: 'Profile',
       ru: 'Russian',
       en: 'English',
     },
     main: {
-      welcome: 'Welcome to the Brain Games!',
+      welcome: 'Welcome to the <strong>Brain Games</strong>!',
       desc: 'A place where you can train your brain daily with up to 5 random small games aimed to improve the speed of processing and problem solving.',
-      start: 'Start now!',
+      start: 'Start <strong>now</strong>!',
     },
     games: {
       desc: "Today's workout:",
@@ -57,6 +57,12 @@ export default {
       points: 'You gained  points',
       next: 'Next game',
       again: 'Play again',
+    },
+    modal: {
+      warning:
+        '<p>You are leaving this page.</p><p>Your current progress will be lost</p>',
+      leave: 'Leave',
+      stay: 'Stay',
     },
   },
 };

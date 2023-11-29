@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import routes from '../services/routes';
 
 export const Header = () => {
+  const { t } = useTranslation();
   const { totalScore } = useSelector((state) => state.user);
+
   return (
     <>
       <nav>
@@ -15,18 +18,20 @@ export const Header = () => {
             </h1>
           </li>
           <li>
-            <Link to={routes.games()}>Games</Link>
+            <Link to={routes.games()}>{t('header.games')}</Link>
           </li>
           <li>
-            <Link to={routes.signInPage()}>Login</Link>
+            <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
           </li>
-          <li>Profile {totalScore}</li>
+          <li>
+            {t('header.profile')} {totalScore}
+          </li>
           <li>
             <select name='lang'>
               <option value='en' selected>
-                English
+                {t('header.en')}
               </option>
-              <option value='ru'>Russian</option>
+              <option value='ru'>{t('header.ru')}</option>
             </select>
           </li>
         </ul>

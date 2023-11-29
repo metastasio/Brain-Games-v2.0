@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 
 import routes from '../services/routes';
 
 export const Main = () => {
+  const { t } = useTranslation();
+
   return (
     <main>
       <section>
         <h2>
-          Welcome to the <span>Brain Games.</span>
+          <Trans i18nKey={'main.welcome'}></Trans>
         </h2>
-        <p>
-          A place where you can train your brain daily with up to 5 random small
-          games aimed to improve the speed of processing and problem solving.
-        </p>
-        <Link to={routes.games()}>Start now!</Link>
+        <p>{t('main.desc')}</p>
+        <Link to={routes.games()}>{t('main.start')}</Link>
       </section>
     </main>
   );

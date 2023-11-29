@@ -1,11 +1,15 @@
+import { Trans, useTranslation } from 'react-i18next';
+
 export const Modal = ({ onLeave, onStay }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <p>You are leaving this page.</p>
-      <p>Your current progress will be lost</p>
+      <Trans i18nKey={'modal.warning'}></Trans>
+
       <div className='buttons'>
-        <button onClick={onLeave}>Leave</button>
-        <button onClick={onStay}>Stay</button>
+        <button onClick={onLeave}>{t('modal.leave')}</button>
+        <button onClick={onStay}>{t('modal.stay')}</button>
       </div>
     </div>
   );
