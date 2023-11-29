@@ -21,7 +21,14 @@ export const Header = () => {
             <Link to={routes.signInPage()}>Login</Link>
           </li>
           <li>Profile {totalScore}</li>
-          <li>Lang</li>
+          <li>
+            <select name='lang'>
+              <option value='en' selected>
+                English
+              </option>
+              <option value='ru'>Russian</option>
+            </select>
+          </li>
         </ul>
       </nav>
     </>
