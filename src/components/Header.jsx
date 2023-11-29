@@ -3,10 +3,15 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import routes from '../services/routes';
+import i18n from '../services/locales';
 
 export const Header = () => {
   const { t } = useTranslation();
   const { totalScore } = useSelector((state) => state.user);
+  const handleSelect = (e) => {
+    console.log(e.target.value);
+    i18n.changeLanguage(e.target.value);
+  };
 
   return (
     <>
@@ -27,7 +32,10 @@ export const Header = () => {
             {t('header.profile')} {totalScore}
           </li>
           <li>
-            <select name='lang'>
+            <select
+              name='lang'
+              onChange={handleSelect}
+            >
               <option value='en' selected>
                 {t('header.en')}
               </option>

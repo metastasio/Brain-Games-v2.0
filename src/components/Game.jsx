@@ -9,6 +9,8 @@ export const Game = ({ CurrentGame, name }) => {
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
 
+
+  
   if (counter === 5) {
     return (
       <Congrats

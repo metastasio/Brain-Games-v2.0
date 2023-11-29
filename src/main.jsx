@@ -1,10 +1,16 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+
 import './index.css';
-import init from './init.jsx';
+import { App } from './App.jsx';
+import '../src/services/locales';
+import store from './store/index.js';
 
-const app = async () => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(await init());
-};
-
-app();
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);

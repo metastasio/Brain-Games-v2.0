@@ -70,7 +70,7 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
               onChange={handleChange}
               required='required'
             />
-            <button type='submit'>Try</button>
+            <button type='submit'>{t('games.try')}</button>
           </form>
         </div>
         <Feedback result={status} />
