@@ -10,7 +10,7 @@ export default {
     main: {
       welcome: 'Welcome to the <strong>Brain Games</strong>!',
       desc: 'A place where you can train your brain daily with up to 5 random small games aimed to improve the speed of processing and problem solving.',
-      start: 'Start <strong>now</strong>!',
+      start: 'Start now!',
     },
     games: {
       desc: "Today's workout:",
@@ -53,8 +53,10 @@ export default {
     },
     congrats: {
       header: 'Congratulations!',
-      text: "You've completed the !",
-      points: 'You gained  points',
+      text: "You've completed the <strong>{{name}}</strong>!",
+      complete: "You've completed your workout!",
+      totalsScore: 'Your total score is <strong>{{totalScore}}</strong>',
+      points: 'You gained <strong>{{points}}</strong> points',
       next: 'Next game',
       again: 'Play again',
     },

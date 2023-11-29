@@ -1,23 +1,24 @@
+import { Link } from 'react-router-dom';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export const Footer = () => {
   return (
     <footer>
       <nav>
         <ul>
           <li>
-            <a href='mailto: myaldzina@gmail.com'>
-              <i className='fa-solid fa-envelope' aria-hidden='true'></i>
+            <Link to={'mailto: myaldzina@gmail.com'}>
+              <FontAwesomeIcon icon={faEnvelope} aria-hidden='true' />
               <span className='sr-only'>Email</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href='https://deviantart.com/djelibeibi'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <i className='fa-brands fa-deviantart' aria-hidden='true'></i>
-              <span className='sr-only'>GitHub</span>
-            </a>
+            <Link to={'https://github.com/metastasio'} target='_blank'>
+              <FontAwesomeIcon icon={faGithub} aria-hidden='true' />
+              <span className='sr-only'> GitHub</span>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -27,4 +28,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

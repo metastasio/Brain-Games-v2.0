@@ -1,18 +1,20 @@
 import { useBlocker } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useRandomNumber } from '../../hooks/';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { isPrime } from '../../services/utils';
 import { Task, Feedback, AnswersCount } from './gameUi/';
-import { useRandomNumber } from '../../hooks/';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
+import { useTranslation } from 'react-i18next';
 
 export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
@@ -41,10 +43,7 @@ export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
 
   return (
     <section>
-      <Task
-        question='Answer "yes" if the given number is prime. Otherwise answer "no".'
-        hint='A prime number is a natural number greater than 1 which has only two factors, 1 and the number itself'
-      />
+      <Task question={t('games.prime.task')} hint={t('games.prime.hint')} />
       <div>
         <p>
           <strong>{number}</strong>

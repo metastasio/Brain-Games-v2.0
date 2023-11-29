@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { gcd } from '../../services/utils';
 import { Modal } from '../Modal';
@@ -14,6 +15,7 @@ import {
 } from '../../store/userSlice';
 
 export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
@@ -50,7 +52,7 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
 
   return (
     <section>
-      <Task question='Find the greatest common divisor for the given numbers.' />
+      <Task question={t('games.gcd.task')} />
       <div>
         <p>
           <button>{number1}</button> <button>{number2}</button>

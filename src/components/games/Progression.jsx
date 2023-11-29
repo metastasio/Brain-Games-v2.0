@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { getRandomLine } from '../../services/utils';
@@ -21,6 +22,7 @@ export const Progression = ({
   name,
 }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -59,7 +61,7 @@ export const Progression = ({
   return (
     <section>
       <div>
-        <Task question='What number is missing in the progression?' />
+        <Task question={t('games.pregression.task')} />
       </div>
       <div>
         {randomLine.map((item, i) => (

@@ -3,12 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../services/routes';
 import { resetCurrentGameScore } from '../../store/userSlice';
+import { Trans, useTranslation } from 'react-i18next';
 
-export const Congrats = ({
-  name,
-  resetCounter,
-  resetStatus,
-}) => {
+export const Congrats = ({ name, resetCounter, resetStatus }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { signedIn, progress, currentGameScore } = useSelector(
@@ -33,12 +31,17 @@ export const Congrats = ({
 
   return (
     <section>
-      <h2>Congratulations!</h2>
+      <h2>{t('congrats.header')}</h2>
       <span>&#127881;</span>
       <p>
-        You&#39;ve completed the <strong>{name}</strong>!
+        <Trans i18nKey='congrats.text' values={{ name }} />
       </p>
-      <p>You gained {currentGameScore} points</p>
+      <p>
+        <Trans
+          i18nKey='congrats.points'
+          values={{ points: currentGameScore }}
+        />
+      </p>
       <div>
         <button onClick={handleNext}>
           <Link to={routes.games()}>Next game</Link>

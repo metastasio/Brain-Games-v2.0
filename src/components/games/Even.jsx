@@ -1,6 +1,7 @@
 import { useBlocker } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { useRandomNumber } from '../../hooks/';
@@ -12,6 +13,7 @@ import {
 } from '../../store/userSlice';
 
 export const Even = ({ counter, status, setCounter, setStatus, name }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
@@ -43,14 +45,10 @@ export const Even = ({ counter, status, setCounter, setStatus, name }) => {
 
   return (
     <section>
-      <Task
-        question='Answer "yes" if the number is even, otherwise answer
-          "no".'
-        hint='Hint: a number is even if it is completely divisible by 2'
-      />
+      <Task question={t('games.even.task')} hint={t('games.even.hint')} />
       <div>
         <p>
-          Is the number <strong>{number}</strong> even?
+          <strong>{number}</strong>
         </p>
         <div>
           <button onClick={() => handleClick(true)}>Yes</button>

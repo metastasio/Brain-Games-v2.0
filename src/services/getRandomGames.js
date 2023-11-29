@@ -2,12 +2,12 @@ import { getRandomNumber } from './utils';
 
 export const getRandomGames = () => {
   const gamesList = [
-    'Even numbers',
-    'Calculations',
-    'Progression',
-    'Greatest Divisor',
-    'Prime Number',
-    'Find the Square',
+    'even',
+    'calc',
+    'progression',
+    'gcd',
+    'prime',
+    'square',
   ];
 
   const randomGames = [];

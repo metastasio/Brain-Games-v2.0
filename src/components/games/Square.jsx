@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
-import { Task, Feedback, AnswersCount } from './gameUi/';
 import { useRandomNumber } from '../../hooks/';
+import { Task, Feedback, AnswersCount } from './gameUi/';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
@@ -14,6 +15,7 @@ import {
 
 export const Square = ({ counter, setStatus, setCounter, status, name }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
@@ -50,10 +52,11 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
 
   return (
     <section>
-      <Task question='Find the area of a rectangle using the given length and width' />
+      <Task question={t('games.square.task')} />
       <div>
         <p>
-          Length: <strong>{number1}</strong>, width: <strong>{number2}</strong>
+          {t('games.square.length')}: <strong>{number1}</strong>,{' '}
+          {t('games.square.width')}: <strong>{number2}</strong>
         </p>
         <p>{correctAnswer}</p>
         <div>
