@@ -21,7 +21,7 @@ export default {
       conditions: "The game is complete once you've given 5 correct answers",
       correct: 'Correct! 🌟 +100 points',
       incorrect: 'Incorrect 😥 -5 points, try again!',
-      counter: 'Correct answers: 0/5',
+      counter: 'Correct answers: <strong>{{ count }}/5</strong>',
       square: {
         name: 'Find the Square',
         task: 'Find the area of a rectangle using the given length and width',

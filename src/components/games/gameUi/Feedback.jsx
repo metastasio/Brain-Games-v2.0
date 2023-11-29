@@ -1,8 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 export const Feedback = ({ result }) => {
+const { t } = useTranslation();
+
   if (result === 'success') {
-    return <p>Correct! &#127775; +100 points </p>;
+    return <p>{t('games.correct')}</p>;
   }
   if (result === 'failed') {
-    return <p>Incorrect &#128549; -5 points, try again!</p>;
+    return <p>{t('games.incorrect')}</p>;
   }
 };
