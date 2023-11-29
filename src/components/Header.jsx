@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import routes from '../services/routes';
 
 export const Header = () => {
+  const { totalScore } = useSelector((state) => state.user);
   return (
     <>
       <nav>
@@ -17,7 +20,7 @@ export const Header = () => {
           <li>
             <Link to={routes.signInPage()}>Login</Link>
           </li>
-          <li>Profile</li>
+          <li>Profile {totalScore}</li>
           <li>Lang</li>
         </ul>
       </nav>

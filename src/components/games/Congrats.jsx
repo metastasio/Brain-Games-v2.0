@@ -1,19 +1,34 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../services/routes';
+import { resetCurrentGameScore } from '../../store/userSlice';
 
-export const Congrats = ({ name, resetCounter, resetStatus }) => {
+export const Congrats = ({
+  name,
+  resetCounter,
+  resetStatus,
+}) => {
   const navigate = useNavigate();
-  const { signedIn, progress } = useSelector((state) => state.user);
-  const { currentGameScore } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { signedIn, progress, currentGameScore } = useSelector(
+    (state) => state.user,
+  );
 
-  const handleClick = () => {
+  const resetAll = () => {
     resetCounter();
     resetStatus();
+    dispatch(resetCurrentGameScore());
+  };
+
+  const handleNext = () => {
+    resetAll();
     if ((signedIn && progress === 5) || (!signedIn && progress === 3)) {
       navigate(routes.complete());
     }
+  };
+  const handlePlayAgain = () => {
+    resetAll();
   };
 
   return (
@@ -25,10 +40,10 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
       </p>
       <p>You gained {currentGameScore} points</p>
       <div>
-        <button onClick={handleClick}>
+        <button onClick={handleNext}>
           <Link to={routes.games()}>Next game</Link>
         </button>
-        <button onClick={handleClick}>Play again</button>
+        <button onClick={handlePlayAgain}>Play again</button>
       </div>
     </section>
   );
