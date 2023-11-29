@@ -11,7 +11,6 @@ import {
   decreaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
-import { Buttons } from './gameUi/Buttons';
 
 export const Even = ({ counter, status, setCounter, setStatus, name }) => {
   const { t } = useTranslation();
@@ -51,7 +50,10 @@ export const Even = ({ counter, status, setCounter, setStatus, name }) => {
         <p>
           <strong>{number}</strong>
         </p>
-        <Buttons handleClick={handleClick} />
+        <div>
+          <button onClick={() => handleClick(true)}>{t('games.yes')}</button>
+          <button onClick={() => handleClick(false)}>{t('games.no')}</button>
+        </div>
         <Feedback result={status} />
         <AnswersCount count={counter} />
       </div>

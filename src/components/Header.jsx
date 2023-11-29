@@ -32,13 +32,8 @@ export const Header = () => {
             {t('header.profile')} {totalScore}
           </li>
           <li>
-            <select
-              name='lang'
-              onChange={handleSelect}
-            >
-              <option value='en' selected>
-                {t('header.en')}
-              </option>
+            <select name='lang' defaultValue='en' onChange={handleSelect}>
+              <option value='en'>{t('header.en')}</option>
               <option value='ru'>{t('header.ru')}</option>
             </select>
           </li>

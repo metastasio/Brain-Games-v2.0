@@ -61,7 +61,7 @@ export const Progression = ({
   return (
     <section>
       <div>
-        <Task question={t('games.pregression.task')} />
+        <Task question={t('games.progression.task')} />
       </div>
       <div>
         {randomLine.map((item, i) => (
