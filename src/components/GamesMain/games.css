@@ -3,10 +3,14 @@
   margin: 0 auto;
   padding: 0 var(--h3) var(--h3) var(--h3);
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: var(--h5);
+  align-items: center;
 }
 
 
 .reminder {
   color: var(--blue);
-  padding-bottom: var(--h2);
+  padding-bottom: var(--h3);
 }

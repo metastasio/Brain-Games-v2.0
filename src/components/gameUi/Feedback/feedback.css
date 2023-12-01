@@ -1,0 +1,7 @@
+.feedback {
+  padding-bottom: 0;
+}
+
+.feedback .points {
+  color: var(--lightgreen);
+}

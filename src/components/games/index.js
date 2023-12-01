@@ -1,4 +1,4 @@
-export { Calc } from './Calc';
+export { Calc } from './Calc/Calc';
 export { Even } from './Even';
 export { Gcd } from './Gcd';
 export { Prime } from './Prime';

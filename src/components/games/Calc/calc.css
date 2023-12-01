@@ -1,0 +1,22 @@
+.game-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--h3) var(--h3) var(--h3);
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: var(--h5);
+  align-items: center;
+}
+
+.expression {
+  font-size: var(--h2);
+  color: var(--lightgreen);
+  font-family: var(--ff-main);
+}
+.feedback {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

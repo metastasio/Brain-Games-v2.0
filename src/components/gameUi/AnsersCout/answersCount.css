@@ -1,0 +1,8 @@
+.conditions {
+  color: var(--blue);
+  font-size: var(--small);
+}
+
+.count strong {
+  color: var(--lightgreen);
+}

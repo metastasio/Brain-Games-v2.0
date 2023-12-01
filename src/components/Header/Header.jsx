@@ -20,7 +20,9 @@ export const Header = () => {
         <ul>
           <li>
             <h1 className='title'>
-              <Link to={routes.mainPage()}><span className='logo'>&#127922;</span> Brain Games</Link>
+              <Link to={routes.mainPage()}>
+                <span className='logo'>&#127922;</span> Brain Games
+              </Link>
             </h1>
           </li>
           <li>

@@ -32,7 +32,7 @@
 }
 .header li:first-child a {
   font-family: var(--ff-main);
-  color: var(--green);
+  color: var(--lightlime);
 }
 .header li:first-child a:hover {
   color: var(--lightgreen);

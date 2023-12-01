@@ -19,8 +19,10 @@ export default {
       yes: 'Yes',
       no: 'No',
       conditions: "The game is complete once you've given 5 correct answers",
-      correct: 'Correct! 🌟 +100 points',
-      incorrect: 'Incorrect 😥 -5 points, try again!',
+      correct: 'Correct! 🌟',
+      correctPoints: '+100 points',
+      incorrect: 'Incorrect 😥',
+      incorrectPoints: '-5 points, try again!',
       counter: 'Correct answers: <strong>{{ count }}/5</strong>',
       square: {
         name: 'Find the Square',

@@ -1,0 +1,20 @@
+.card {
+  height: 300px;
+  width: 250px;
+  background-color: var(--lightlime60);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: 2px solid var(--lightlime);
+  border-radius: 20px;
+}
+
+.play {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0 0.5rem 0;
+  border-radius: 0 0 17px 17px;
+  appearance: none;
+  background-color: var(--green);
+  border-top: 1px dashed var(--lightlime);
+}

@@ -1,7 +1,7 @@
 export const Task = ({ question, hint }) => {
   return (
     <div>
-      <h2>{question}</h2>
+      <h2 className='h3'>{question}</h2>
       {hint ? <p>{hint}</p> : null}
     </div>
   );
