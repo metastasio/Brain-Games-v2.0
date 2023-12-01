@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../services/routes';
+import { config } from '../../services/config';
 import { resetCurrentGameScore } from '../../store/userSlice';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -21,7 +22,10 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
 
   const handleNext = () => {
     resetAll();
-    if ((signedIn && progress === 5) || (!signedIn && progress === 3)) {
+    if (
+      (signedIn && progress === config.authUser) ||
+      (!signedIn && progress === config.unAuthUser)
+    ) {
       navigate(routes.complete());
     }
   };
