@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import routes from '../services/routes';
-import i18n from '../services/locales';
+import routes from '../../services/routes';
+import i18n from '../../services/locales';
+import './header.css';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ export const Header = () => {
 
   return (
     <>
-      <nav>
+      <nav className='header'>
         <ul>
           <li>
             <h1>
@@ -32,7 +33,7 @@ export const Header = () => {
             {t('header.profile')} {totalScore}
           </li>
           <li>
-            <select name='lang' defaultValue='en' onChange={handleSelect}>
+            <select className='select' name='lang' defaultValue='en' onChange={handleSelect}>
               <option value='en'>{t('header.en')}</option>
               <option value='ru'>{t('header.ru')}</option>
             </select>

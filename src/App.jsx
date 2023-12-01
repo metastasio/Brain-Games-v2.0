@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 import routes from './services/routes.js';
 import {
-  Header,
   Footer,
   Main,
   Games,
@@ -10,6 +9,7 @@ import {
   SignUp,
   NotFound,
   Complete,
+  Header,
 } from './components';
 import './App.css';
 import {

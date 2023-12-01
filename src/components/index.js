@@ -1,5 +1,6 @@
-export { Footer } from './Footer';
-export { Header } from './Header';
+export { Header } from './Header/Header';
+
+export { Footer } from './Footer/Footer';
 export { Main } from './Main';
 export { Games } from './Games';
 export { SignIn } from './SignIn';
