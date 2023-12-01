@@ -19,8 +19,8 @@ export const Header = () => {
       <nav className='header'>
         <ul>
           <li>
-            <h1>
-              <Link to={routes.mainPage()}>&#127922; Brain Games</Link>
+            <h1 className='title'>
+              <Link to={routes.mainPage()}><span className='logo'>&#127922;</span> Brain Games</Link>
             </h1>
           </li>
           <li>
@@ -30,10 +30,15 @@ export const Header = () => {
             <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
           </li>
           <li>
-            {t('header.profile')} {totalScore}
+            {t('header.profile')} <span className='score'>{totalScore}</span>
           </li>
           <li>
-            <select className='select' name='lang' defaultValue='en' onChange={handleSelect}>
+            <select
+              className='select'
+              name='lang'
+              defaultValue='en'
+              onChange={handleSelect}
+            >
               <option value='en'>{t('header.en')}</option>
               <option value='ru'>{t('header.ru')}</option>
             </select>

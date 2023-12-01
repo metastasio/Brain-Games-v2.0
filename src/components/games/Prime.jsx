@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { isPrime } from '../../services/utils';
-import { Task, Feedback, AnswersCount } from './gameUi/';
+import { Task, Feedback, AnswersCount } from '../gameUi';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,

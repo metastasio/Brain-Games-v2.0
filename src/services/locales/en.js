@@ -8,7 +8,7 @@ export default {
       en: 'English',
     },
     main: {
-      welcome: 'Welcome to the <strong>Brain Games</strong>!',
+      welcome: 'Welcome to the <strong>Brain Games!</strong>',
       desc: 'A place where you can train your brain daily with up to 5 random small games aimed to improve the speed of processing and problem solving.',
       start: 'Start now!',
     },

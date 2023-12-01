@@ -1,5 +1,6 @@
-nav.header ul {
+.header ul {
   list-style-type: none;
+  font-size: var(--h6);
   padding: 0;
   margin: 0;
   display: flex;
@@ -9,35 +10,35 @@ nav.header ul {
   gap: var(--h5);
 }
 
-nav.header {
+.header {
   font-family: var(--regular);
-  padding: 1rem;
+  padding: var(--h3) 0 var(--lg);
 }
-nav.header h1 {
+.header .title {
   margin: 0;
+  padding: 0;
 }
-nav.header h1 a {
-  font-family: var(--main);
-}
-
-/* nav a {
-  display: block;
+/* .header .title a {
 } */
+.logo {
+  font-size: 50px;
+}
 
-nav.header li:first-child {
+.header li:first-child {
   padding: 0;
   margin: 0;
   flex-basis: 100%;
   text-align: center;
 }
-nav.header li:first-child a {
-  color: var(--lightlime);
-}
-nav.header li:first-child a:hover {
+.header li:first-child a {
+  font-family: var(--ff-main);
   color: var(--green);
 }
+.header li:first-child a:hover {
+  color: var(--lightgreen);
+}
 
-nav.header select {
+.header select {
   background-color: transparent;
   border: none;
   padding: 0 0 0 0;
@@ -47,9 +48,14 @@ nav.header select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  color: var(--green);
+  color: var(--lightlime);
   outline: none;
 }
-nav.header select:hover {
-  color: var(--lightlime);
+.header select:hover {
+  color: var(--blue);
+}
+
+.header .score {
+  color: var(--blue);
+  font-family: var(--ff-main);
 }

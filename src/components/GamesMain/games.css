@@ -1,0 +1,12 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--h3) var(--h3) var(--h3);
+  text-align: center;
+}
+
+
+.reminder {
+  color: var(--blue);
+  padding-bottom: var(--h2);
+}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { useRandomNumber } from '../../hooks/';
-import { Task, Feedback, AnswersCount } from './gameUi/';
+import { Task, Feedback, AnswersCount } from '../gameUi';
 import {
   increaseCurrentScore,
   decreaseCurrentScore,

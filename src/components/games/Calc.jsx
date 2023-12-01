@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
-import { Task, Feedback, AnswersCount } from './gameUi/';
+import { Task, Feedback, AnswersCount } from '../gameUi';
 import { getExpression, getRandomSign } from '../../services/utils';
 import { useRandomNumber } from '../../hooks/';
 import {

@@ -1,11 +1,13 @@
 :root {
-  --darkblue: #012030;
+  --darkblue: #00141d;
   --blue: #13678a;
   --green: #45c4b0;
   --lightgreen: #9aeba3;
   --lightlime: #dafdba;
+  --lime: #1ef179;
+  --lightlime60: #dafdba60;
 
-  --main: Bitter, serif;
+  --ff-main: Bitter, serif;
   --regular: Raleway, sans-serif;
 
   --base-size: 1.2rem;
@@ -31,11 +33,12 @@ html {
 }
 
 body {
+  max-width: 1280px;
   font-family: var(--regular);
   line-height: 1.5;
   background-color: var(--darkblue);
   color: var(--green);
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -54,27 +57,24 @@ h1,
 .h1 {
   font-size: var(--h1);
   line-height: 1;
-  margin-bottom: var(--h2);
 }
 h2,
 .h2 {
   font-size: var(--h2);
   line-height: 1.1;
-  margin-bottom: var(--h3);
 }
 h3,
 .h3 {
   font-size: var(--h3);
   line-height: 1.2;
-  margin-bottom: var(--h4);
 }
 
 a {
-  color: var(--lightgreen);
+  color: var(--lightlime);
   text-decoration: none;
 }
 a:hover {
-  color: var(--lightlime);
+  color: var(--blue);
 }
 
 /* ul {

@@ -6,9 +6,9 @@ import './footer.css'
 
 export const Footer = () => {
   return (
-    <footer>
+    <footer className='footer'>
       <nav>
-        <ul>
+        <ul className='links'>
           <li>
             <Link to={'mailto: myaldzina@gmail.com'}>
               <FontAwesomeIcon icon={faEnvelope} aria-hidden='true' />
@@ -23,7 +23,7 @@ export const Footer = () => {
           </li>
         </ul>
       </nav>
-      <p>
+      <p className='copyright'>
         <small>&copy; 2023 Metastasio. All rights reserved.</small>
       </p>
     </footer>
