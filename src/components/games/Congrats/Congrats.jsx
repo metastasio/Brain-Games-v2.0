@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import routes from '../../services/routes';
-import { config } from '../../services/config';
-import { resetCurrentGameScore } from '../../store/userSlice';
+import routes from '../../../services/routes';
+import { config } from '../../../services/config';
+import { resetCurrentGameScore } from '../../../store/userSlice';
 import { Trans, useTranslation } from 'react-i18next';
+import './congrats.css';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
@@ -34,23 +35,24 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   };
 
   return (
-    <section>
-      <h2>{t('congrats.header')}</h2>
-      <span>&#127881;</span>
+    <section className='congrats-wrapper'>
+      <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>
       <p>
         <Trans i18nKey='congrats.text' values={{ name }} />
       </p>
-      <p>
+      <span className='congrats-emoji'>&#127881;</span>
+      <p className='congrats-points'>
         <Trans
           i18nKey='congrats.points'
           values={{ points: currentGameScore }}
         />
       </p>
-      <div>
-        <button onClick={handleNext}>
-          <Link to={routes.games()}>Next game</Link>
-        </button>
-        <button onClick={handlePlayAgain}>Play again</button>
+      <div className='congrats-buttons'>
+        <Link to={routes.games()} onClick={handleNext}>
+          Next game
+        </Link>
+
+        <Link onClick={handlePlayAgain}>Play again</Link>
       </div>
     </section>
   );

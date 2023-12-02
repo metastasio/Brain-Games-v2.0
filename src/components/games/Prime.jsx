@@ -46,7 +46,9 @@ export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
     <section className='game-wrapper'>
       <Task question={t('games.prime.task')} hint={t('games.prime.hint')} />
       <div>
-        <p className='expression'>{number}</p>
+        <div className='expression'>
+          <span>{number}</span>
+        </div>
         <div>
           <button onClick={() => handleClick(true)}>Yes</button>
           <button onClick={() => handleClick(false)}>No</button>

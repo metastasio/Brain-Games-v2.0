@@ -1,4 +1,4 @@
-.game-wrapper {
+.congrats-wrapper {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--h3) var(--h3) var(--h3);
@@ -9,19 +9,20 @@
   align-items: center;
 }
 
-.expression {
-  font-size: var(--h3);
+.congrats-header {
   color: var(--lightgreen);
-  font-family: var(--ff-main);
+}
+
+.congrats-emoji {
+  font-size: var(--h2);
+}
+.congrats-points {
+  font-size: var(--h4);
+  color: var(--lightlime);
+  margin-top: var(--h6);
+}
+.congrats-buttons {
   display: flex;
   flex-flow: row wrap;
   gap: var(--h5);
-  justify-content: center;
-  padding-bottom: var(--h6);
-}
-.feedback {
-  height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

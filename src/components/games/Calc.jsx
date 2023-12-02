@@ -58,9 +58,9 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
     <section className='game-wrapper'>
       <Task question={t('games.calc.task')} />
       <div>
-        <p className='expression'>
-          {number1} {sign} {number2}
-        </p>
+        <div className='expression'>
+          <span>{number1}</span><span>{sign}</span><span>{number2}</span>
+        </div>
         <div>
           <form onSubmit={handleSubmit}>
             <input

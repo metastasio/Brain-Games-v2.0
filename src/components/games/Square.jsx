@@ -54,10 +54,12 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
     <section className='game-wrapper'>
       <Task question={t('games.square.task')} />
       <div>
-        <p className='expression'>
-          {t('games.square.length')}: {number1}, {t('games.square.width')}:{' '}
-          {number2}
-        </p>
+        <div className='expression'>
+          <span>{t('games.square.length')}:</span>
+          <span>{number1},</span>
+          <span>{t('games.square.width')}:</span>
+          <span>{number2}</span>
+        </div>
         <div>
           <form onSubmit={handleSubmit}>
             <input

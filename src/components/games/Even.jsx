@@ -48,7 +48,9 @@ export const Even = ({ counter, status, setCounter, setStatus, name }) => {
     <section className='game-wrapper'>
       <Task question={t('games.even.task')} hint={t('games.even.hint')} />
       <div>
-        <p className='expression'>{number}</p>
+        <div className='expression'>
+          <span>{number}</span>
+        </div>
         <div>
           <button onClick={() => handleClick(true)}>{t('games.yes')}</button>
           <button onClick={() => handleClick(false)}>{t('games.no')}</button>

@@ -54,10 +54,11 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
   return (
     <section className='game-wrapper'>
       <Task question={t('games.gcd.task')} />
-      <div >
-        <p className='expression'>
-          {number1} {number2}
-        </p>
+      <div>
+        <div className='expression'>
+          <span>{number1}</span>
+          <span>{number2}</span>
+        </div>
         <div>
           <form onSubmit={handleSubmit}>
             <input

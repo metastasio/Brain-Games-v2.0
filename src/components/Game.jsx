@@ -2,7 +2,8 @@
 import { useGameValues } from '../hooks';
 import { useTranslation } from 'react-i18next';
 
-import { Congrats } from './games/Congrats';
+import { Congrats } from './games/Congrats/Congrats';
+
 // import {
 //   decreaseCurrentScore,
 //   increaseCurrentScore,

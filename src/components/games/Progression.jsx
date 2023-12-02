@@ -63,9 +63,15 @@ export const Progression = ({
     <section className='game-wrapper'>
       <Task question={t('games.progression.task')} />
       <div>
-        <p className='expression'>
-          {randomLine.map((item) => (item === correctAnswer ? '..' : item))}
-        </p>
+        <div className='expression'>
+          {randomLine.map((item, i) =>
+            item === correctAnswer ? (
+              <span key={i}>..</span>
+            ) : (
+              <span key={i}>{item}</span>
+            ),
+          )}
+        </div>
         <div>
           <form onSubmit={handleSubmit}>
             <input
