@@ -1,5 +1,6 @@
 import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { useRandomNumber } from '../../hooks/';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +12,7 @@ import {
   decreaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
-import { useTranslation } from 'react-i18next';
+import './gameWrapper.css';
 
 export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
   const { t } = useTranslation();
@@ -42,17 +43,17 @@ export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
   };
 
   return (
-    <section>
+    <section className='game-wrapper'>
       <Task question={t('games.prime.task')} hint={t('games.prime.hint')} />
       <div>
-        <p>
-          <strong>{number}</strong>
-        </p>
+        <p className='expression'>{number}</p>
         <div>
           <button onClick={() => handleClick(true)}>Yes</button>
           <button onClick={() => handleClick(false)}>No</button>
         </div>
-        <Feedback result={status} />
+        <div className='feedback'>
+          <Feedback result={status} />
+        </div>
         <AnswersCount count={counter} />
       </div>
 

@@ -4,16 +4,16 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Modal } from '../../Modal';
-import { Task, Feedback, AnswersCount } from '../../gameUi';
-import { getExpression, getRandomSign } from '../../../services/utils';
-import { useRandomNumber } from '../../../hooks';
+import { Modal } from '../Modal';
+import { Task, Feedback, AnswersCount } from '../gameUi';
+import { getExpression, getRandomSign } from '../../services/utils';
+import { useRandomNumber } from '../../hooks';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
   updateTotalScore,
-} from '../../../store/userSlice';
-import './calc.css';
+} from '../../store/userSlice';
+import './gameWrapper.css';
 
 export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
   const { t } = useTranslation();
@@ -59,7 +59,7 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
       <Task question={t('games.calc.task')} />
       <div>
         <p className='expression'>
-          {number1} {sign} {number2} = ...
+          {number1} {sign} {number2}
         </p>
         <div>
           <form onSubmit={handleSubmit}>
@@ -76,7 +76,6 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
         <div className='feedback'>
           <Feedback result={status} />
         </div>
-
         <AnswersCount count={counter} />
       </div>
 

@@ -13,6 +13,7 @@ import {
   increaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
+import './gameWrapper.css';
 
 export const Progression = ({
   counter,
@@ -59,15 +60,12 @@ export const Progression = ({
   };
 
   return (
-    <section>
+    <section className='game-wrapper'>
+      <Task question={t('games.progression.task')} />
       <div>
-        <Task question={t('games.progression.task')} />
-      </div>
-      <div>
-        {randomLine.map((item, i) => (
-          <button key={i}>{item === correctAnswer ? '..' : item}</button>
-        ))}
-        <p>{correctAnswer}</p>
+        <p className='expression'>
+          {randomLine.map((item) => (item === correctAnswer ? '..' : item))}
+        </p>
         <div>
           <form onSubmit={handleSubmit}>
             <input
@@ -80,7 +78,9 @@ export const Progression = ({
             <button type='submit'>Try</button>
           </form>
         </div>
-        <Feedback result={status} />
+        <div className='feedback'>
+          <Feedback result={status} />
+        </div>
         <AnswersCount count={counter} />
       </div>
 

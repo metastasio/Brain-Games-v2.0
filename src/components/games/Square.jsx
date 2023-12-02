@@ -51,14 +51,13 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
   };
 
   return (
-    <section>
+    <section className='game-wrapper'>
       <Task question={t('games.square.task')} />
       <div>
-        <p>
-          {t('games.square.length')}: <strong>{number1}</strong>,{' '}
-          {t('games.square.width')}: <strong>{number2}</strong>
+        <p className='expression'>
+          {t('games.square.length')}: {number1}, {t('games.square.width')}:{' '}
+          {number2}
         </p>
-        <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>
             <input
@@ -71,9 +70,13 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
             <button type='submit'>Try</button>
           </form>
         </div>
-        <Feedback result={status} />
+        <div className='feedback'>
+          <Feedback result={status} />
+        </div>
+
         <AnswersCount count={counter} />
       </div>
+
       {blocker.state === 'blocked'
         ? createPortal(
             <Modal onLeave={onLeave} onStay={onStay} />,

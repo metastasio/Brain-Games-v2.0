@@ -77,6 +77,9 @@ a:hover {
   color: var(--blue);
 }
 
+.hint {
+  color: var(--blue);
+}
 /* ul {
   list-style-type: none;
   padding: 0;

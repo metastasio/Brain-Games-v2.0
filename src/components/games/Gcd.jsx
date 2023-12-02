@@ -13,6 +13,7 @@ import {
   increaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
+import './gameWrapper.css';
 
 export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
   const { t } = useTranslation();
@@ -51,13 +52,12 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
   };
 
   return (
-    <section>
+    <section className='game-wrapper'>
       <Task question={t('games.gcd.task')} />
-      <div>
-        <p>
-          <button>{number1}</button> <button>{number2}</button>
+      <div >
+        <p className='expression'>
+          {number1} {number2}
         </p>
-        <p>{correctAnswer}</p>
         <div>
           <form onSubmit={handleSubmit}>
             <input
@@ -70,7 +70,9 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
             <button type='submit'>Try</button>
           </form>
         </div>
-        <Feedback result={status} />
+        <div className='feedback'>
+          <Feedback result={status} />
+        </div>
         <AnswersCount count={counter} />
       </div>
 

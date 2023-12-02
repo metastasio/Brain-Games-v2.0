@@ -11,6 +11,7 @@ import {
   decreaseCurrentScore,
   updateTotalScore,
 } from '../../store/userSlice';
+import './gameWrapper.css';
 
 export const Even = ({ counter, status, setCounter, setStatus, name }) => {
   const { t } = useTranslation();
@@ -44,17 +45,17 @@ export const Even = ({ counter, status, setCounter, setStatus, name }) => {
   };
 
   return (
-    <section>
+    <section className='game-wrapper'>
       <Task question={t('games.even.task')} hint={t('games.even.hint')} />
       <div>
-        <p>
-          <strong>{number}</strong>
-        </p>
+        <p className='expression'>{number}</p>
         <div>
           <button onClick={() => handleClick(true)}>{t('games.yes')}</button>
           <button onClick={() => handleClick(false)}>{t('games.no')}</button>
         </div>
-        <Feedback result={status} />
+        <div className='feedback'>
+          <Feedback result={status} />
+        </div>
         <AnswersCount count={counter} />
       </div>
 
