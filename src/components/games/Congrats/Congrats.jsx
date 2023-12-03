@@ -22,7 +22,6 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   };
 
   const handleNext = () => {
-    console.log(progress, 'PROGRESS');
     resetAll();
     if (
       (signedIn && progress === config.authUser) ||

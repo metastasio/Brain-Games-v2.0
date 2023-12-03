@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import './answersCount.css';
 import { config } from '../../../services/config';
+import './answersCount.css';
 
 export const AnswersCount = ({ count }) => {
   const { t } = useTranslation();
