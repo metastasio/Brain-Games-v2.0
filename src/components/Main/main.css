@@ -28,12 +28,11 @@
 
 .start a {
   padding: var(--small);
-  background-color: var(--lightlime60);
+  /* background-color: var(--lightlime60); */
   border: 1px dotted var(--lightlime);
   border-radius: 10px;
-  color: var(--lime);
 }
 .start a:hover {
-  color: var(--lightlime);
+  color: var(--lightgreen);
   background-color: var(--darkblue);
 }

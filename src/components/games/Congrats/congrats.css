@@ -13,16 +13,37 @@
   color: var(--lightgreen);
 }
 
+.congrats-text {
+  padding: 0;
+  margin: 0 0 var(--h6) 0;
+  font-size: var(--h6);
+}
+
 .congrats-emoji {
   font-size: var(--h2);
 }
+
 .congrats-points {
   font-size: var(--h4);
   color: var(--lightlime);
   margin-top: var(--h6);
 }
+
 .congrats-buttons {
   display: flex;
   flex-flow: row wrap;
   gap: var(--h5);
+}
+
+.congrats-buttons a {
+  padding: 0.5rem;
+  border: 1px dotted var(--lightlime);
+  border-radius: 10px;
+}
+.congrats-buttons a:last-child {
+  color: var(--green);
+}
+
+.congrats-buttons a:hover {
+  color: var(--lightgreen);
 }

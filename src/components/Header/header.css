@@ -1,3 +1,8 @@
+.header {
+  font-family: var(--regular);
+  padding: var(--h3) 0 var(--xl);
+}
+
 .header ul {
   list-style-type: none;
   font-size: var(--h6);
@@ -10,16 +15,11 @@
   gap: var(--h5);
 }
 
-.header {
-  font-family: var(--regular);
-  padding: var(--h3) 0 var(--lg);
-}
 .header .title {
   margin: 0;
   padding: 0;
 }
-/* .header .title a {
-} */
+
 .logo {
   font-size: 50px;
 }
@@ -48,7 +48,7 @@
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
-  color: var(--lightlime);
+  color: var(--white);
   outline: none;
 }
 .header select:hover {

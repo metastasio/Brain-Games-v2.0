@@ -37,7 +37,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   return (
     <section className='congrats-wrapper'>
       <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>
-      <p>
+      <p className='congrats-text'>
         <Trans i18nKey='congrats.text' values={{ name }} />
       </p>
       <span className='congrats-emoji'>&#127881;</span>
@@ -49,10 +49,10 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
       </p>
       <div className='congrats-buttons'>
         <Link to={routes.games()} onClick={handleNext}>
-          Next game
+          {t('congrats.next')}
         </Link>
 
-        <Link onClick={handlePlayAgain}>Play again</Link>
+        <Link onClick={handlePlayAgain}>{t('congrats.again')}</Link>
       </div>
     </section>
   );

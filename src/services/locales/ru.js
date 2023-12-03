@@ -60,7 +60,7 @@ export default {
       totalsScore: 'Вы набрали <strong>{{totalScore}}</strong> очков',
       points: 'Вы получили <strong>{{points}}</strong> очков',
       next: 'Следующая игра',
-      again: 'Еще раз',
+      again: 'Сыграть еще раз',
     },
     modal: {
       warning:

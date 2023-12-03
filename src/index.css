@@ -4,7 +4,7 @@
   --green: #45c4b0;
   --lightgreen: #9aeba3;
   --lightlime: #dafdba;
-  --lime: #1ef179;
+  --white: #f0ffe2;
   --lightlime60: #dafdba60;
 
   --ff-main: Bitter, serif;
@@ -70,7 +70,7 @@ h3,
 }
 
 a {
-  color: var(--lightlime);
+  color: var(--white);
   text-decoration: none;
 }
 a:hover {
