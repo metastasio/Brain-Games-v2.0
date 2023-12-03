@@ -22,14 +22,18 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   };
 
   const handleNext = () => {
+    console.log(progress, 'PROGRESS');
     resetAll();
     if (
       (signedIn && progress === config.authUser) ||
       (!signedIn && progress === config.unAuthUser)
     ) {
       navigate(routes.complete());
+    } else {
+      navigate(routes.games());
     }
   };
+
   const handlePlayAgain = () => {
     resetAll();
   };
@@ -48,9 +52,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
         />
       </p>
       <div className='congrats-buttons'>
-        <Link to={routes.games()} onClick={handleNext}>
-          {t('congrats.next')}
-        </Link>
+        <button onClick={handleNext}>{t('congrats.next')}</button>
 
         <Link onClick={handlePlayAgain}>{t('congrats.again')}</Link>
       </div>

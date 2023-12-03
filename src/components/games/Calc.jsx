@@ -2,23 +2,16 @@ import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { Task, Feedback, AnswersCount } from '../gameUi';
 import { getExpression, getRandomSign } from '../../services/utils';
 import { useRandomNumber } from '../../hooks';
-import {
-  decreaseCurrentScore,
-  increaseCurrentScore,
-  updateTotalScore,
-} from '../../store/userSlice';
 import './gameWrapper.css';
+import { AnswerForm } from '../gameUi/AnswerForm';
 
-export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
+export const Calc = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -38,15 +31,9 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
     e.preventDefault();
 
     if (userAnswer === correctAnswer) {
-      dispatch(increaseCurrentScore());
-      setStatus('success');
-      setCounter((counter) => counter + 1);
-      if (counter + 1 === 5) {
-        dispatch(updateTotalScore({ currentGameScore, name }));
-      }
+      onSuccess();
     } else {
-      dispatch(decreaseCurrentScore());
-      setStatus('failed');
+      onFailure();
     }
     setValue('');
     setNumber1();
@@ -59,19 +46,16 @@ export const Calc = ({ counter, setCounter, status, setStatus, name }) => {
       <Task question={t('games.calc.task')} />
       <div>
         <div className='expression'>
-          <span>{number1}</span><span>{sign}</span><span>{number2}</span>
+          <span>{number1}</span>
+          <span>{sign}</span>
+          <span>{number2}</span>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              name='result'
-              type='number'
-              value={userAnswer}
-              onChange={handleChange}
-              required='required'
-            />
-            <button type='submit'>{t('games.try')}</button>
-          </form>
+          <AnswerForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            userAnswer={userAnswer}
+          />
         </div>
         <div className='feedback'>
           <Feedback result={status} />

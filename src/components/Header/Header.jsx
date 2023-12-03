@@ -10,7 +10,6 @@ export const Header = () => {
   const { t } = useTranslation();
   const { totalScore } = useSelector((state) => state.user);
   const handleSelect = (e) => {
-    console.log(e.target.value);
     i18n.changeLanguage(e.target.value);
   };
 

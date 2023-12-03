@@ -23,7 +23,7 @@ export default {
       correctPoints: '+100 points',
       incorrect: 'Incorrect 😥',
       incorrectPoints: '-5 points, try again!',
-      counter: 'Correct answers: <strong>{{ count }}/5</strong>',
+      counter: 'Correct answers:',
       square: {
         name: 'Find the Square',
         task: 'Find the area of a rectangle using the given length and width',

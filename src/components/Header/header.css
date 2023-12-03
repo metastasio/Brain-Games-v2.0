@@ -1,5 +1,5 @@
 .header {
-  font-family: var(--regular);
+  font-family: var(--ff-regular);
   padding: var(--h3) 0 var(--xl);
 }
 
@@ -13,6 +13,9 @@
   justify-content: center;
   align-items: center;
   gap: var(--h5);
+
+  text-underline-offset: 6px;
+  text-decoration: underline dotted;
 }
 
 .header .title {
@@ -50,6 +53,7 @@
   line-height: inherit;
   color: var(--white);
   outline: none;
+  /* text-decoration: underline dotted; */
 }
 .header select:hover {
   color: var(--blue);

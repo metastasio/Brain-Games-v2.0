@@ -19,6 +19,7 @@
   justify-content: center;
   padding-bottom: var(--h6);
 }
+
 .feedback {
   height: 76px;
   display: flex;
