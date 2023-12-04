@@ -1,20 +1,46 @@
-.card {
-  height: 300px;
-  width: 250px;
-  background-color: var(--lightlime60);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  border: 2px solid var(--lightlime);
-  border-radius: 20px;
+@layer base {
+  .card {
+    height: 300px;
+    width: 250px;
+    background-color: var(--lightlime60);
+    border: 2px solid var(--lightlime);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .play {
+    position: absolute;
+    width: 100%;
+    padding: 0.5rem 0;
+    appearance: none;
+    border-top: 1px dashed var(--lightlime);
+    background-color: var(--lightlime60);
+    left: 0;
+    bottom: 0;
+  }
+
+  .play:hover {
+    background-color: var(--darkblue);
+    color: var(--lightlime);
+  }
+  .play a:hover {
+    color: var(--lightlime);
+  }
+
+  .card-img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-.play {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0 0.5rem 0;
-  border-radius: 0 0 17px 17px;
-  appearance: none;
-  background-color: var(--green);
-  border-top: 1px dashed var(--lightlime);
+.unavailable:nth-child(6),
+.unavailable:nth-child(7) {
+  filter: blur(0.3em) grayscale(50%);
+}
+
+.unavailable,
+.unavailable a,
+a:hover {
+  cursor: not-allowed;
 }
