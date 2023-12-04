@@ -2,21 +2,14 @@ import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
+import { AnswerForm } from '../gameUi/AnswerForm';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from '../gameUi';
-import {
-  decreaseCurrentScore,
-  increaseCurrentScore,
-  updateTotalScore,
-} from '../../store/userSlice';
 
-export const Square = ({ counter, setStatus, setCounter, status, name }) => {
-  const dispatch = useDispatch();
+export const Square = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
-  const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -35,15 +28,9 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
     e.preventDefault();
 
     if (userAnswer === correctAnswer) {
-      dispatch(increaseCurrentScore());
-      setStatus('success');
-      setCounter((counter) => counter + 1);
-      if (counter + 1 === 5) {
-        dispatch(updateTotalScore({ currentGameScore, name }));
-      }
+      onSuccess();
     } else {
-      dispatch(decreaseCurrentScore());
-      setStatus('failed');
+      onFailure();
     }
     setValue('');
     setNumber1();
@@ -61,16 +48,11 @@ export const Square = ({ counter, setStatus, setCounter, status, name }) => {
           <span>{number2}</span>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              name='result'
-              type='number'
-              value={userAnswer}
-              onChange={handleChange}
-              required='required'
-            />
-            <button type='submit'>Try</button>
-          </form>
+          <AnswerForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            userAnswer={userAnswer}
+          />
         </div>
         <div className='feedback'>
           <Feedback result={status} />

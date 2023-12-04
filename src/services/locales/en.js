@@ -55,9 +55,10 @@ export default {
     },
     congrats: {
       header: 'Congratulations!',
-      text: "You've completed the <strong>{{name}}</strong>!",
+      text: "You've completed the",
       complete: "You've completed your workout!",
-      totalsScore: 'Your total score is <strong>{{totalScore}}</strong>',
+      totalsScore: 'Your total score is',
+      totalsScore2: '!',
       points: 'You gained <strong>{{points}}</strong> points',
       next: 'Next game',
       again: 'Play again',

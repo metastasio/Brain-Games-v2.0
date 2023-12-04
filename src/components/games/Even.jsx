@@ -1,22 +1,14 @@
 import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from '../gameUi';
-import {
-  increaseCurrentScore,
-  decreaseCurrentScore,
-  updateTotalScore,
-} from '../../store/userSlice';
 import './gameWrapper.css';
 
-export const Even = ({ counter, status, setCounter, setStatus, name }) => {
+export const Even = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -31,15 +23,9 @@ export const Even = ({ counter, status, setCounter, setStatus, name }) => {
 
   const handleClick = (value) => {
     if (isCorrect(value, number)) {
-      dispatch(increaseCurrentScore());
-      setStatus('success');
-      setCounter((counter) => counter + 1);
-      if (counter + 1 === 5) {
-        dispatch(updateTotalScore({ currentGameScore, name }));
-      }
+      onSuccess();
     } else {
-      dispatch(decreaseCurrentScore());
-      setStatus('failed');
+      onFailure();
     }
     setNumber();
   };

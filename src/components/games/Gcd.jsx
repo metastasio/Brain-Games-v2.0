@@ -2,23 +2,16 @@ import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { gcd } from '../../services/utils';
 import { Modal } from '../Modal';
+import { AnswerForm } from '../gameUi/AnswerForm';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount } from '../gameUi';
-import {
-  decreaseCurrentScore,
-  increaseCurrentScore,
-  updateTotalScore,
-} from '../../store/userSlice';
 import './gameWrapper.css';
 
-export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
+export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { currentGameScore } = useSelector((state) => state.user);
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -36,15 +29,9 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
     e.preventDefault();
 
     if (userAnswer === correctAnswer) {
-      dispatch(increaseCurrentScore());
-      setStatus('success');
-      setCounter((counter) => counter + 1);
-      if (counter + 1 === 5) {
-        dispatch(updateTotalScore({ currentGameScore, name }));
-      }
+     onSuccess();
     } else {
-      dispatch(decreaseCurrentScore());
-      setStatus('failed');
+      onFailure();
     }
     setValue('');
     setNumber1();
@@ -60,16 +47,11 @@ export const Gcd = ({ counter, status, setStatus, setCounter, name }) => {
           <span>{number2}</span>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              name='result'
-              type='number'
-              value={userAnswer}
-              onChange={handleChange}
-              required='required'
-            />
-            <button type='submit'>Try</button>
-          </form>
+          <AnswerForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            userAnswer={userAnswer}
+          />
         </div>
         <div className='feedback'>
           <Feedback result={status} />

@@ -2,22 +2,14 @@ import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useRandomNumber } from '../../hooks/';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from '../Modal';
 import { isPrime } from '../../services/utils';
 import { Task, Feedback, AnswersCount } from '../gameUi';
-import {
-  increaseCurrentScore,
-  decreaseCurrentScore,
-  updateTotalScore,
-} from '../../store/userSlice';
 import './gameWrapper.css';
 
-export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
+export const Prime = ({ counter, onFailure, onSuccess, status }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { currentGameScore } = useSelector((state) => state.user);
   const [number, setNumber] = useRandomNumber();
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -29,15 +21,9 @@ export const Prime = ({ counter, setStatus, setCounter, status, name }) => {
 
   const handleClick = (value) => {
     if (isPrime(number) === value) {
-      dispatch(increaseCurrentScore());
-      setStatus('success');
-      setCounter((counter) => counter + 1);
-      if (counter + 1 === 5) {
-        dispatch(updateTotalScore({ currentGameScore, name }));
-      }
+      onSuccess();
     } else {
-      dispatch(decreaseCurrentScore());
-      setStatus('failed');
+      onFailure();
     }
     setNumber();
   };

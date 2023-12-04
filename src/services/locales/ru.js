@@ -55,9 +55,10 @@ export default {
     },
     congrats: {
       header: 'Поздравляем!',
-      text: 'Вы прошли <strong>{{name}}</strong>!',
+      text: 'Вы прошли',
       complete: 'Вы закончили сегодняшнюю тренировку!',
-      totalsScore: 'Вы набрали <strong>{{totalScore}}</strong> очков',
+      totalsScore: 'Вы набрали',
+      totalsScore2: ' очков!',
       points: 'Вы получили <strong>{{points}}</strong> очков',
       next: 'Следующая игра',
       again: 'Сыграть еще раз',

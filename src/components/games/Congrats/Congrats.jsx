@@ -41,9 +41,9 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     <section className='congrats-wrapper'>
       <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>
       <p className='congrats-text'>
-        <Trans i18nKey='congrats.text' values={{ name }} />
+        {t('congrats.text')} <strong className='game-name'>{name}</strong>
       </p>
-      <span className='congrats-emoji'>&#127881;</span>
+      <p className='congrats-emoji'>&#127881;</p>
       <p className='congrats-points'>
         <Trans
           i18nKey='congrats.points'
