@@ -1,4 +1,5 @@
 @layer base {
+  
   .card {
     height: 300px;
     width: 250px;
@@ -22,10 +23,7 @@
 
   .play:hover {
     background-color: var(--darkblue);
-    color: var(--lightlime);
-  }
-  .play a:hover {
-    color: var(--lightlime);
+    color: var(--blue);
   }
 
   .card-img {
@@ -39,8 +37,11 @@
   filter: blur(0.3em) grayscale(50%);
 }
 
-.unavailable,
-.unavailable a,
-a:hover {
-  cursor: not-allowed;
+.unavailable:nth-child(6),
+.unavailable:nth-child(6) a,
+.unavailable:nth-child(6) a:hover,
+.unavailable:nth-child(7),
+.unavailable:nth-child(7) a,
+.unavailable:nth-child(7) a:hover {
+  pointer-events: none;
 }
