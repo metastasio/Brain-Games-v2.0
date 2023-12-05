@@ -43,11 +43,8 @@ export const Game = ({ CurrentGame, name }) => {
   }
   return (
     <CurrentGame
-      name={name}
       counter={counter}
-      setCounter={setCounter}
       status={status}
-      setStatus={setStatus}
       onFailure={onFailure}
       onSuccess={onSuccess}
     />
