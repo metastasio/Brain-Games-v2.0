@@ -21,8 +21,12 @@
 }
 
 .feedback {
-  min-height: 76px;
+  min-height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game-controls {
+  max-height: 50px;
 }

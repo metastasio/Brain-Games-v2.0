@@ -4,11 +4,10 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Modal } from '../Modal';
-import { Task, Feedback, AnswersCount } from '../gameUi';
-import { getExpression, getRandomSign } from '../../services/utils';
 import { useRandomNumber } from '../../hooks';
+import { getExpression, getRandomSign } from '../../services/utils';
+import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
-import { AnswerForm } from '../gameUi/AnswerForm';
 
 export const Calc = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
@@ -50,7 +49,7 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
           <span>{sign}</span>
           <span>{number2}</span>
         </div>
-        <div>
+        <div className='expression'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}

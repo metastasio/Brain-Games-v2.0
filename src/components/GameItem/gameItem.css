@@ -1,5 +1,4 @@
 @layer base {
-  
   .card {
     height: 300px;
     width: 250px;
@@ -32,16 +31,25 @@
   }
 }
 
-.unavailable:nth-child(6),
-.unavailable:nth-child(7) {
+.unavailable:nth-child(4),
+.unavailable:nth-child(5) {
   filter: blur(0.3em) grayscale(50%);
 }
 
-.unavailable:nth-child(6),
-.unavailable:nth-child(6) a,
-.unavailable:nth-child(6) a:hover,
-.unavailable:nth-child(7),
-.unavailable:nth-child(7) a,
-.unavailable:nth-child(7) a:hover {
+.unavailable:nth-child(4),
+.unavailable:nth-child(4) a,
+.unavailable:nth-child(4) a:hover,
+.unavailable:nth-child(5),
+.unavailable:nth-child(5) a,
+.unavailable:nth-child(5) a:hover {
   pointer-events: none;
+}
+
+.icon {
+  position: absolute;
+  right: 5%;
+  top: 75%;
+  font-size: var(--h2);
+  color: var(--white);
+  z-index: 1;
 }

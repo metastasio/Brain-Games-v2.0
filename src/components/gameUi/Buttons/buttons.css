@@ -1,0 +1,22 @@
+.game-button {
+  /* appearance: none; */
+  background-color: transparent;
+  padding: 0.75rem;
+  border: 1px dotted var(--lightlime);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--lightlime);
+  font-size: var(--h6);
+}
+
+.game-button:hover {
+  color: var(--green);
+  border: 1px dotted var(--green);
+}
+
+.game-button.yes {
+  margin-right: 0.5rem;
+}
+.game-button.no {
+  margin-left: 0.5rem;
+}

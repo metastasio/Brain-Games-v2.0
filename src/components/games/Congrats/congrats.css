@@ -51,3 +51,15 @@
 .congrats-buttons a:hover {
   color: var(--lightgreen);
 }
+
+.next-game {
+  appearance: none;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: transparent;
+  color: var(--lightlime);
+  border: 1px dotted var(--lightlime);
+  border-radius: 10px;
+  font-family: var(--ff-regular);
+  font-size: var(--h6);
+}

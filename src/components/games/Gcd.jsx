@@ -5,9 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import { gcd } from '../../services/utils';
 import { Modal } from '../Modal';
-import { AnswerForm } from '../gameUi/AnswerForm';
 import { useRandomNumber } from '../../hooks/';
-import { Task, Feedback, AnswersCount } from '../gameUi';
+import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
 
 export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
@@ -29,7 +28,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
     e.preventDefault();
 
     if (userAnswer === correctAnswer) {
-     onSuccess();
+      onSuccess();
     } else {
       onFailure();
     }
@@ -46,7 +45,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
           <span>{number1}</span>
           <span>{number2}</span>
         </div>
-        <div>
+        <div className='expression'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}

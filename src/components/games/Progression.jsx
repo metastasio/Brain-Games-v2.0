@@ -4,10 +4,9 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Modal } from '../Modal';
-import { AnswerForm } from '../gameUi/AnswerForm';
 import { getRandomLine } from '../../services/utils';
 import { useRandomNumber } from '../../hooks/';
-import { Task, Feedback, AnswersCount } from '../gameUi';
+import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
 
 export const Progression = ({ counter, status, onSuccess, onFailure }) => {
@@ -53,7 +52,7 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
             ),
           )}
         </div>
-        <div>
+        <div className='game-controls'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}

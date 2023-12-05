@@ -1,7 +1,11 @@
 .feedback {
-  padding-bottom: 0;
+  padding: 0;
 }
 
 .feedback .points {
   color: var(--lightgreen);
+}
+p.feedback {
+  padding: 0;
+  margin: 0;
 }

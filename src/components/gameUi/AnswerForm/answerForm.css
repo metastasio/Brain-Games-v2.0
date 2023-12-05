@@ -1,0 +1,19 @@
+.answer-input,
+.submit-answer {
+  border: 1px solid var(--lightgreen);
+  background-color: transparent;
+  max-width: 72px;
+  height: 48px;
+  color: var(--lightlime);
+  font-size: var(--h5);
+}
+
+.submit-answer {
+  background-color: var(--lightlime60);
+  border-radius: 0 5px 5px 0;
+  max-width: 136px;
+}
+
+.answer-input {
+  border-radius: 5px 0 0 5px;
+}

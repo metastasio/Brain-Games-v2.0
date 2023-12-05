@@ -4,9 +4,8 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import { Modal } from '../Modal';
-import { AnswerForm } from '../gameUi/AnswerForm';
 import { useRandomNumber } from '../../hooks/';
-import { Task, Feedback, AnswersCount } from '../gameUi';
+import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 
 export const Square = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
@@ -47,7 +46,7 @@ export const Square = ({ counter, status, onSuccess, onFailure }) => {
           <span>{t('games.square.width')}:</span>
           <span>{number2}</span>
         </div>
-        <div>
+        <div className='expression'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}

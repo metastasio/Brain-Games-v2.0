@@ -5,7 +5,7 @@ import { useRandomNumber } from '../../hooks/';
 
 import { Modal } from '../Modal';
 import { isPrime } from '../../services/utils';
-import { Task, Feedback, AnswersCount } from '../gameUi';
+import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
 
 export const Prime = ({ counter, onFailure, onSuccess, status }) => {
@@ -35,9 +35,8 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
         <div className='expression'>
           <span>{number}</span>
         </div>
-        <div>
-          <button onClick={() => handleClick(true)}>Yes</button>
-          <button onClick={() => handleClick(false)}>No</button>
+        <div className='game-controls'>
+          <Buttons handleClick={handleClick} />
         </div>
         <div className='feedback'>
           <Feedback result={status} />

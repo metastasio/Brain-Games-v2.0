@@ -51,9 +51,9 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
         />
       </p>
       <div className='congrats-buttons'>
-        <button onClick={handleNext}>{t('congrats.next')}</button>
+        <button className='next-game' onClick={handleNext}>{t('congrats.next')}</button>
 
-        <Link onClick={handlePlayAgain}>{t('congrats.again')}</Link>
+        <Link className='play-again' onClick={handlePlayAgain}>{t('congrats.again')}</Link>
       </div>
     </section>
   );

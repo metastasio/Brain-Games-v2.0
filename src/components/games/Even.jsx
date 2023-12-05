@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Modal } from '../Modal';
 import { useRandomNumber } from '../../hooks/';
-import { Task, Feedback, AnswersCount } from '../gameUi';
+import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
 
 export const Even = ({ counter, status, onSuccess, onFailure }) => {
@@ -37,9 +37,8 @@ export const Even = ({ counter, status, onSuccess, onFailure }) => {
         <div className='expression'>
           <span>{number}</span>
         </div>
-        <div>
-          <button onClick={() => handleClick(true)}>{t('games.yes')}</button>
-          <button onClick={() => handleClick(false)}>{t('games.no')}</button>
+        <div className='game-controls'>
+          <Buttons handleClick={handleClick} />
         </div>
         <div className='feedback'>
           <Feedback result={status} />
