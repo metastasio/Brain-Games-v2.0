@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getRandomGames } from '../services/getRandomGames';
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -8,6 +10,7 @@ const userSlice = createSlice({
     currentGameScore: 0,
     progress: 0,
     alreadyPlayed: [],
+    todaysGames: getRandomGames(),
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -21,7 +24,6 @@ const userSlice = createSlice({
     },
     updateTotalScore(state, { payload }) {
       if (!state.alreadyPlayed.includes(payload.name)) {
-        // state.totalScore += payload.currentGameScore;
         state.totalScore += state.currentGameScore;
         state.progress++;
         state.alreadyPlayed.push(payload.name);

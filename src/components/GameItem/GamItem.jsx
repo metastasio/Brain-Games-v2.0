@@ -19,7 +19,7 @@ export const GameItem = ({ game, i }) => {
     <div className={classNames} key={i}>
       <img className='card-img' src={`/img/${game}.jpg`} aria-hidden='true' />
       {alreadyPlayed.includes(game) ? (
-        <div className='icon' display={false}>
+        <div className='icon'>
           <FontAwesomeIcon icon={faCheck} />
         </div>
       ) : null}

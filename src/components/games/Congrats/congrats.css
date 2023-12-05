@@ -33,33 +33,20 @@
   color: var(--lightgreen);
 }
 
-.congrats-buttons {
-  display: flex;
-  flex-flow: row wrap;
-  gap: var(--h5);
-}
-
-.congrats-buttons a {
-  padding: 0.5rem;
-  border: 1px dotted var(--lightlime);
-  border-radius: 10px;
-}
-.congrats-buttons a:last-child {
-  color: var(--green);
-}
-
-.congrats-buttons a:hover {
-  color: var(--lightgreen);
-}
-
 .next-game {
   appearance: none;
   margin: 0;
   padding: 0.5rem;
   background-color: transparent;
-  color: var(--lightlime);
+  color: var(--white);
   border: 1px dotted var(--lightlime);
   border-radius: 10px;
   font-family: var(--ff-regular);
   font-size: var(--h6);
+  cursor: pointer;
+}
+
+.next-game:hover {
+  color: var(--green);
+  border: 1px dotted var(--green);
 }

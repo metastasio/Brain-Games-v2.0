@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../services/routes';
@@ -6,14 +6,29 @@ import { config } from '../../../services/config';
 import { resetCurrentGameScore } from '../../../store/userSlice';
 import { Trans, useTranslation } from 'react-i18next';
 import './congrats.css';
+import { getRandomNumber } from '../../../services/utils';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { signedIn, progress, currentGameScore } = useSelector(
-    (state) => state.user,
-  );
+  const { signedIn, progress, currentGameScore, todaysGames, alreadyPlayed } =
+    useSelector((state) => state.user);
+
+  const getNextGame = () => {
+    let randomIndex;
+    
+    if (signedIn) {
+      randomIndex = getRandomNumber(0, 5);
+    } else {
+      randomIndex = getRandomNumber(0, 3);
+    }
+
+    if (alreadyPlayed.includes(todaysGames[randomIndex])) {
+      getNextGame();
+    }
+    return todaysGames[randomIndex];
+  };
 
   const resetAll = () => {
     resetCounter();
@@ -29,12 +44,9 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     ) {
       navigate(routes.complete());
     } else {
-      navigate(routes.games());
+      navigate(routes[getNextGame()]());
+      // navigate(routes.games());
     }
-  };
-
-  const handlePlayAgain = () => {
-    resetAll();
   };
 
   return (
@@ -51,9 +63,9 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
         />
       </p>
       <div className='congrats-buttons'>
-        <button className='next-game' onClick={handleNext}>{t('congrats.next')}</button>
-
-        <Link className='play-again' onClick={handlePlayAgain}>{t('congrats.again')}</Link>
+        <button className='next-game' onClick={handleNext}>
+          {t('congrats.next')}
+        </button>
       </div>
     </section>
   );
