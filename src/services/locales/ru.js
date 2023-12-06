@@ -69,5 +69,10 @@ export default {
       leave: 'Уйти',
       stay: 'Остаться',
     },
+    notFound: {
+      title: 'Такой страницы нет, но...',
+      text: 'Но есть',
+      link: 'игры',
+    },
   },
 };

@@ -1,0 +1,15 @@
+.notFound-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--h3) var(--h3) var(--h3);
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: var(--h5);
+  align-items: center;
+}
+
+.text {
+  font-size: var(--h4);
+  color: var(--lightgreen);
+}

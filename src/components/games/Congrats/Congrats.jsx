@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import routes from '../../../services/routes';
 import { config } from '../../../services/config';
+import { getRandomNumber } from '../../../services/utils';
 import { resetCurrentGameScore } from '../../../store/userSlice';
 import { Trans, useTranslation } from 'react-i18next';
 import './congrats.css';
-import { getRandomNumber } from '../../../services/utils';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
 
   const getNextGame = () => {
     let randomIndex;
-    
+
     if (signedIn) {
       randomIndex = getRandomNumber(0, 5);
     } else {

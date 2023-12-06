@@ -69,5 +69,10 @@ export default {
       leave: 'Leave',
       stay: 'Stay',
     },
+    notFound: {
+      title: 'Not Found, but...',
+      text: 'How about some',
+      link: 'games?',
+    },
   },
 };
