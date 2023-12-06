@@ -7,6 +7,12 @@
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    filter: blur(0.3em) grayscale(50%);
+    pointer-events: none;
+  }
+  .card.available {
+    filter: blur(0) grayscale(0);
+    pointer-events: auto;
   }
 
   .play {
@@ -31,19 +37,19 @@
   }
 }
 
-.unavailable:nth-child(4),
+/* .unavailable:nth-child(4),
 .unavailable:nth-child(5) {
   filter: blur(0.3em) grayscale(50%);
-}
+} */
 
-.unavailable:nth-child(4),
+/* .unavailable:nth-child(4),
 .unavailable:nth-child(4) a,
 .unavailable:nth-child(4) a:hover,
 .unavailable:nth-child(5),
 .unavailable:nth-child(5) a,
 .unavailable:nth-child(5) a:hover {
   pointer-events: none;
-}
+} */
 
 .icon {
   position: absolute;

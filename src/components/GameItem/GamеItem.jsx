@@ -8,24 +8,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import routes from '../../services/routes';
 import './gameItem.css';
 
-export const GameItem = ({ game, i }) => {
+export const GameItem = ({ name, i, available }) => {
+
   const { t } = useTranslation();
-  const { signedIn, alreadyPlayed } = useSelector((state) => state.user);
+  const { alreadyPlayed } = useSelector((state) => state.user);
   const classNames = cn({
     card: true,
-    unavailable: !signedIn,
+    available,
   });
+
   return (
     <div className={classNames} key={i}>
-      <img className='card-img' src={`/img/${game}.jpg`} aria-hidden='true' />
-      {alreadyPlayed.includes(game) ? (
+      <img className='card-img' src={`/img/${name}.jpg`} aria-hidden='true' />
+      {alreadyPlayed.includes(name) ? (
         <div className='icon'>
           <FontAwesomeIcon icon={faCheck} />
         </div>
       ) : null}
 
       <div className='play'>
-        <Link to={routes[game]()}>{t(`games.${game}.name`)}</Link>
+        <Link to={routes[name]()}>{t(`games.${name}.name`)}</Link>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export const NotFound = () => {
   const { t } = useTranslation();
 
   return (
-    <section className='notFound-wrapper'>
+    <section className='not-found-wrapper'>
       <h2 className='h3'>{t('notFound.title')}</h2>
       <p className='text'>
         {t('notFound.text')}{' '}

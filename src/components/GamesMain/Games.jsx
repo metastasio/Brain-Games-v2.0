@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import routes from '../../services/routes';
-import { GameItem } from '../GameItem/GamItem';
+import { GameItem } from '../GameItem/GamеItem';
 import './games.css';
 
 export const Games = () => {
   const { t } = useTranslation();
+
   const { signedIn, todaysGames } = useSelector((state) => state.user);
+
 
   return (
     <section className='games-container'>
@@ -23,7 +25,7 @@ export const Games = () => {
 
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
-          <GameItem game={game} key={i} />
+          <GameItem name={game.name} key={i} available={game.available} />
         ))}
       </div>
     </section>

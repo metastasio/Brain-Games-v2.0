@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getRandomGames } from '../services/getRandomGames';
 
+const games = getRandomGames().map((game, i) => {
+  if (i > 2) {
+    return { name: game, available: false, complete: false };
+  }
+  return { name: game, available: true, complete: false };
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -10,7 +17,7 @@ const userSlice = createSlice({
     currentGameScore: 0,
     progress: 0,
     alreadyPlayed: [],
-    todaysGames: getRandomGames(),
+    todaysGames: games,
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -29,6 +36,9 @@ const userSlice = createSlice({
         state.alreadyPlayed.push(payload.name);
       }
     },
+    setTodaysGames(state, { payload }) {
+      state.todaysGames = payload;
+    },
   },
 });
 export const {
@@ -36,6 +46,7 @@ export const {
   decreaseCurrentScore,
   updateTotalScore,
   resetCurrentGameScore,
+  setTodaysGames,
 } = userSlice.actions;
 
 export default userSlice.reducer;
