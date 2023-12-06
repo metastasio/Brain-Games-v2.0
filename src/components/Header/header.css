@@ -39,6 +39,11 @@
 }
 .header li:first-child a:hover {
   color: var(--lightgreen);
+  filter: drop-shadow(var(--white) 0 0 10px);
+}
+
+.games-link {
+  filter: drop-shadow(var(--white) 0 0 6px);
 }
 
 .header select {

@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import routes from '../../services/routes';
 import './complete.css';
 
 export const Complete = () => {
@@ -16,6 +18,10 @@ export const Complete = () => {
         {t('congrats.totalsScore')} <strong>{totalScore}</strong>
         {t('congrats.totalsScore2')}
       </p>
+
+      <Link className='play-again' to={routes.games()}>
+        {t('congrats.again')}
+      </Link>
     </section>
   );
 };

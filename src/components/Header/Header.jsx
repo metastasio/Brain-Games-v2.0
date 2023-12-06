@@ -25,7 +25,7 @@ export const Header = () => {
             </h1>
           </li>
           <li>
-            <Link to={routes.games()}>{t('header.games')}</Link>
+            <Link className='games-link' to={routes.games()}>{t('header.games')}</Link>
           </li>
           <li>
             <Link to={routes.signInPage()}>{t('header.logIn')}</Link>

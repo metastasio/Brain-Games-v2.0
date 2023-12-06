@@ -29,3 +29,21 @@
   color: var(--lightlime);
   margin-top: var(--h6);
 }
+
+.play-again {
+  appearance: none;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: transparent;
+  color: var(--white);
+  border: 1px dotted var(--lightlime);
+  border-radius: 10px;
+  font-family: var(--ff-regular);
+  font-size: var(--h6);
+  cursor: pointer;
+}
+
+.play-again:hover {
+  color: var(--green);
+  border: 1px dotted var(--green);
+}

@@ -14,7 +14,8 @@ export default {
     },
     games: {
       desc: "Today's workout:",
-      reminder: 'Log in to get access to more games',
+      reminderLogIn: 'Log in',
+      reminder: ' to get access to more games',
       try: 'Try',
       yes: 'Yes',
       no: 'No',
