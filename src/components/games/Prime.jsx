@@ -10,6 +10,7 @@ import './gameWrapper.css';
 
 export const Prime = ({ counter, onFailure, onSuccess, status }) => {
   const { t } = useTranslation();
+
   const [number, setNumber] = useRandomNumber();
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>

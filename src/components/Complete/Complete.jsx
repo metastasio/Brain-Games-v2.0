@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -7,9 +7,10 @@ import './complete.css';
 
 export const Complete = () => {
   const { t } = useTranslation();
-  const { totalScore } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { totalScore, progress } = useSelector((state) => state.user);
 
-  return (
+  return progress === 3 ? (
     <section className='complete-wrapper'>
       <h2 className='h3 complete-header'>{t('congrats.header')}</h2>
       <p className='complete-emoji'>&#127882;</p>
@@ -19,9 +20,11 @@ export const Complete = () => {
         {t('congrats.totalsScore2')}
       </p>
 
-      <Link className='play-again' to={routes.games()}>
+      <Link autoFocus className='play-again' to={routes.games()}>
         {t('congrats.again')}
       </Link>
     </section>
+  ) : (
+    navigate(routes.mainPage())
   );
 };

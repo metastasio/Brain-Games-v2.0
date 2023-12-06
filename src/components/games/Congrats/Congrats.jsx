@@ -45,7 +45,6 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
       navigate(routes.complete());
     } else {
       navigate(routes[getNextGame()]());
-      // navigate(routes.games());
     }
   };
 
@@ -63,7 +62,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
         />
       </p>
       <div className='congrats-buttons'>
-        <button className='next-game' onClick={handleNext}>
+        <button autoFocus className='next-game' onClick={handleNext}>
           {t('congrats.next')}
         </button>
       </div>
