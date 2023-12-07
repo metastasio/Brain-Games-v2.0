@@ -12,22 +12,24 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { signedIn, progress, currentGameScore, todaysGames, alreadyPlayed } =
-    useSelector((state) => state.user);
+  const { signedIn, progress, currentGameScore, todaysGames } = useSelector(
+    (state) => state.user,
+  );
 
   const getNextGame = () => {
+    const availableGames = todaysGames.filter(
+      (game) => game.available && !game.complete,
+    );
+
     let randomIndex;
 
     if (signedIn) {
-      randomIndex = getRandomNumber(0, 5);
+      randomIndex = getRandomNumber(0, availableGames.length - 1);
     } else {
-      randomIndex = getRandomNumber(0, 3);
+      randomIndex = getRandomNumber(0, availableGames.length - 1);
     }
-
-    if (alreadyPlayed.includes(todaysGames[randomIndex])) {
-      getNextGame();
-    }
-    return todaysGames[randomIndex];
+    
+    return availableGames[randomIndex].name;
   };
 
   const resetAll = () => {

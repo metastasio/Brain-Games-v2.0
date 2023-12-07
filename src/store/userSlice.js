@@ -2,12 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getRandomGames } from '../services/getRandomGames';
 
-const games = getRandomGames().map((game, i) => {
-  if (i > 2) {
-    return { name: game, available: false, complete: false };
-  }
-  return { name: game, available: true, complete: false };
-});
+const games = getRandomGames().map((game, i) => ({
+  name: game,
+  available: i < 4 - 1,
+  complete: false,
+}));
 
 const userSlice = createSlice({
   name: 'user',
@@ -30,11 +29,19 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
-      if (!state.alreadyPlayed.includes(payload.name)) {
-        state.totalScore += state.currentGameScore;
-        state.progress++;
-        state.alreadyPlayed.push(payload.name);
-      }
+      state.todaysGames.map((game) => {
+        if (game.name === payload.name && !game.complete) {
+          state.totalScore += state.currentGameScore;
+          state.progress++;
+          return (game.complete = true);
+        }
+      });
+
+      // if (!state.alreadyPlayed.includes(payload.name)) {
+      //   state.totalScore += state.currentGameScore;
+      //   state.progress++;
+      //   state.alreadyPlayed.push(payload.name);
+      // }
     },
     setTodaysGames(state, { payload }) {
       state.todaysGames = payload;
