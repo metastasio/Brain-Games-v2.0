@@ -25,7 +25,7 @@ export const Games = () => {
 
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
-          <GameItem name={game.name} key={i} available={game.available} />
+          <GameItem game={game} key={i} available={game.available} />
         ))}
       </div>
     </section>

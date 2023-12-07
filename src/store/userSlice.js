@@ -15,7 +15,6 @@ const userSlice = createSlice({
     totalScore: 0,
     currentGameScore: 0,
     progress: 0,
-    alreadyPlayed: [],
     todaysGames: games,
   },
   reducers: {
@@ -36,12 +35,6 @@ const userSlice = createSlice({
           return (game.complete = true);
         }
       });
-
-      // if (!state.alreadyPlayed.includes(payload.name)) {
-      //   state.totalScore += state.currentGameScore;
-      //   state.progress++;
-      //   state.alreadyPlayed.push(payload.name);
-      // }
     },
     setTodaysGames(state, { payload }) {
       state.todaysGames = payload;
