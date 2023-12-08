@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
 
 import routes from '../../services/routes';
-import './complete.css';
 import { config } from '../../services/config';
-import { useEffect } from 'react';
+import './complete.css';
 
 export const Complete = () => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ export const Complete = () => {
         {t('congrats.totalsScore2')}
       </p>
 
-      <Link autoFocus className='complete-play-again' to={routes.games()}>
+      <Link className='complete-play-again' to={routes.games()}>
         {t('congrats.again')}
       </Link>
     </section>

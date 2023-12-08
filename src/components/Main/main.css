@@ -26,10 +26,6 @@
   padding: var(--h6) 0;
 }
 
-.main-start:hover {
-  filter: drop-shadow(var(--white) 0 0 6px);
-}
-
 .main-start a {
   padding: var(--small);
   border: 1px dotted var(--lightlime);
@@ -38,4 +34,5 @@
 .main-start a:hover {
   color: var(--lightgreen);
   background-color: var(--darkblue);
+  box-shadow: var(--white) 0 0 6px;
 }

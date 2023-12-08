@@ -1,42 +1,42 @@
-@layer base {
-  .game-card {
-    height: 300px;
-    width: 250px;
-    background-color: var(--lightlime60);
-    border: 2px solid var(--lightlime);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-    filter: blur(0.3em) grayscale(50%);
-    pointer-events: none;
-  }
-  .game-card.available {
-    filter: blur(0) grayscale(0);
-    pointer-events: auto;
-  }
+.game-card {
+  height: 300px;
+  width: 250px;
+  background-color: var(--lightlime60);
+  border: 2px solid var(--lightlime);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  filter: blur(0.3em) grayscale(50%);
+  pointer-events: none;
+}
+.game-card.available {
+  filter: blur(0) grayscale(0);
+  pointer-events: auto;
+}
 
-  .game-play {
-    position: absolute;
-    width: 100%;
-    padding: 0.5rem 0;
-    appearance: none;
-    border-top: 1px dashed var(--lightlime);
-    background-color: var(--lightlime60);
-    left: 0;
-    bottom: 0;
-  }
+.game-play {
+  position: absolute;
+  width: 100%;
+  padding: 0.5rem 0;
+  appearance: none;
+  border-top: 1px dashed var(--lightlime);
+  background-color: var(--lightlime60);
+  left: 0;
+  bottom: 0;
+}
 
-  .game-play:hover {
-    background-color: var(--darkblue);
-  }
-  .game-play a:hover {
-    color: var(--lightlime);
-  }
+.game-play:hover {
+  color: var(--lightgreen);
+  background-color: var(--darkblue);
+  cursor: pointer;
+}
+.game-play:hover a {
+  color: inherit;
+}
 
-  .game-card-img {
-    max-width: 100%;
-    height: auto;
-  }
+.game-card-img {
+  max-width: 100%;
+  height: auto;
 }
 
 .game-complete-icon {
