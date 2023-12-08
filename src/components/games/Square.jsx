@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { useBlocker } from 'react-router-dom';
 
 import { Modal } from '../Modal';
 import { useRandomNumber } from '../../hooks/';
@@ -9,6 +9,10 @@ import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 
 export const Square = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
+  // const { todaysGames } = useSelector((state) => state.user);
+  // const isAvailable = todaysGames.filter(
+  //   (game) => game.name === 'square' && game.available,
+  // );
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');

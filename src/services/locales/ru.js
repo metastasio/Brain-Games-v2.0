@@ -6,6 +6,7 @@ export default {
       profile: 'Профиль',
       ru: 'Русский',
       en: 'Английский',
+      label: 'Выберите язык',
     },
     main: {
       welcome: 'Добро пожаловать в <strong>Brain Games!</strong>',

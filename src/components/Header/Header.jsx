@@ -25,7 +25,9 @@ export const Header = () => {
             </h1>
           </li>
           <li>
-            <Link className='games-link' to={routes.games()}>{t('header.games')}</Link>
+            <Link className='games-link' to={routes.games()}>
+              {t('header.games')}
+            </Link>
           </li>
           <li>
             <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
@@ -34,7 +36,11 @@ export const Header = () => {
             {t('header.profile')} <span className='score'>{totalScore}</span>
           </li>
           <li>
+            <label className='sr-only' htmlFor='select-language'>
+              {t('header.label')}
+            </label>
             <select
+              id='select-language'
               className='select'
               name='lang'
               defaultValue='en'
