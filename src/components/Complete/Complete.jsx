@@ -31,7 +31,7 @@ export const Complete = () => {
         {t('congrats.totalsScore2')}
       </p>
 
-      <Link autoFocus className='play-again' to={routes.games()}>
+      <Link autoFocus className='complete-play-again' to={routes.games()}>
         {t('congrats.again')}
       </Link>
     </section>

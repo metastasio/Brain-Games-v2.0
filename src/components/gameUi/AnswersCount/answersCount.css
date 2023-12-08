@@ -3,6 +3,6 @@
   font-size: var(--small);
 }
 
-.count strong {
+.conditions-count strong {
   color: var(--lightgreen);
 }

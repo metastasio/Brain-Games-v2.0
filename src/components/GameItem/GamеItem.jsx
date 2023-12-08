@@ -11,20 +11,20 @@ export const GameItem = ({ game, i, available }) => {
   const { t } = useTranslation();
   const { name, complete } = game;
   const classNames = cn({
-    card: true,
+    'game-card': true,
     available,
   });
 
   return (
     <div className={classNames} key={i}>
-      <img className='card-img' src={`/img/${name}.jpg`} aria-hidden='true' />
+      <img className='game-card-img' src={`/img/${name}.jpg`} aria-hidden='true' />
       {complete ? (
-        <div className='icon'>
+        <div className='game-complete-icon'>
           <FontAwesomeIcon icon={faCheck} />
         </div>
       ) : null}
 
-      <div className='play'>
+      <div className='game-play'>
         <Link to={routes[name]()}>{t(`games.${name}.name`)}</Link>
       </div>
     </div>

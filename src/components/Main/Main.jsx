@@ -13,12 +13,12 @@ export const Main = () => {
         <h2>
           <Trans i18nKey={'main.welcome'}></Trans>
         </h2>
-        <p className='description'>{t('main.desc')}</p>
-        <p className='start'>
+        <p className='main-description'>{t('main.desc')}</p>
+        <div className='main-start'>
           <Link to={routes.games()}>
             {t('main.start')}
           </Link>
-        </p>
+        </div>
       </section>
     </main>
   );

@@ -44,19 +44,19 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
     <section className='game-wrapper'>
       <Task question={t('games.calc.task')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           <span>{number1}</span>
           <span>{sign}</span>
           <span>{number2}</span>
         </div>
-        <div className='expression'>
+        <div className='game-controls'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             userAnswer={userAnswer}
           />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
         <AnswersCount count={counter} />

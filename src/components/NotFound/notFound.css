@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.text {
+.not-found-text {
   font-size: var(--h4);
   color: var(--lightgreen);
 }

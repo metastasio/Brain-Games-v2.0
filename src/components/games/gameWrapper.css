@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.expression {
+.game-expression {
   font-size: var(--h3);
   color: var(--lightgreen);
   font-family: var(--ff-main);
@@ -20,7 +20,7 @@
   padding-bottom: var(--h6);
 }
 
-.feedback {
+.game-feedback {
   min-height: 100px;
   display: flex;
   align-items: center;

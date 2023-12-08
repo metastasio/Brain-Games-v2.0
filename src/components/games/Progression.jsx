@@ -43,7 +43,7 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
     <section className='game-wrapper'>
       <Task question={t('games.progression.task')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           {randomLine.map((item, i) =>
             item === correctAnswer ? (
               <span key={i}>..</span>
@@ -59,7 +59,7 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
             userAnswer={userAnswer}
           />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
         <AnswersCount count={counter} />

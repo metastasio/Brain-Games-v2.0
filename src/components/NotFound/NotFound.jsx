@@ -10,7 +10,7 @@ export const NotFound = () => {
   return (
     <section className='not-found-wrapper'>
       <h2 className='h3'>{t('notFound.title')}</h2>
-      <p className='text'>
+      <p className='not-found-text'>
         {t('notFound.text')}{' '}
         <Link to={routes.games()}>{t('notFound.link')}</Link>
       </p>

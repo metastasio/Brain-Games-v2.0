@@ -33,13 +33,13 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
     <section className='game-wrapper'>
       <Task question={t('games.prime.task')} hint={t('games.prime.hint')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           <span>{number}</span>
         </div>
         <div className='game-controls'>
           <Buttons handleClick={handleClick} />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
         <AnswersCount count={counter} />

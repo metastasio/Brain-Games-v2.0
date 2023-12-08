@@ -15,24 +15,27 @@
   font-size: var(--h2);
 }
 
-.description {
+.main-description {
   margin: 0;
   padding: var(--h3) 0;
   font-size: var(--h6);
 }
-.start {
+.main-start {
   text-align: center;
   font-size: var(--h5);
   padding: var(--h6) 0;
 }
 
-.start a {
+.main-start:hover {
+  filter: drop-shadow(var(--white) 0 0 6px);
+}
+
+.main-start a {
   padding: var(--small);
-  /* background-color: var(--lightlime60); */
   border: 1px dotted var(--lightlime);
   border-radius: 10px;
 }
-.start a:hover {
+.main-start a:hover {
   color: var(--lightgreen);
   background-color: var(--darkblue);
 }

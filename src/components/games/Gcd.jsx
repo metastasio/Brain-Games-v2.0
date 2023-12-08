@@ -41,18 +41,18 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
     <section className='game-wrapper'>
       <Task question={t('games.gcd.task')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           <span>{number1}</span>
           <span>{number2}</span>
         </div>
-        <div className='expression'>
+        <div className='game-controls'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             userAnswer={userAnswer}
           />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
         <AnswersCount count={counter} />

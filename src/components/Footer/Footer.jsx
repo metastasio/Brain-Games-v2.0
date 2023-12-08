@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <footer className='footer'>
       <nav>
-        <ul className='links'>
+        <ul className='footer-links'>
           <li>
             <Link to='mailto:myaldzina@gmail.com'>
               <FontAwesomeIcon icon={faEnvelope} aria-hidden='true' />
@@ -23,7 +23,7 @@ export const Footer = () => {
           </li>
         </ul>
       </nav>
-      <p className='copyright'>
+      <p className='footer-copyright'>
         <small>&copy; 2023 Metastasio. All rights reserved.</small>
       </p>
     </footer>

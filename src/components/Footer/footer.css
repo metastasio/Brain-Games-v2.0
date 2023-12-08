@@ -1,7 +1,7 @@
 .footer {
-  padding: 4rem 0 var(--h4) ;
+  padding: 4rem 0 var(--h4);
 }
-.links {
+.footer-links {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -11,14 +11,14 @@
   align-items: center;
   gap: var(--h5);
 }
-.links a {
+.footer-links a {
   color: var(--green);
 }
-.links a:hover {
+.footer-links a:hover {
   color: var(--lightlime);
 }
 
-.copyright {
+.footer-copyright {
   text-align: center;
   color: var(--blue);
 }

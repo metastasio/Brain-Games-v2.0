@@ -13,17 +13,14 @@
   justify-content: center;
   align-items: center;
   gap: var(--h5);
-  /* 
-  text-underline-offset: 6px;
-  text-decoration: underline dotted; */
 }
 
-.header .title {
+.header-title {
   margin: 0;
   padding: 0;
 }
 
-.logo {
+.header-logo {
   font-size: 50px;
 }
 
@@ -45,8 +42,11 @@
 .games-link {
   filter: drop-shadow(var(--white) 0 0 6px);
 }
+.games-link:hover {
+  filter: drop-shadow(var(--white) 0 0 0);
+}
 
-.header select {
+.header-select {
   background-color: transparent;
   border: none;
   padding: 0 0 0 0;
@@ -60,11 +60,11 @@
   outline: none;
   max-width: 100px;
 }
-.header select:hover {
+.header-select:hover {
   color: var(--blue);
 }
 
-.header .score {
+.header-score {
   color: var(--blue);
   font-family: var(--ff-main);
 }

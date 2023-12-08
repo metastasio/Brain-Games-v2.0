@@ -34,7 +34,7 @@ export const Even = ({ counter, status, onSuccess, onFailure }) => {
     <section className='game-wrapper'>
       <Task question={t('games.even.task')} hint={t('games.even.hint')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           <span>{number}</span>
         </div>
         <div className='game-controls'>

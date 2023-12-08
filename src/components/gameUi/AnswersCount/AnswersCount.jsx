@@ -9,7 +9,7 @@ export const AnswersCount = ({ count }) => {
   return (
     <div>
       <p className='conditions'>{t('games.conditions')}</p>
-      <p className='count'>
+      <p className='conditions-count'>
         {t('games.counter')}{' '}
         <strong>
           {count}/{config.winCondition}

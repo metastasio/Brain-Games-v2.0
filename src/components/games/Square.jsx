@@ -44,20 +44,20 @@ export const Square = ({ counter, status, onSuccess, onFailure }) => {
     <section className='game-wrapper'>
       <Task question={t('games.square.task')} />
       <div>
-        <div className='expression'>
+        <div className='game-expression'>
           <span>{t('games.square.length')}:</span>
           <span>{number1},</span>
           <span>{t('games.square.width')}:</span>
           <span>{number2}</span>
         </div>
-        <div className='expression'>
+        <div className='game-controls'>
           <AnswerForm
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             userAnswer={userAnswer}
           />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
 
