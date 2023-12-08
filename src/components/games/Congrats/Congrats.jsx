@@ -20,15 +20,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     const availableGames = todaysGames.filter(
       (game) => game.available && !game.complete,
     );
-
-    let randomIndex;
-
-    if (signedIn) {
-      randomIndex = getRandomNumber(0, availableGames.length - 1);
-    } else {
-      randomIndex = getRandomNumber(0, availableGames.length - 1);
-    }
-    
+    const randomIndex = getRandomNumber(0, availableGames.length - 1);
     return availableGames[randomIndex].name;
   };
 
