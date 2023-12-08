@@ -19,7 +19,7 @@ export const Complete = () => {
     ) {
       navigate(routes.mainPage());
     }
-  });
+  }, [navigate, progress, signedIn]);
 
   return (
     <section className='complete-wrapper'>
