@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useRandomNumber } from '../../hooks/';
 
-import { Modal } from '../Modal';
+import { Modal } from '../Modal/Modal';
 import { isPrime } from '../../services/utils';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';

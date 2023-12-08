@@ -2,7 +2,7 @@ import { useBlocker } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Modal } from '../Modal';
+import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';

@@ -66,8 +66,8 @@ export default {
       again: 'Play again',
     },
     modal: {
-      warning:
-        '<p>You are leaving this page.</p><p>Your current progress will be lost</p>',
+      warning: 'You are leaving this page.',
+      progress: 'Your current progress will be lost',
       leave: 'Leave',
       stay: 'Stay',
     },

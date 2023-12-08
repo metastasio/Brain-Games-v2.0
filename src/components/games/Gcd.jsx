@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import { gcd } from '../../services/utils';
-import { Modal } from '../Modal';
+import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';

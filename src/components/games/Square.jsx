@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
 
-import { Modal } from '../Modal';
+import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 

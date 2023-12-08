@@ -74,6 +74,7 @@
     min-width: 1050px;
     margin: 0 auto;
   }
+  
   .header li:first-child {
     flex-basis: auto;
     text-align: left;
