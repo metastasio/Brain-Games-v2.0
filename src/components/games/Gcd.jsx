@@ -22,7 +22,13 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
 
   const onLeave = () => blocker.proceed();
   const onStay = () => blocker.reset();
-  const handleChange = (e) => setValue(e.target.valueAsNumber);
+  
+  const handleChange = (e) => {
+    const value = Number.isNaN(e.target.valueAsNumber)
+      ? ''
+      : e.target.valueAsNumber;
+    setValue(value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

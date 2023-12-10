@@ -1,7 +1,7 @@
-import { createPortal } from 'react-dom';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useBlocker } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks/';
@@ -9,10 +9,6 @@ import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 
 export const Square = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
-  // const { todaysGames } = useSelector((state) => state.user);
-  // const isAvailable = todaysGames.filter(
-  //   (game) => game.name === 'square' && game.available,
-  // );
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -25,7 +21,12 @@ export const Square = ({ counter, status, onSuccess, onFailure }) => {
   const onLeave = () => blocker.proceed();
   const onStay = () => blocker.reset();
 
-  const handleChange = (e) => setValue(e.target.valueAsNumber);
+  const handleChange = (e) => {
+    const value = Number.isNaN(e.target.valueAsNumber)
+      ? ''
+      : e.target.valueAsNumber;
+    setValue(value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

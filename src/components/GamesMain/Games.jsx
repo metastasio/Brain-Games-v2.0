@@ -11,7 +11,6 @@ export const Games = () => {
 
   const { signedIn, todaysGames } = useSelector((state) => state.user);
 
-
   return (
     <section className='games-container'>
       <h2 className='workout'>{t('games.desc')}</h2>
