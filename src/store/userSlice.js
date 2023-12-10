@@ -32,7 +32,8 @@ const userSlice = createSlice({
         if (game.name === payload.name && !game.complete) {
           state.totalScore += state.currentGameScore;
           state.progress++;
-          return (game.complete = true);
+          game.complete = true;
+          return game;
         }
       });
     },

@@ -18,14 +18,21 @@ export const Games = () => {
 
       {signedIn ? null : (
         <p className='reminder'>
-          <Link className='reminder-link' to={routes.signInPage()}>{t('games.reminderLogIn')}</Link>
+          <Link className='reminder-link' to={routes.signInPage()}>
+            {t('games.reminderLogIn')}
+          </Link>
           {t('games.reminder')}
         </p>
       )}
 
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
-          <GameItem game={game} key={i} available={game.available} />
+          <GameItem
+            game={game}
+            key={i}
+            // available={game.available}
+            available={true}
+          />
         ))}
       </div>
     </section>

@@ -13,7 +13,7 @@ import {
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { currentGameScore } = useSelector((state) => state.user);
+  const { currentGameScore, todaysGames } = useSelector((state) => state.user);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
@@ -31,6 +31,13 @@ export const Game = ({ CurrentGame, name }) => {
     dispatch(decreaseCurrentScore());
     setStatus('failed');
   };
+
+  const isAvailable = todaysGames.filter(
+    (game) => game.name === name && game.available,
+  );
+  if (!isAvailable.length) {
+    return <div>keke</div>;
+  }
 
   if (counter === config.winCondition) {
     return (

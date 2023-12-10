@@ -36,6 +36,7 @@ html {
 body {
   height: 100%;
   max-width: 1280px;
+  min-width: 320px;
   font-family: var(--ff-regular);
   line-height: 1.5;
   background-color: var(--darkblue);
