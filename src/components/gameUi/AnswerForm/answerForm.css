@@ -19,4 +19,10 @@
 .answer-input {
   border-radius: 5px 0 0 5px;
   appearance: none;
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
 }
