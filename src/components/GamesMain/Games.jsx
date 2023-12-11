@@ -6,8 +6,8 @@ import { Restricted } from '../Restricted';
 import './games.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 
 export const Games = () => {
   const { t } = useTranslation();

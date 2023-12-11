@@ -22,13 +22,14 @@
   --h6: var(--base-size); /* 1.2rem */
   --small: calc(var(--base-size) / var(--scale)); /* 0.96rem */
   --xs: 0.5rem;
-  
+
   --base-radius: 10px;
 }
 
 html {
   height: 100%;
   box-sizing: border-box;
+  scrollbar-gutter: stable;
 }
 *,
 *:before,
