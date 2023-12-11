@@ -6,8 +6,8 @@ export const Modal = ({ onLeave, onStay }) => {
   const { t } = useTranslation();
 
   return (
-    <div className='modal'>
-      <div className='modal-wrapper'>
+    <div className='modal' onClick={onStay}>
+      <div className='modal-wrapper' onClick={(e) => e.stopPropagation()}>
         <button className='modal-close' onClick={onStay}>
           &times;
         </button>
