@@ -8,10 +8,14 @@ export const Modal = ({ onLeave, onStay }) => {
   return (
     <div className='modal'>
       <div className='modal-wrapper'>
-        <p className='modal-warning'>{t('modal.warning')}</p>
+        <button className='modal-close' onClick={onStay}>
+          &times;
+        </button>
+
+        <h3 className='modal-warning h6'>{t('modal.warning')}</h3>
         <p className='modal-warning-progress'>{t('modal.progress')}</p>
         <div className='modal-buttons'>
-          <button className='modal-button-stay' onClick={onStay}>
+          <button autoFocus className='modal-button-stay' onClick={onStay}>
             {t('modal.stay')}
           </button>
           <button className='modal-button-leave' onClick={onLeave}>
