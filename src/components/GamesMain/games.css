@@ -14,6 +14,9 @@
 .reminder {
   color: var(--blue);
   padding-bottom: var(--h3);
+  
+  /* for Restricted component */
+  text-align: center;
 }
 
 .reminder-link {

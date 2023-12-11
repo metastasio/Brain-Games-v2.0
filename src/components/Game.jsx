@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
+import { Restricted } from './Restricted';
 import {
   decreaseCurrentScore,
   increaseCurrentScore,
@@ -36,7 +37,7 @@ export const Game = ({ CurrentGame, name }) => {
     (game) => game.name === name && game.available,
   );
   if (!isAvailable.length) {
-    return <div>keke</div>;
+    return <Restricted />;
   }
 
   if (counter === config.winCondition) {
