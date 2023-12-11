@@ -3,7 +3,7 @@
   width: 250px;
   background-color: var(--lightlime60);
   border: 2px solid var(--lightlime);
-  border-radius: 20px;
+  border-radius: calc(var(--base-radius) * 2);
   position: relative;
   overflow: hidden;
   filter: blur(0.3em) grayscale(50%);
@@ -17,7 +17,7 @@
 .game-play {
   position: absolute;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: var(--xs) 0;
   appearance: none;
   border-top: 1px dashed var(--lightlime);
   background-color: var(--lightlime60);

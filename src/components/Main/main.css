@@ -29,7 +29,7 @@
 .main-start a {
   padding: var(--small);
   border: 1px dotted var(--lightlime);
-  border-radius: 10px;
+  border-radius: var(--base-radius);
 }
 .main-start a:hover {
   color: var(--lightgreen);

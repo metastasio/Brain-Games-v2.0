@@ -4,6 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { GameItem } from '../GameItem/GamеItem';
 import { Restricted } from '../Restricted';
 import './games.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation } from 'swiper/modules';
 
 export const Games = () => {
   const { t } = useTranslation();
@@ -13,17 +17,11 @@ export const Games = () => {
     <section className='games-container'>
       <h2 className='workout'>{t('games.desc')}</h2>
 
-      {signedIn ? null : (
-        <Restricted />
-      )}
+      {signedIn ? null : <Restricted />}
 
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
-          <GameItem
-            game={game}
-            key={i}
-            available={game.available}
-          />
+          <GameItem game={game} key={i} available={game.available} />
         ))}
       </div>
     </section>

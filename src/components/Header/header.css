@@ -14,10 +14,6 @@
   align-items: center;
   gap: var(--h5);
 }
-/* 
-.header ul > li {
-  white-space: nowrap;
-} */
 
 .header-title {
   margin: 0;

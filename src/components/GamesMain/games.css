@@ -5,10 +5,10 @@
 }
 
 .cards-container {
+  align-items: center;
   display: flex;
   flex-flow: column;
   gap: var(--h5);
-  align-items: center;
 }
 
 .reminder {
