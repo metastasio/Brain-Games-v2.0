@@ -7,9 +7,11 @@ export const AnswerForm = ({ userAnswer, handleSubmit, handleChange }) => {
 
   return (
     <form className='answer-form' onSubmit={handleSubmit}>
+      <label htmlFor='answer-form'></label>
       <input
         autoFocus
         className='answer-input'
+        id='answer-form'
         name='result'
         type='number'
         value={userAnswer}
