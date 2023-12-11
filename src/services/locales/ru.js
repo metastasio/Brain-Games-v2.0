@@ -16,7 +16,7 @@ export default {
     games: {
       desc: 'Задания на сегодня:',
       reminderLogIn: 'Войдите',
-      reminder: ', чтобы получить доступ к остальным',
+      reminder: ', чтобы получить доступ к остальным играм',
       try: 'Проверить',
       yes: 'Да',
       no: 'Нет',
@@ -64,6 +64,13 @@ export default {
       points: 'Вы получили <strong>{{points}}</strong> очков',
       next: 'Следующая игра',
       again: 'Сыграть еще раз',
+    },
+    form: {
+      username: 'Введите имя пользователя',
+      password: 'Введите пароль',
+      usernamePlaceholer: 'Имя пользователя',
+      passwordPlaceholer: 'Пароль',
+      enter: 'Войти',
     },
     modal: {
       progress: 'Текущий прогресс будет утерян',

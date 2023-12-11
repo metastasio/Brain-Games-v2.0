@@ -10,6 +10,7 @@ import {
   NotFound,
   Complete,
   Header,
+  Profile,
 } from './components';
 import './App.css';
 import {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: routes.mainPage(),
         element: <Main />,
+      },
+      {
+        path: routes.profile(),
+        element: <Profile />,
       },
       {
         path: routes.games(),

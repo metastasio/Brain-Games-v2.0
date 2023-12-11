@@ -8,7 +8,7 @@ import './header.css';
 
 export const Header = () => {
   const { t } = useTranslation();
-  const { totalScore } = useSelector((state) => state.user);
+  const { totalScore, signedIn } = useSelector((state) => state.user);
   const handleSelect = (e) => {
     i18n.changeLanguage(e.target.value);
   };
@@ -30,10 +30,12 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
-          </li>
-          <li>
-            {t('header.profile')}{' '}
+            {signedIn ? (
+              <Link to={routes.profile()}>{t('header.profile')}</Link>
+            ) : (
+              <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
+            )}
+            {' '}
             <span className='header-score'>{totalScore}</span>
           </li>
           <li>

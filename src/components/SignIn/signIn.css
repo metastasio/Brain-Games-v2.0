@@ -1,0 +1,55 @@
+.signIn-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--xl) var(--h3);
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  gap: var(--h5);
+  border: 1px dotted var(--blue);
+  border-radius: var(--base-radius);
+  box-shadow: var(--blue) 0 0 12px;
+}
+
+.form-header {
+  color: var(--lightlime);
+  padding: var(--h3);
+}
+
+.form-label {
+  text-align: start;
+  display: block;
+  font-size: var(--h6);
+}
+
+.form-input {
+  border: none;
+  background-color: var(--lightlime60);
+  border: 1px dotted var(--lightlime);
+  border-radius: var(--base-radius);
+  font-size: var(--h6);
+}
+
+::placeholder {
+  color: var(--darkblue);
+  opacity: 1; /* Firefox */
+}
+
+.form-block {
+  padding-bottom: var(--h3);
+}
+
+.form-button {
+  background-color: transparent;
+  padding: var(--small);
+  border: 1px dotted var(--white);
+  border-radius: var(--base-radius);
+  color: var(--white);
+  font-size: var(--h6);
+  font-family: var(--ff-regular);
+}
+.form-button:hover {
+  color: var(--lightgreen);
+  border: 1px dotted var(--lightgreen);
+  background-color: var(--darkblue);
+}

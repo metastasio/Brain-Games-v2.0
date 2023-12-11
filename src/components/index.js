@@ -1,8 +1,9 @@
+export { Profile } from './Profile/Profile';
 export { Main } from './Main/Main';
 export { Games } from './GamesMain/Games';
 export { Header } from './Header/Header';
 export { Footer } from './Footer/Footer';
-export { SignIn } from './SignIn';
+export { SignIn } from './SignIn/SignIn';
 export { SignUp } from './SignUp';
 export { NotFound } from './NotFound/NotFound';
 export { Complete } from './Complete/Complete';

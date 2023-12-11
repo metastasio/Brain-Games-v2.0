@@ -65,6 +65,13 @@ export default {
       next: 'Next game',
       again: 'Play again',
     },
+    form: {
+      username: 'Enter your username',
+      password: 'Enter your password',
+      usernamePlaceholer: 'Username',
+      passwordPlaceholer: 'Password',
+      enter: 'Enter',
+    },
     modal: {
       warning: 'You are leaving this page.',
       progress: 'Your current progress will be lost',
