@@ -66,11 +66,12 @@ export default {
       again: 'Play again',
     },
     form: {
-      username: 'Enter your username',
+      email: 'Enter your e-mail',
       password: 'Enter your password',
       usernamePlaceholer: 'Username',
       passwordPlaceholer: 'Password',
       enter: 'Enter',
+      register: 'Register',
     },
     modal: {
       warning: 'You are leaving this page.',

@@ -1,25 +1,27 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import './signIn.css';
+import './forms.css';
+import routes from '../../services/routes';
 
-export const SignIn = () => {
+export const SignUp = () => {
   const { t } = useTranslation();
 
   return (
-    <div className='signIn-wrapper'>
+    <div className='form-wrapper'>
       <form action=''>
         <h2 className='h3 form-header'>{t('header.logIn')}</h2>
 
         <div className='form-block'>
-          <label className='form-label' htmlFor='username'>
-            {t('form.username')}
+          <label className='form-label' htmlFor='email'>
+            {t('form.email')}
           </label>
           <input
             autoFocus
             className='form-input'
             type='text'
-            id='username'
-            placeholder='Username'
+            id='email'
+            placeholder='E-mail'
           />
         </div>
 
@@ -35,8 +37,11 @@ export const SignIn = () => {
           />
         </div>
 
-        <button className='form-button'>{t('form.enter')}</button>
+        <button className='form-button'>{t('form.register')}</button>
       </form>
+      <Link className='form-sign-in' to={routes.signInPage()}>
+        {t('header.logIn')}
+      </Link>
     </div>
   );
 };

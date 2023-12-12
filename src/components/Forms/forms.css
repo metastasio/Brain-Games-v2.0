@@ -1,4 +1,4 @@
-.signIn-wrapper {
+.form-wrapper {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--xl) var(--h3);
@@ -52,4 +52,11 @@
   color: var(--lightgreen);
   border: 1px dotted var(--lightgreen);
   background-color: var(--darkblue);
+}
+
+.form-register, .form-sign-in {
+  color: var(--blue)
+}
+.form-register:hover, .form-sign-in:hover {
+  color: var(--white)
 }

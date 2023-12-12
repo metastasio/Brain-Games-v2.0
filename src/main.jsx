@@ -6,6 +6,7 @@ import './index.css';
 import { App } from './App.jsx';
 import '../src/services/locales';
 import store from './store/index.js';
+import './services/firebase.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -66,11 +66,12 @@ export default {
       again: 'Сыграть еще раз',
     },
     form: {
-      username: 'Введите имя пользователя',
+      email: 'Введите e-mail',
       password: 'Введите пароль',
       usernamePlaceholer: 'Имя пользователя',
       passwordPlaceholer: 'Пароль',
       enter: 'Войти',
+      register: 'Зарегистрироваться',
     },
     modal: {
       progress: 'Текущий прогресс будет утерян',
