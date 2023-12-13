@@ -13,7 +13,7 @@
 
 .form-header {
   color: var(--lightlime);
-  padding: var(--h3);
+  padding: var(--h3) 0;
 }
 
 .form-label {

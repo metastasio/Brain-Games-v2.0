@@ -36,7 +36,7 @@ export const SignIn = () => {
   return (
     <div className='form-wrapper'>
       <form action='' onSubmit={handleSubmit}>
-        <h2 className='h3 form-header'>{t('header.logIn')}</h2>
+        <h2 className='h3 form-header'>{t('form.signIn')}</h2>
 
         <div className='form-block'>
           <label className='form-label' htmlFor='email'>
@@ -69,9 +69,12 @@ export const SignIn = () => {
 
         <button className='form-button'>{t('form.enter')}</button>
       </form>
-      <Link className='form-register' to={routes.signUpPage()}>
-        {t('form.register')}
-      </Link>
+      <p>
+        {t('form.signUp')}{' '}
+        <Link className='form-register' to={routes.signUpPage()}>
+          {t('form.register')}
+        </Link>
+      </p>
     </div>
   );
 };

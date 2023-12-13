@@ -1,7 +1,9 @@
 .games-container {
   margin: 0 auto;
   padding: 0 var(--h3) var(--h3) var(--h3);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cards-container {
@@ -9,6 +11,7 @@
   display: flex;
   flex-flow: column;
   gap: var(--h5);
+  text-align: center;
 }
 
 .reminder {
@@ -23,6 +26,12 @@
   color: var(--lightgreen);
 }
 
+.games-reminder {
+  height: 96px;
+  text-align: center;
+  display: inline;
+}
+
 @media (min-width: 720px) {
   .cards-container {
     display: flex;
@@ -33,4 +42,3 @@
     align-items: center;
   }
 }
-

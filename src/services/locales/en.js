@@ -72,6 +72,10 @@ export default {
       passwordPlaceholer: 'Password',
       enter: 'Enter',
       register: 'Register',
+      signedUp: 'Already have an account?',
+      signedIn: "Don't have an account?",
+      signUp: 'Sign up',
+      signIn: 'Sign in',
     },
     modal: {
       warning: 'You are leaving this page.',
@@ -83,6 +87,13 @@ export default {
       title: 'Not Found, but...',
       text: 'How about some',
       link: 'games?',
+    },
+    errors: {
+      'auth/email-already-in-use': 'This e-mail is already in use',
+      'auth/invalid-email': 'Incorrect e-mail',
+      'auth/operation-not-allowed': '???',
+      'auth/weak-password': 'Password must be at least 6 characters long',
+      'auth/user-not-found': 'Such user has not been found',
     },
   },
 };

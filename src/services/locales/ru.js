@@ -72,6 +72,10 @@ export default {
       passwordPlaceholer: 'Пароль',
       enter: 'Войти',
       register: 'Зарегистрироваться',
+      signedUp: 'Уже регистрировались?',
+      signedIn: 'Нет аккаунта?',
+      signUp: 'Регистрация',
+      signIn: 'Вход',
     },
     modal: {
       progress: 'Текущий прогресс будет утерян',
@@ -83,6 +87,13 @@ export default {
       title: 'Такой страницы нет, но...',
       text: 'Но есть',
       link: 'игры',
+    },
+    errors: {
+      'auth/email-already-in-use': 'Этот адрес уже используется',
+      'auth/invalid-email': 'Некорректный e-mail',
+      'auth/operation-not-allowed': '???',
+      'auth/weak-password': 'Пароль должен состоять минимум из 6 символов',
+      'auth/user-not-found': 'Такой пользователь не зарегистрирован',
     },
   },
 };

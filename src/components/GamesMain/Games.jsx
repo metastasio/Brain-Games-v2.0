@@ -13,7 +13,7 @@ export const Games = () => {
     <section className='games-container'>
       <h2 className='workout'>{t('games.desc')}</h2>
 
-      {signedIn ? null : <Restricted />}
+      <div className='games-reminder'>{signedIn ? null : <Restricted />}</div>
 
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
