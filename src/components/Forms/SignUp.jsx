@@ -16,8 +16,9 @@ export const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(logIn({ email, password }));
-    // navigate(routes.games());
+    dispatch(logIn({ email, password }))
+      .unwrap()
+      .then(navigate(routes.games()));
   };
 
   return (

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import routes from '../../services/routes';
 import i18n from '../../services/locales';
@@ -35,7 +37,7 @@ export const Header = () => {
             ) : (
               <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
             )}
-            {' '}
+            <FontAwesomeIcon className='header-brain-icon' icon={faBrain} />
             <span className='header-score'>{totalScore}</span>
           </li>
           <li>

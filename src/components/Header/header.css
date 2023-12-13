@@ -11,7 +11,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   gap: var(--h5);
 }
 
@@ -83,4 +83,12 @@
 
 .header-logo:hover {
   transform: rotate(360deg);
+}
+
+.header-brain-icon {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: var(--h5);
+  border: 2px solid var(--green);
+  border-radius: 50%;
 }
