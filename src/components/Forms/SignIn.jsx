@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import './forms.css';
 import routes from '../../services/routes';
-import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/userSlice';
 
 export const SignIn = () => {

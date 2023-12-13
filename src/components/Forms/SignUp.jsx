@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import './forms.css';
 import routes from '../../services/routes';
+import { logIn } from '../../store/userSlice';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/userSlice';
 
 export const SignUp = () => {
   const { t } = useTranslation();
@@ -17,20 +16,8 @@ export const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        console.log(user, 'USER');
-        dispatch(
-          setUser({
-            email: user.email,
-            token: user.accessToken,
-            userId: user.uid,
-          }),
-        );
-        navigate(routes.games());
-      })
-      .catch(console.errror);
+    dispatch(logIn({ email, password }));
+    // navigate(routes.games());
   };
 
   return (
@@ -45,7 +32,7 @@ export const SignUp = () => {
           <input
             autoFocus
             className='form-input'
-            type='text'
+            type='email'
             id='email'
             placeholder='E-mail'
             value={email}

@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
 
@@ -7,6 +8,23 @@ const games = getRandomGames().map((game, i) => ({
   available: i < 4 - 1,
   complete: false,
 }));
+
+export const logIn = createAsyncThunk(
+  'user/logIn',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const auth = getAuth();
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      return { email: response.user.email, uid: response.user.uid };
+    } catch (error) {
+      return rejectWithValue(error.code);
+    }
+  },
+);
 
 const userSlice = createSlice({
   name: 'user',
@@ -18,7 +36,8 @@ const userSlice = createSlice({
     todaysGames: games,
     email: null,
     userId: null,
-    token: null
+    status: 'idle',
+    error: null,
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -43,18 +62,31 @@ const userSlice = createSlice({
     setTodaysGames(state, { payload }) {
       state.todaysGames = payload;
     },
-    setUser(state, { payload }) {
-      state.signedIn = true;
-      state.email = payload.email;
-      state.userId = payload.userId;
-      state.token = payload.token;
-    },
     logOut(state) {
       state.signedIn = false;
       state.email = null;
       state.userId = null;
-      state.token = null
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        state.status = 'idle';
+        state.signedIn = true;
+        state.email = payload.email;
+        state.userId = payload.uid;
+        state.todaysGames = state.todaysGames.map((game) => {
+          game.available = true;
+          return game;
+        });
+      })
+      .addCase(logIn.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(logIn.rejected, (state, { payload }) => {
+        state.status = 'error';
+        state.error = payload;
+      });
   },
 });
 export const {
