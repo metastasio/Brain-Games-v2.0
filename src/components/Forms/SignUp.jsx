@@ -1,15 +1,41 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 import './forms.css';
 import routes from '../../services/routes';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/userSlice';
 
 export const SignUp = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        console.log(user, 'USER');
+        dispatch(
+          setUser({
+            email: user.email,
+            token: user.accessToken,
+            userId: user.uid,
+          }),
+        );
+        navigate(routes.games());
+      })
+      .catch(console.errror);
+  };
 
   return (
     <div className='form-wrapper'>
-      <form action=''>
+      <form action='' onSubmit={handleSubmit}>
         <h2 className='h3 form-header'>{t('header.logIn')}</h2>
 
         <div className='form-block'>
@@ -22,6 +48,8 @@ export const SignUp = () => {
             type='text'
             id='email'
             placeholder='E-mail'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -34,6 +62,8 @@ export const SignUp = () => {
             type='password'
             id='password'
             placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 

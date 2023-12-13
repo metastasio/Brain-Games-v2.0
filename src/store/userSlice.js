@@ -16,6 +16,9 @@ const userSlice = createSlice({
     currentGameScore: 0,
     progress: 0,
     todaysGames: games,
+    email: null,
+    userId: null,
+    token: null
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -40,6 +43,18 @@ const userSlice = createSlice({
     setTodaysGames(state, { payload }) {
       state.todaysGames = payload;
     },
+    setUser(state, { payload }) {
+      state.signedIn = true;
+      state.email = payload.email;
+      state.userId = payload.userId;
+      state.token = payload.token;
+    },
+    logOut(state) {
+      state.signedIn = false;
+      state.email = null;
+      state.userId = null;
+      state.token = null
+    },
   },
 });
 export const {
@@ -48,6 +63,8 @@ export const {
   updateTotalScore,
   resetCurrentGameScore,
   setTodaysGames,
+  setUser,
+  logOut,
 } = userSlice.actions;
 
 export default userSlice.reducer;

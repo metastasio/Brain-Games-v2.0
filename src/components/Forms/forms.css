@@ -47,6 +47,7 @@
   color: var(--white);
   font-size: var(--h6);
   font-family: var(--ff-regular);
+  cursor: pointer;
 }
 .form-button:hover {
   color: var(--lightgreen);
