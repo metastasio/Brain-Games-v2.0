@@ -23,8 +23,9 @@
 }
 
 .form-input {
+  padding: var(--xs);
   border: none;
-  background-color: var(--lightlime60);
+  background-color: var(--lightlime20);
   border: 1px dotted var(--lightlime);
   border-radius: var(--base-radius);
   font-size: var(--h6);
@@ -44,7 +45,7 @@
   padding: var(--small);
   border: 1px dotted var(--white);
   border-radius: var(--base-radius);
-  color: var(--white);
+  color: var(--lightlime);
   font-size: var(--h6);
   font-family: var(--ff-regular);
   cursor: pointer;
@@ -55,9 +56,23 @@
   background-color: var(--darkblue);
 }
 
-.form-register, .form-sign-in {
-  color: var(--blue)
+.form-register,
+.form-sign-in {
+  color: var(--lightgreen);
 }
-.form-register:hover, .form-sign-in:hover {
-  color: var(--white)
+.form-register:hover,
+.form-sign-in:hover {
+  color: var(--blue);
+}
+
+.form-hint {
+  color: var(--blue);
+}
+
+.form-errors {
+  padding: var(--h5) 0 0;
+  margin: 0;
+  min-height: 56px;
+  font-size: var(--small);
+  color: var(--warning);
 }

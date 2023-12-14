@@ -11,7 +11,7 @@ export const SignUp = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state.user);
+  const { error, status } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -59,8 +59,10 @@ export const SignUp = () => {
         </div>
 
         <button className='form-button'>{t('form.register')}</button>
+        <div className='form-spinner'></div>
       </form>
-      <p>
+
+      <p className='form-hint'>
         {t('form.signedUp')}{' '}
         <Link className='form-sign-in' to={routes.signInPage()}>
           {t('header.logIn')}

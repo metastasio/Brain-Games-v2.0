@@ -69,8 +69,8 @@ export const SignIn = () => {
 
         <button className='form-button'>{t('form.enter')}</button>
       </form>
-      <p>
-        {t('form.signUp')}{' '}
+      <p className='form-hint'>
+        {t('form.signedIn')}{' '}
         <Link className='form-register' to={routes.signUpPage()}>
           {t('form.register')}
         </Link>

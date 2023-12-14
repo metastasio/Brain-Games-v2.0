@@ -91,7 +91,7 @@ export default {
     errors: {
       'auth/email-already-in-use': 'This e-mail is already in use',
       'auth/invalid-email': 'Incorrect e-mail',
-      'auth/operation-not-allowed': '???',
+      'auth/operation-not-allowed': 'This operation is not allowed',
       'auth/weak-password': 'Password must be at least 6 characters long',
       'auth/user-not-found': 'Such user has not been found',
     },
