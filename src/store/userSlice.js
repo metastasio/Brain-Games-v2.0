@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
 
@@ -9,8 +9,8 @@ const games = getRandomGames().map((game, i) => ({
   complete: false,
 }));
 
-export const logIn = createAsyncThunk(
-  'user/logIn',
+export const signUserUp = createAsyncThunk(
+  'user/signUserUp',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const auth = getAuth();
@@ -19,6 +19,19 @@ export const logIn = createAsyncThunk(
         email,
         password,
       );
+      return { email: response.user.email, uid: response.user.uid };
+    } catch (error) {
+      return rejectWithValue(error.code);
+    }
+  },
+);
+
+export const signUserIn = createAsyncThunk(
+  'user/getUser',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const auth = getAuth();
+      const response = await signInWithEmailAndPassword(auth, email, password);
       return { email: response.user.email, uid: response.user.uid };
     } catch (error) {
       return rejectWithValue(error.code);
@@ -70,7 +83,7 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(logIn.fulfilled, (state, { payload }) => {
+      .addCase(signUserUp.fulfilled, (state, { payload }) => {
         state.status = 'idle';
         state.signedIn = true;
         state.email = payload.email;
@@ -80,10 +93,27 @@ const userSlice = createSlice({
           return game;
         });
       })
-      .addCase(logIn.pending, (state) => {
+      .addCase(signUserUp.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(logIn.rejected, (state, { payload }) => {
+      .addCase(signUserUp.rejected, (state, { payload }) => {
+        state.status = 'error';
+        state.error = payload;
+      })
+      .addCase(signUserIn.fulfilled, (state, { payload }) => {
+        state.status = 'idle';
+        state.signedIn = true;
+        state.email = payload.email;
+        state.userId = payload.uid;
+        state.todaysGames = state.todaysGames.map((game) => {
+          game.available = true;
+          return game;
+        });
+      })
+      .addCase(signUserIn.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(signUserIn.rejected, (state, { payload }) => {
         state.status = 'error';
         state.error = payload;
       });

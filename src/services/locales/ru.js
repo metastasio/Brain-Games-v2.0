@@ -94,6 +94,9 @@ export default {
       'auth/operation-not-allowed': 'Операция недоступна',
       'auth/weak-password': 'Пароль должен состоять минимум из 6 символов',
       'auth/user-not-found': 'Такой пользователь не зарегистрирован',
+      'errors.auth/missing-password': 'Введите пароль',
+      'errors.auth/missing-email': 'Введите e-mail',
+      'errors.auth/invalid-credential': 'Неверный e-mail или пароль',
     },
   },
 };

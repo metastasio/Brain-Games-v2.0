@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './forms.css';
 import routes from '../../services/routes';
-import { logIn } from '../../store/userSlice';
+import { signUserUp } from '../../store/userSlice';
 
 export const SignUp = () => {
   const { t } = useTranslation();
@@ -15,9 +16,14 @@ export const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const classNames = cn({
+    'form-button': true,
+    disabled: status === 'loading',
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(logIn({ email, password }))
+    dispatch(signUserUp({ email, password }))
       .unwrap()
       .then(() => navigate(routes.games()))
       .catch(console.log);
@@ -58,8 +64,10 @@ export const SignUp = () => {
           <p className='form-errors'>{error ? t(`errors.${error}`) : null}</p>
         </div>
 
-        <button className='form-button'>{t('form.register')}</button>
-        <div className='form-spinner'></div>
+        <button className={classNames}>{t('form.register')}</button>
+        {status === 'loading' ? (
+          <span className='form-spinner'>&#127922;</span>
+        ) : null}
       </form>
 
       <p className='form-hint'>

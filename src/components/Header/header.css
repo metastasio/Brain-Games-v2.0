@@ -73,14 +73,6 @@
   font-family: var(--ff-main);
 }
 
-@media (min-width: 900px) {
-  .header li:first-child {
-    flex-basis: auto;
-    text-align: left;
-    margin-right: auto;
-  }
-}
-
 .header-logo:hover {
   transform: rotate(360deg);
 }
@@ -92,3 +84,12 @@
   border: 2px solid var(--green);
   border-radius: 50%;
 }
+
+@media (min-width: 900px) {
+  .header li:first-child {
+    flex-basis: auto;
+    text-align: left;
+    margin-right: auto;
+  }
+}
+

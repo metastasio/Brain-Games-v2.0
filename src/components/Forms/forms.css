@@ -9,6 +9,7 @@
   border: 1px dotted var(--blue);
   border-radius: var(--base-radius);
   box-shadow: var(--blue) 0 0 12px;
+  position: relative;
 }
 
 .form-header {
@@ -40,29 +41,31 @@
   padding-bottom: var(--h3);
 }
 
-.form-button {
-  background-color: transparent;
-  padding: var(--small);
-  border: 1px dotted var(--white);
-  border-radius: var(--base-radius);
-  color: var(--lightlime);
-  font-size: var(--h6);
-  font-family: var(--ff-regular);
-  cursor: pointer;
-}
-.form-button:hover {
-  color: var(--lightgreen);
-  border: 1px dotted var(--lightgreen);
-  background-color: var(--darkblue);
-}
-
-.form-register,
-.form-sign-in {
-  color: var(--lightgreen);
-}
-.form-register:hover,
-.form-sign-in:hover {
-  color: var(--blue);
+@layer buttons-links {
+  .form-button {
+    background-color: transparent;
+    padding: var(--small);
+    border: 1px dotted var(--white);
+    border-radius: var(--base-radius);
+    color: var(--lightlime);
+    font-size: var(--h6);
+    font-family: var(--ff-regular);
+    cursor: pointer;
+  }
+  .form-button:hover {
+    color: var(--lightgreen);
+    border: 1px dotted var(--lightgreen);
+    background-color: var(--darkblue);
+  }
+  
+  .form-register,
+  .form-sign-in {
+    color: var(--lightgreen);
+  }
+  .form-register:hover,
+  .form-sign-in:hover {
+    color: var(--blue);
+  }
 }
 
 .form-hint {
@@ -75,4 +78,21 @@
   min-height: 56px;
   font-size: var(--small);
   color: var(--warning);
+}
+
+.form-spinner {
+  font-size: var(--lg);
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  animation: rotate-animation 4s infinite linear;
+}
+
+@keyframes rotate-animation {
+	0% {
+		transform: rotate(0deg);
+  }
+	100% {
+		transform: rotate(360deg);
+	}
 }

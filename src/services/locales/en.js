@@ -94,6 +94,9 @@ export default {
       'auth/operation-not-allowed': 'This operation is not allowed',
       'auth/weak-password': 'Password must be at least 6 characters long',
       'auth/user-not-found': 'Such user has not been found',
+      'errors.auth/missing-password': 'Enter your password',
+      'errors.auth/missing-email': 'Enter your e-mail',
+      'errors.auth/invalid-credential': 'Wrong e-mail or password',
     },
   },
 };

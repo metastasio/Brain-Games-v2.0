@@ -1,36 +1,33 @@
+import cn from 'classnames';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
+// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import './forms.css';
 import routes from '../../services/routes';
-import { setUser } from '../../store/userSlice';
+import { signUserIn } from '../../store/userSlice';
 
 export const SignIn = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { error, status } = useSelector((state) => state.user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const classNames = cn({
+    'form-button': true,
+    disabled: status === 'loading',
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        console.log(user, 'USER');
-        dispatch(
-          setUser({
-            email: user.email,
-            token: user.accessToken,
-            userId: user.uid,
-          }),
-        );
-        navigate(routes.games());
-      })
-      .catch(console.errror);
+    dispatch(signUserIn({ email, password }))
+      .unwrap()
+      .then(() => navigate(routes.games()))
+      .catch(console.log);
   };
 
   return (
@@ -45,7 +42,7 @@ export const SignIn = () => {
           <input
             autoFocus
             className='form-input'
-            type='text'
+            type='email'
             id='email'
             placeholder='E-mail'
             value={email}
@@ -65,10 +62,15 @@ export const SignIn = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className='form-errors'>{error ? t(`errors.${error}`) : null}</p>
         </div>
 
-        <button className='form-button'>{t('form.enter')}</button>
+        <button className={classNames}>{t('form.enter')}</button>
+        {status === 'loading' ? (
+          <span className='form-spinner'>&#127922;</span>
+        ) : null}
       </form>
+
       <p className='form-hint'>
         {t('form.signedIn')}{' '}
         <Link className='form-register' to={routes.signUpPage()}>
