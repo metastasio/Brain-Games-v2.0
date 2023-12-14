@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import './forms.css';
 import routes from '../../services/routes';

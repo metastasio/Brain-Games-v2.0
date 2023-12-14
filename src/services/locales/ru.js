@@ -98,5 +98,11 @@ export default {
       'errors.auth/missing-email': 'Введите e-mail',
       'errors.auth/invalid-credential': 'Неверный e-mail или пароль',
     },
+    profile: {
+      games: 'Вы завершили',
+      logOut: 'Выйти',
+      id: 'Ваш ID',
+      email: 'Ваш e-mail',
+    },
   },
 };

@@ -1,0 +1,47 @@
+.profile-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 var(--h2);
+  /* text-align: center; */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: var(--h5);
+  border: 1px dotted var(--blue);
+  border-radius: var(--base-radius);
+  box-shadow: var(--blue) 0 0 12px;
+}
+
+.profile-button-logout {
+  background-color: transparent;
+  padding: var(--small);
+  border: 1px dotted var(--white);
+  border-radius: var(--base-radius);
+  color: var(--lightlime);
+  font-size: var(--h6);
+  font-family: var(--ff-regular);
+  cursor: pointer;
+}
+.profile-button-logout:hover {
+  color: var(--lightgreen);
+  border: 1px dotted var(--lightgreen);
+  background-color: var(--darkblue);
+}
+
+.profile-field-span {
+  color: var(--lightgreen);
+}
+
+.profile-field-id,
+.profile-field-email,
+.profile-field-games {
+  padding: 0;
+  margin: 0;
+}
+
+.profile-field-id {
+  padding-top: var(--h3);
+}
+.profile-field-email {
+  padding-bottom: var(--h5);
+}

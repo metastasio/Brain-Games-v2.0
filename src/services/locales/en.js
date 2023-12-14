@@ -98,5 +98,11 @@ export default {
       'errors.auth/missing-email': 'Enter your e-mail',
       'errors.auth/invalid-credential': 'Wrong e-mail or password',
     },
+    profile: {
+      games: 'Today you completed',
+      logOut: 'Log out',
+      id: 'Your ID',
+      email: 'Your e-mail',
+    }
   },
 };
