@@ -37,7 +37,11 @@ export const Header = () => {
             ) : (
               <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
             )}
-            <FontAwesomeIcon className='header-brain-icon' icon={faBrain} />
+            <FontAwesomeIcon
+              className='header-brain-icon'
+              icon={faBrain}
+              alt="User's avatar default brain"
+            />
             <span className='header-score'>{totalScore}</span>
           </li>
           <li>
