@@ -23,6 +23,7 @@ export default {
       conditions: "The game is complete once you've given 5 correct answers",
       correct: 'Correct! 🌟',
       correctPoints: '+100 points',
+      completed: "You haven't completed any games today",
       incorrect: 'Incorrect 😥',
       incorrectPoints: '-5 points, try again!',
       counter: 'Correct answers:',

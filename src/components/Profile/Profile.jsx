@@ -31,7 +31,9 @@ export const Profile = () => {
       </p>
       <p className='profile-field-games'>
         {t('profile.games')}:{' '}
-        <span className='profile-field-span'>{playedGames}</span>
+        <span className='profile-field-span'>
+          {playedGames ? playedGames : t('games.completed')}
+        </span>
       </p>
 
       <button className='profile-button-logout' onClick={handleClick}>

@@ -40,7 +40,7 @@ export const Even = ({ counter, status, onSuccess, onFailure }) => {
         <div className='game-controls'>
           <Buttons handleClick={handleClick} />
         </div>
-        <div className='feedback'>
+        <div className='game-feedback'>
           <Feedback result={status} />
         </div>
         <AnswersCount count={counter} />

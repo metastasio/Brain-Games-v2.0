@@ -44,7 +44,8 @@ const router = createBrowserRouter([
       //   path: routes.profile(),
       //   element: <Profile />,
       // },
-      { path: routes.profile(), element: <ProtectedRoute Profile={Profile} /> },
+      { path: routes.profile(), 
+        element: <ProtectedRoute Profile={Profile} /> },
       {
         path: routes.games(),
         element: <Games />,

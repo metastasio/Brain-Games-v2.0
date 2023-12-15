@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import routes from '../services/routes';
 
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ Profile }) => {
   const { signedIn } = useSelector((state) => state.user);
   let location = useLocation();
 
@@ -12,5 +12,5 @@ export const ProtectedRoute = ({ children }) => {
       <Navigate to={routes.mainPage()} state={{ from: location }} replace />
     );
   }
-  return children;
+  return <Profile />;
 };
