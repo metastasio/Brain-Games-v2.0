@@ -2,10 +2,9 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 0 var(--h2);
-  /* text-align: center; */
   display: flex;
   flex-flow: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--h5);
   border: 1px dotted var(--blue);
   border-radius: var(--base-radius);
@@ -21,6 +20,7 @@
   font-size: var(--h6);
   font-family: var(--ff-regular);
   cursor: pointer;
+  align-self: center;
 }
 .profile-button-logout:hover {
   color: var(--lightgreen);

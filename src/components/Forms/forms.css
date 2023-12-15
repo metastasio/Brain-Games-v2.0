@@ -1,7 +1,7 @@
 .form-wrapper {
-  max-width: 1000px;
+  min-width: 420px;
   margin: 0 auto;
-  padding: 0 var(--xl) var(--h3);
+  padding: 0 var(--lg) var(--h3);
   text-align: center;
   display: flex;
   flex-flow: column;
@@ -34,7 +34,8 @@
 
 ::placeholder {
   color: var(--darkblue);
-  opacity: 1; /* Firefox */
+  /* Firefox */
+  opacity: 1;
 }
 
 .form-block {
@@ -57,7 +58,7 @@
     border: 1px dotted var(--lightgreen);
     background-color: var(--darkblue);
   }
-  
+
   .form-register,
   .form-sign-in {
     color: var(--lightgreen);
@@ -89,10 +90,10 @@
 }
 
 @keyframes rotate-animation {
-	0% {
-		transform: rotate(0deg);
+  0% {
+    transform: rotate(0deg);
   }
-	100% {
-		transform: rotate(360deg);
-	}
+  100% {
+    transform: rotate(360deg);
+  }
 }

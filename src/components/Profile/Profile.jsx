@@ -7,7 +7,14 @@ import { logOut } from '../../store/userSlice';
 export const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { userId, email } = useSelector((state) => state.user);
+  const { userId, email, todaysGames } = useSelector((state) => state.user);
+  const playedGames = todaysGames
+    .filter((game) => game.complete === true)
+    .map((item) => item.name)
+    .map((name) => t(`games.${name}.name`))
+    .join(', ');
+
+  console.log(playedGames);
 
   const handleClick = () => {
     dispatch(logOut());
@@ -24,7 +31,7 @@ export const Profile = () => {
       </p>
       <p className='profile-field-games'>
         {t('profile.games')}:{' '}
-        <span className='profile-field-span'>{email}</span>
+        <span className='profile-field-span'>{playedGames}</span>
       </p>
 
       <button className='profile-button-logout' onClick={handleClick}>
