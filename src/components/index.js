@@ -1,9 +1,10 @@
-export { Profile } from './Profile/Profile';
-export { Main } from './Main/Main';
+export { Complete } from './Complete/Complete';
+export { Footer } from './Footer/Footer';
 export { Games } from './GamesMain/Games';
 export { Header } from './Header/Header';
-export { Footer } from './Footer/Footer';
+export { Main } from './Main/Main';
+export { NotFound } from './NotFound/NotFound';
+export { Profile } from './Profile/Profile';
+export { ProtectedRoute } from './ProtectedRoute';
 export { SignIn } from './Forms/SignIn';
 export { SignUp } from './Forms/SignUp';
-export { NotFound } from './NotFound/NotFound';
-export { Complete } from './Complete/Complete';

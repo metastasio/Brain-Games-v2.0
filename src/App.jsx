@@ -11,6 +11,7 @@ import {
   Complete,
   Header,
   Profile,
+  ProtectedRoute,
 } from './components';
 import './App.css';
 import {
@@ -39,10 +40,11 @@ const router = createBrowserRouter([
         path: routes.mainPage(),
         element: <Main />,
       },
-      {
-        path: routes.profile(),
-        element: <Profile />,
-      },
+      // {
+      //   path: routes.profile(),
+      //   element: <Profile />,
+      // },
+      { path: routes.profile(), element: <ProtectedRoute Profile={Profile} /> },
       {
         path: routes.games(),
         element: <Games />,
