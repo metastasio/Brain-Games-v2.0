@@ -15,6 +15,11 @@ export const Games = () => {
 
       <div className='games-reminder'>{signedIn ? null : <Restricted />}</div>
 
+      {/* <div className='cards-container'>
+        {todaysGames.map((game, i) => (
+          <GameItem key={i} game={game} available={game.available} />
+        ))}
+      </div> */}
       <div className='cards-container'>
         {todaysGames.map((game, i) => (
           <GameItem key={i} game={game} available={game.available} />
