@@ -7,17 +7,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import routes from '../../services/routes';
 import './gameItem.css';
 
-export const GameItem = ({ game, i, available }) => {
+export const GameItem = ({ game, i, available, currentGame }) => {
+  // console.log(i, 'IIIII')
   const { t } = useTranslation();
   const { name, complete } = game;
   const classNames = cn({
     'game-card': true,
     available,
+    hidden: currentGame !== i,
   });
 
   return (
-    <div className={classNames} key={i}>
-      <img className='game-card-img' src={`/img/${name}.jpg`} aria-hidden='true' />
+    <div className={classNames}>
+      <img
+        className='game-card-img'
+        src={`/img/${name}.jpg`}
+        aria-hidden='true'
+      />
       {complete ? (
         <div className='game-complete-icon'>
           <FontAwesomeIcon icon={faCheck} />

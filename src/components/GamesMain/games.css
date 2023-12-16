@@ -4,38 +4,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid red; */
   text-align: center;
 }
 
 .cards-container {
-  /* align-items: center;
-  display: flex;
-  flex-flow: row;
-  gap: var(--h5); */
-
   text-align: center;
-  /* border: 1px solid white; */
   max-width: 350px;
   max-height: 350px;
   overflow: hidden;
   position: relative;
 }
-.cards-container::before {
-  content: url('/chevron-left-solid.svg');
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  z-index: 10;
-  /* border: 1px solid red; */
-}
-.cards-container::after {
-  content: url('/chevron-right-solid.svg');
-  position: absolute;
-  top: 50%;
-  right: 0%;
-  z-index: 10;
-  /* border: 1px solid red; */
+
+@layer arrows {
+  .games-arrow {
+    background-color: transparent;
+    border: none;
+    color: var(--lightlime);
+    font-size: var(--h6);
+    cursor: pointer;
+  }
+  .games-arrow:hover {
+    color: var(--blue);
+  }
+
+  .left {
+    content: url('/chevron-left-solid.svg');
+    position: absolute;
+    top: 45%;
+    left: 0%;
+    z-index: 10;
+  }
+
+  .right {
+    content: url('/chevron-right-solid.svg');
+    position: absolute;
+    top: 45%;
+    right: 0%;
+    z-index: 10;
+  }
 }
 
 .reminder {
@@ -67,8 +73,7 @@
     overflow: hidden;
   }
 
-  .cards-container::before,
-  .cards-container::after {
-    content: '';
+  .games-arrow {
+    display: none;
   }
 }

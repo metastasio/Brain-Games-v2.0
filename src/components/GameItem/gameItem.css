@@ -48,10 +48,22 @@
   font-size: var(--h2);
   color: var(--white);
   z-index: 1;
+  filter: drop-shadow(0 0 calc(var(--xs) / 2) white);
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (min-width: 720px) {
   .game-card {
     margin: var(--small);
+  }
+  .hidden {
+    display: block;
   }
 }
