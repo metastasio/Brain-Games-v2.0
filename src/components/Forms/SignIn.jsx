@@ -61,7 +61,9 @@ export const SignIn = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p className='form-errors'>{error ? t(`errors.${error}`) : null}</p>
+          <p role='alert' className='form-errors'>
+            {error ? t(`errors.${error}`) : null}
+          </p>
         </div>
 
         <button className={classNames}>{t('form.enter')}</button>
