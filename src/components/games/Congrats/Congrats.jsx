@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +16,14 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { signedIn, progress, currentGameScore, todaysGames } = useSelector(
     (state) => state.user,
   );
+  const completeGames = todaysGames.filter((game) => game.complete);
+
+  const classNames = (i) =>
+    cn({
+      'progress-span': true,
+      unavailable: !signedIn && (i === 2 || i === 3),
+      complete: i === completeGames.length - 1,
+    });
 
   const getNextGame = () => {
     const availableGames = todaysGames.filter(
@@ -45,6 +54,15 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   return (
     <section className='congrats-wrapper'>
       <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>
+
+      <div className='progress'>
+        {todaysGames.map((game, i) => (
+          <span className={classNames(i)} key={game.id}>
+            {i + 1}
+          </span>
+        ))}
+      </div>
+
       <p className='congrats-text'>
         {t('congrats.text')} <strong className='game-name'>{name}</strong>
       </p>

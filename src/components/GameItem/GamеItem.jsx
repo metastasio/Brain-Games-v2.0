@@ -8,7 +8,6 @@ import routes from '../../services/routes';
 import './gameItem.css';
 
 export const GameItem = ({ game, i, available, currentGame }) => {
-  // console.log(i, 'IIIII')
   const { t } = useTranslation();
   const { name, complete } = game;
   const classNames = cn({
@@ -19,20 +18,20 @@ export const GameItem = ({ game, i, available, currentGame }) => {
 
   return (
     <div className={classNames}>
-      <img
-        className='game-card-img'
-        src={`/img/${name}.jpg`}
-        aria-hidden='true'
-      />
-      {complete ? (
-        <div className='game-complete-icon'>
-          <FontAwesomeIcon icon={faCheck} />
-        </div>
-      ) : null}
+      <Link className='game-card-link' to={routes[name]()}>
+        <img
+          className='game-card-img'
+          src={`/img/${name}.jpg`}
+          aria-hidden='true'
+        />
+        {complete ? (
+          <div className='game-complete-icon'>
+            <FontAwesomeIcon icon={faCheck} />
+          </div>
+        ) : null}
 
-      <div className='game-play'>
-        <Link to={routes[name]()}>{t(`games.${name}.name`)}</Link>
-      </div>
+        <div className='game-play'>{t(`games.${name}.name`)}</div>
+      </Link>
     </div>
   );
 };

@@ -24,6 +24,7 @@ export const Complete = () => {
   return (
     <section className='complete-wrapper'>
       <h2 className='h3 complete-header'>{t('congrats.header')}</h2>
+
       <p className='complete-emoji'>&#127882;</p>
       <p className='complete-text'>{t('congrats.complete')}</p>
       <p className='complete-points'>

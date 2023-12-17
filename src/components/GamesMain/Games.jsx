@@ -30,7 +30,6 @@ export const Games = () => {
   return (
     <section className='games-container'>
       <h2 className='workout'>{t('games.desc')}</h2>
-
       <div className='games-reminder'>{signedIn ? null : <Restricted />}</div>
 
       <div className='cards-container'>
