@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
 
@@ -7,6 +11,7 @@ const games = getRandomGames().map((game, i) => ({
   name: game,
   available: i < 4 - 1,
   complete: false,
+  id: game,
 }));
 
 export const signUserUp = createAsyncThunk(

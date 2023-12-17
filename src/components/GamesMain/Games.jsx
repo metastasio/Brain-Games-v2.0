@@ -40,7 +40,7 @@ export const Games = () => {
 
         {todaysGames.map((game, i) => (
           <GameItem
-            key={i}
+            key={game.id}
             i={i}
             game={game}
             available={game.available}

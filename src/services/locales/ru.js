@@ -98,6 +98,7 @@ export default {
       'errors.auth/missing-password': 'Введите пароль',
       'errors.auth/missing-email': 'Введите e-mail',
       'errors.auth/invalid-credential': 'Неверный e-mail или пароль',
+      'errors.auth/network-request-failed': 'Нет сети, проверьте подключение',
     },
     profile: {
       games: 'Вы завершили',

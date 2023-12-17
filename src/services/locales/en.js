@@ -98,6 +98,7 @@ export default {
       'errors.auth/missing-password': 'Enter your password',
       'errors.auth/missing-email': 'Enter your e-mail',
       'errors.auth/invalid-credential': 'Wrong e-mail or password',
+      'errors.auth/network-request-failed': 'Network error',
     },
     profile: {
       games: 'Today you completed',

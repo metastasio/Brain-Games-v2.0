@@ -49,11 +49,11 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
       <Task question={t('games.progression.task')} />
       <div>
         <div className='game-expression'>
-          {randomLine.map((item, i) =>
+          {randomLine.map((item) =>
             item === correctAnswer ? (
-              <span key={i}>..</span>
+              <span key={item}>..</span>
             ) : (
-              <span key={i}>{item}</span>
+              <span key={item}>{item}</span>
             ),
           )}
         </div>
