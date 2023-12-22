@@ -26,9 +26,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
       if (completeGames.length !== 3) {
         return i <= completeGames.length - 1;
       }
-      if (i !== 2 && i !== 3) {
-        return true;
-      }
+      return i !== 2 && i !== 3;
     }
   };
 
