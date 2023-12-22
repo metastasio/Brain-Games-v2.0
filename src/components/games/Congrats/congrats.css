@@ -6,7 +6,6 @@
   display: flex;
   flex-flow: column;
   gap: var(--h5);
-  align-items: center;
 }
 
 .congrats-header {

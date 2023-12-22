@@ -8,3 +8,4 @@ export { Profile } from './Profile/Profile';
 export { ProtectedRoute } from './ProtectedRoute';
 export { SignIn } from './Forms/SignIn';
 export { SignUp } from './Forms/SignUp';
+export { Stepper } from './Stepper/Stepper';
