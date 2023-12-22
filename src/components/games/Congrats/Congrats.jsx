@@ -1,4 +1,4 @@
-import cn from 'classnames';
+// import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,6 +8,7 @@ import { getRandomNumber } from '../../../services/utils';
 import { resetCurrentGameScore } from '../../../store/userSlice';
 import { Trans, useTranslation } from 'react-i18next';
 import './congrats.css';
+import { Stepper } from '../../Stepper/Stepper';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
@@ -16,26 +17,26 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { signedIn, progress, currentGameScore, todaysGames } = useSelector(
     (state) => state.user,
   );
-  const completeGames = todaysGames.filter((game) => game.complete);
+  // const completeGames = todaysGames.filter((game) => game.complete);
 
-  const isComplete = (i) => {
-    if (signedIn) {
-      return i <= completeGames.length - 1;
-    }
-    if (!signedIn) {
-      if (completeGames.length !== 3) {
-        return i <= completeGames.length - 1;
-      }
-      return i !== 2 && i !== 3;
-    }
-  };
+  // const isComplete = (i) => {
+  //   if (signedIn) {
+  //     return i <= completeGames.length - 1;
+  //   }
+  //   if (!signedIn) {
+  //     if (completeGames.length !== 3) {
+  //       return i <= completeGames.length - 1;
+  //     }
+  //     return i !== 2 && i !== 3;
+  //   }
+  // };
 
-  const classNames = (i) =>
-    cn({
-      'progress-span': true,
-      unavailable: !signedIn && (i === 2 || i === 3),
-      complete: isComplete(i),
-    });
+  // const classNames = (i) =>
+  //   cn({
+  //     'progress-span': true,
+  //     unavailable: !signedIn && (i === 2 || i === 3),
+  //     complete: isComplete(i),
+  //   });
 
   const getNextGame = () => {
     const availableGames = todaysGames.filter(
@@ -63,16 +64,14 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     }
   };
 
+  // className={classNames(i)}
+
   return (
     <section className='congrats-wrapper'>
       <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>
 
       <div className='progress'>
-        {todaysGames.map((game, i) => (
-          <span className={classNames(i)} key={game.id}>
-            {i + 1}
-          </span>
-        ))}
+        <Stepper />
       </div>
 
       <p className='congrats-text'>

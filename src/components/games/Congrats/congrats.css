@@ -51,18 +51,12 @@
   border: 1px dotted var(--green);
 }
 
-@layer progress {
+/* @layer progress {
   .progress {
     margin: 0 0 var(--h5);
     margin-top: var(--small);
     padding: 0;
-    /* min-width: 1000px;
-    display: flex;
-    flex-flow: row nowrap;
-    gap: var(--xl);
-    justify-content: space-between;
-    align-items: center; */
-
+   
     max-width: 1000px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -104,4 +98,5 @@
     top: 50%;
     z-index: 1;
   }
-}
+} */
+
