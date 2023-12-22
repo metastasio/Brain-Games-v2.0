@@ -54,6 +54,7 @@
 @layer progress {
   .progress {
     margin: 0 0 var(--h5);
+    margin-top: var(--small);
     padding: 0;
     /* min-width: 1000px;
     display: flex;

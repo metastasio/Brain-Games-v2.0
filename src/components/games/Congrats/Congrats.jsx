@@ -18,11 +18,25 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   );
   const completeGames = todaysGames.filter((game) => game.complete);
 
+  const isComplete = (i) => {
+    if (signedIn) {
+      return i <= completeGames.length - 1;
+    }
+    if (!signedIn) {
+      if (completeGames.length !== 3) {
+        return i <= completeGames.length - 1;
+      }
+      if (i !== 2 && i !== 3) {
+        return true;
+      }
+    }
+  };
+
   const classNames = (i) =>
     cn({
       'progress-span': true,
       unavailable: !signedIn && (i === 2 || i === 3),
-      complete: i === completeGames.length - 1,
+      complete: isComplete(i),
     });
 
   const getNextGame = () => {
