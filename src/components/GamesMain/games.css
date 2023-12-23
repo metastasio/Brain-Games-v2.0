@@ -20,7 +20,7 @@
     background-color: transparent;
     border: none;
     color: var(--lightlime);
-    font-size: var(--h6);
+    font-size: var(--h4);
     cursor: pointer;
   }
   .games-arrow:hover {
@@ -58,18 +58,16 @@
   display: inline;
 }
 
-
 @media (min-width: 720px) {
   .cards-container {
     display: flex;
     flex-flow: row wrap;
     max-width: 1000px;
-    max-height: 1000px;
+    max-height: revert;
     gap: var(--h4);
     justify-content: center;
     align-items: center;
 
-    max-height: 1000px;
     padding: 0;
     overflow: hidden;
   }

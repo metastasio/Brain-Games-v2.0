@@ -1,5 +1,5 @@
 .congrats-wrapper {
-  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--h3) var(--h3) var(--h3);
   text-align: center;
@@ -22,7 +22,6 @@
   margin: 0 var(--h4);
   font-size: var(--h2);
 }
-
 .congrats-points {
   font-size: var(--h4);
   color: var(--lightlime);
@@ -49,53 +48,3 @@
   color: var(--green);
   border: 1px dotted var(--green);
 }
-
-/* @layer progress {
-  .progress {
-    margin: 0 0 var(--h5);
-    margin-top: var(--small);
-    padding: 0;
-   
-    max-width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--xl);
-    justify-content: space-between;
-    justify-items: stretch;
-    position: relative;
-  }
-
-  .progress-span {
-    margin: 0;
-    color: var(--green);
-    padding: 5px;
-    font-size: var(--h6);
-    border: 2px solid var(--green);
-    border-radius: 50%;
-    background-color: var(--darkblue);
-    z-index: 10;
-  }
-
-  .unavailable {
-    color: var(--blue);
-    border: 2px solid var(--blue);
-  }
-
-  .complete {
-    color: var(--lightlime);
-    border: 2px solid var(--lightlime);
-    filter: drop-shadow(0 0 calc(var(--xs) / 2) var(--white));
-    background-color: var(--lightlime20);
-  }
-
-  .progress-span:before {
-    content: '';
-    width: 100%;
-    border-bottom: 1px dashed var(--lightgreen);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    z-index: 1;
-  }
-} */
-
