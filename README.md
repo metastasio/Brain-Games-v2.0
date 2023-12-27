@@ -1,8 +1,3 @@
-# React + Vite
+# Brain Games v2.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Maintainability](https://api.codeclimate.com/v1/badges/0091d762b498684d6a93/maintainability)](https://codeclimate.com/github/metastasio/Brain-Games-v2.0/maintainability)

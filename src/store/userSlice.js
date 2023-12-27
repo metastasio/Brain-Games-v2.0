@@ -84,6 +84,12 @@ const userSlice = createSlice({
       state.signedIn = false;
       state.email = null;
       state.userId = null;
+      state.todaysGames = state.todaysGames.map((game, i) => ({
+        name: game.name,
+        available: i < 4 - 1,
+        complete: false,
+        id: game.name,
+      }));
     },
   },
   extraReducers: (builder) => {
