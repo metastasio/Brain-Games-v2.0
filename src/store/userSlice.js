@@ -99,6 +99,7 @@ const userSlice = createSlice({
         state.signedIn = true;
         state.email = payload.email;
         state.userId = payload.uid;
+        state.error = null;
         state.todaysGames = state.todaysGames.map((game) => {
           game.available = true;
           return game;
@@ -106,6 +107,7 @@ const userSlice = createSlice({
       })
       .addCase(signUserUp.pending, (state) => {
         state.status = 'loading';
+        state.error = null;
       })
       .addCase(signUserUp.rejected, (state, { payload }) => {
         state.status = 'error';
@@ -116,6 +118,7 @@ const userSlice = createSlice({
         state.signedIn = true;
         state.email = payload.email;
         state.userId = payload.uid;
+        state.error = null;
         state.todaysGames = state.todaysGames.map((game) => {
           game.available = true;
           return game;
@@ -123,6 +126,7 @@ const userSlice = createSlice({
       })
       .addCase(signUserIn.pending, (state) => {
         state.status = 'loading';
+        state.error = null;
       })
       .addCase(signUserIn.rejected, (state, { payload }) => {
         state.status = 'error';
