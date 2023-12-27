@@ -30,6 +30,7 @@
   border: 1px dotted var(--lightlime);
   border-radius: var(--base-radius);
   font-size: var(--h6);
+  display: block;
 }
 
 ::placeholder {
