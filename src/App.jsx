@@ -23,13 +23,16 @@ import {
   Square,
 } from './components/games/index.js';
 import { Game } from './components/Game.jsx';
+import { createContext } from 'react';
+
+const theme = createContext(null);
 
 const Layout = () => (
-  <>
+  <div className='app' id={theme}>
     <Header />
     <Outlet />
     <Footer />
-  </>
+  </div>
 );
 
 const router = createBrowserRouter([
@@ -40,12 +43,7 @@ const router = createBrowserRouter([
         path: routes.mainPage(),
         element: <Main />,
       },
-      // {
-      //   path: routes.profile(),
-      //   element: <Profile />,
-      // },
-      { path: routes.profile(), 
-        element: <ProtectedRoute Profile={Profile} /> },
+      { path: routes.profile(), element: <ProtectedRoute Profile={Profile} /> },
       {
         path: routes.games(),
         element: <Games />,

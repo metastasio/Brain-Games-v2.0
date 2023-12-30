@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBrain, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
-import routes from '../../services/routes';
 import i18n from '../../services/locales';
+import routes from '../../services/routes';
 import './header.css';
 
 export const Header = () => {
@@ -58,6 +58,12 @@ export const Header = () => {
               <option value='en'>{t('header.en')}</option>
               <option value='ru'>{t('header.ru')}</option>
             </select>
+          </li>
+          <li>
+            <button className='header-theme'>
+              <FontAwesomeIcon icon={faSun} />
+              <FontAwesomeIcon icon={faMoon} />
+            </button>
           </li>
         </ul>
       </nav>
