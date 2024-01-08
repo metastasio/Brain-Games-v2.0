@@ -28,11 +28,11 @@ import { createContext } from 'react';
 const theme = createContext(null);
 
 const Layout = () => (
-  <div className='app' id={theme}>
+  <>
     <Header />
     <Outlet />
     <Footer />
-  </div>
+  </>
 );
 
 const router = createBrowserRouter([
@@ -93,7 +93,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div className='app' id={theme}>
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export { App };
