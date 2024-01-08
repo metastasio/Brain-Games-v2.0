@@ -61,6 +61,7 @@ export const Header = () => {
           </li>
           <li>
             <button className='header-theme'>
+              <span className='sr-only'>Toggle theme</span>
               <FontAwesomeIcon icon={faSun} />
               <FontAwesomeIcon icon={faMoon} />
             </button>

@@ -11,7 +11,7 @@ export const Modal = ({ onLeave, onStay }) => {
         <button className='modal-close' onClick={onStay}>
           &times;
         </button>
-        
+
         <div role='alert'>
           <h3 className='modal-warning h6'>{t('modal.warning')}</h3>
           <p className='modal-warning-progress'>{t('modal.progress')}</p>

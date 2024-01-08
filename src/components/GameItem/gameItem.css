@@ -33,15 +33,6 @@
   cursor: pointer;
 }
 
-/* .game-play:hover {
-  color: var(--lightgreen);
-  background-color: var(--darkblue);
-  cursor: pointer;
-}
-.game-play:hover a {
-  color: inherit;
-} */
-
 .game-card-img {
   max-width: 100%;
   height: auto;

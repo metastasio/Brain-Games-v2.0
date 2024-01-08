@@ -77,9 +77,6 @@ const userSlice = createSlice({
         }
       });
     },
-    setTodaysGames(state, { payload }) {
-      state.todaysGames = payload;
-    },
     logOut(state) {
       state.signedIn = false;
       state.email = null;
@@ -139,7 +136,6 @@ export const {
   decreaseCurrentScore,
   updateTotalScore,
   resetCurrentGameScore,
-  setTodaysGames,
   setUser,
   logOut,
 } = userSlice.actions;
