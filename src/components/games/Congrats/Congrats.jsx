@@ -43,8 +43,6 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     }
   };
 
-  // className={classNames(i)}
-
   return (
     <section className='congrats-wrapper'>
       <h2 className='h3 congrats-header'>{t('congrats.header')}</h2>

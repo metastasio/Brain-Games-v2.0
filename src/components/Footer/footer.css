@@ -22,3 +22,7 @@
   text-align: center;
   color: var(--blue);
 }
+
+[data-theme='light'] .footer-copyright {
+  color: var(--green);
+}

@@ -98,3 +98,17 @@
     transform: rotate(360deg);
   }
 }
+
+[data-theme='light'] .form-wrapper,
+[data-theme='light'] .profile-wrapper {
+  box-shadow: var(--green) 0 0 12px;
+}
+
+[data-theme='light'] .form-button:hover,
+[data-theme='light'] .profile-button-logout:hover {
+  background-color: var(--lightlime20);
+}
+
+[data-theme='light'] .form-hint {
+  color: var(--green);
+}

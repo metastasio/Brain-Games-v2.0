@@ -36,3 +36,12 @@
   background-color: var(--darkblue);
   box-shadow: var(--white) 0 0 6px;
 }
+
+[data-theme='light'], .main-description {
+	color: var(--lightlime);
+}
+
+[data-theme='light'] .main-start a:hover {
+	background-color: var(--green);
+  color: var(--darkblue);
+}

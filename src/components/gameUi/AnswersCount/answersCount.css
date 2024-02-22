@@ -6,3 +6,7 @@
 .conditions-count strong {
   color: var(--lightgreen);
 }
+
+[data-theme='light'] .conditions {
+  color: var(--darkblue);
+}

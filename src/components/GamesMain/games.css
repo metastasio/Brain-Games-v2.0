@@ -58,6 +58,10 @@
   display: inline;
 }
 
+[data-theme='light'] .reminder {
+  color: var(--darkblue);
+}
+
 @media (min-width: 720px) {
   .cards-container {
     display: flex;

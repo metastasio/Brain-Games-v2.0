@@ -97,5 +97,9 @@ a:hover {
 }
 
 [data-theme='light'] {
-	background-color: var(--green);
+	background-color: var(--blue);
+}
+
+[data-theme='light'] a:hover {
+	color: var(--darkblue);
 }
