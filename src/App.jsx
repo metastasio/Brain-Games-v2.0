@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 import routes from './services/routes.js';
@@ -9,9 +10,9 @@ import {
   SignUp,
   NotFound,
   Complete,
-  Header,
   Profile,
   ProtectedRoute,
+  Header,
 } from './components';
 import './App.css';
 import {
@@ -23,9 +24,7 @@ import {
   Square,
 } from './components/games/index.js';
 import { Game } from './components/Game.jsx';
-import { createContext } from 'react';
-
-const theme = createContext(null);
+import { ThemeContext } from './services/themeContext.js';
 
 const Layout = () => (
   <>
@@ -93,10 +92,20 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
+  };
+
+  useEffect(() => {
+    document.body.dataset.theme = theme;
+  }, [theme]);
+
   return (
-    <div className='app' id={theme}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <RouterProvider router={router} />
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

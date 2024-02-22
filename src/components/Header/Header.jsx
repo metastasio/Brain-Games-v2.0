@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import { ThemeContext } from '../../services/themeContext';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBrain, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +12,7 @@ import './header.css';
 
 export const Header = () => {
   const { t } = useTranslation();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const { totalScore, signedIn } = useSelector((state) => state.user);
   const handleSelect = (e) => {
     i18n.changeLanguage(e.target.value);
@@ -60,10 +63,14 @@ export const Header = () => {
             </select>
           </li>
           <li>
-            <button className='header-theme'>
+            <button className='header-theme' onClick={toggleTheme}>
               <span className='sr-only'>Toggle theme</span>
-              <FontAwesomeIcon icon={faSun} />
-              <FontAwesomeIcon icon={faMoon} />
+
+              {theme === 'dark' ? (
+                <FontAwesomeIcon icon={faSun} />
+              ) : (
+                <FontAwesomeIcon icon={faMoon} />
+              )}
             </button>
           </li>
         </ul>

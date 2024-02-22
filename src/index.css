@@ -95,3 +95,7 @@ a:hover {
 .disabled {
   pointer-events: none;
 }
+
+[data-theme='light'] {
+	background-color: var(--green);
+}
