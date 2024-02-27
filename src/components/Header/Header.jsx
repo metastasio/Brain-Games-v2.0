@@ -13,7 +13,7 @@ import './header.css';
 export const Header = () => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { totalScore, signedIn } = useSelector((state) => state.user);
+  const { totalScore, signedIn, icon } = useSelector((state) => state.user);
   const handleSelect = (e) => {
     i18n.changeLanguage(e.target.value);
   };
@@ -40,11 +40,17 @@ export const Header = () => {
             ) : (
               <Link to={routes.signInPage()}>{t('header.logIn')}</Link>
             )}
-            <FontAwesomeIcon
-              className='header-brain-icon'
-              icon={faBrain}
-              alt="User's avatar default brain"
-            />
+
+            {icon ? (
+              'kekekeke'
+            ) : (
+              <FontAwesomeIcon
+                className='header-brain-icon'
+                icon={faBrain}
+                alt="User's avatar default brain"
+              />
+            )}
+
             <span className='header-score'>{totalScore}</span>
           </li>
           <li>

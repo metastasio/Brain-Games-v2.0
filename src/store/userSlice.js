@@ -55,6 +55,7 @@ const userSlice = createSlice({
     email: null,
     userId: null,
     status: 'idle',
+    icon: null,
     error: null,
   },
   reducers: {
@@ -87,6 +88,10 @@ const userSlice = createSlice({
         complete: false,
         id: game.name,
       }));
+    },
+    setIcon(state, {payload}) {
+      // console.log(action.payload.name);
+      state.icon = payload.name;
     },
   },
   extraReducers: (builder) => {
@@ -138,6 +143,7 @@ export const {
   resetCurrentGameScore,
   setUser,
   logOut,
+  setIcon,
 } = userSlice.actions;
 
 export default userSlice.reducer;
