@@ -83,6 +83,7 @@
   font-size: var(--h5);
   border: 2px solid var(--green);
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .header-theme {

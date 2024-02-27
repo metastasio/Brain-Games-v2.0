@@ -1,3 +1,4 @@
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
@@ -6,6 +7,7 @@ import {
 } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
+import { firebaseStorage } from '../services/firebase';
 
 const games = getRandomGames().map((game, i) => ({
   name: game,
@@ -41,6 +43,22 @@ export const signUserIn = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.code);
     }
+  },
+);
+
+export const postImage = createAsyncThunk(
+  'user/setIcon',
+  async (icon, { dispatch }) => {
+    const iconRef = ref(firebaseStorage, 'image');
+    uploadBytes(iconRef, icon)
+      .then((snap) => {
+        getDownloadURL(snap.ref).then((url) => {
+          dispatch(setIcon(url));
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   },
 );
 
@@ -82,6 +100,7 @@ const userSlice = createSlice({
       state.signedIn = false;
       state.email = null;
       state.userId = null;
+      state.icon = null;
       state.todaysGames = state.todaysGames.map((game, i) => ({
         name: game.name,
         available: i < 4 - 1,
@@ -89,9 +108,8 @@ const userSlice = createSlice({
         id: game.name,
       }));
     },
-    setIcon(state, {payload}) {
-      // console.log(action.payload.name);
-      state.icon = payload.name;
+    setIcon(state, { payload }) {
+      state.icon = payload;
     },
   },
   extraReducers: (builder) => {

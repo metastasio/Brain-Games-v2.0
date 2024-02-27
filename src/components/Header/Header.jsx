@@ -42,7 +42,7 @@ export const Header = () => {
             )}
 
             {icon ? (
-              'kekekeke'
+              <img className='header-brain-icon' width='45' height='45' src={icon} alt='profile pic' />
             ) : (
               <FontAwesomeIcon
                 className='header-brain-icon'
