@@ -7,6 +7,7 @@ export default {
       ru: 'Russian',
       en: 'English',
       label: 'Select language',
+      theme: 'Toggle theme'
     },
     main: {
       welcome: 'Welcome to the <strong>Brain Games!</strong>',

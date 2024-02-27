@@ -64,7 +64,7 @@ export const Header = () => {
           </li>
           <li>
             <button className='header-theme' onClick={toggleTheme}>
-              <span className='sr-only'>Toggle theme</span>
+              <span className='sr-only'>{t('header.theme')}</span>
 
               {theme === 'dark' ? (
                 <FontAwesomeIcon icon={faSun} />
