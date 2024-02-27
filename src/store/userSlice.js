@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
@@ -39,7 +40,11 @@ export const signUserIn = createAsyncThunk(
     try {
       const auth = getAuth();
       const response = await signInWithEmailAndPassword(auth, email, password);
-      return { email: response.user.email, uid: response.user.uid };
+      return {
+        email: response.user.email,
+        uid: response.user.uid,
+        icon: response.user.photoURL,
+      };
     } catch (error) {
       return rejectWithValue(error.code);
     }
@@ -48,17 +53,12 @@ export const signUserIn = createAsyncThunk(
 
 export const postImage = createAsyncThunk(
   'user/setIcon',
-  async (icon, { dispatch }) => {
+  async ({ image, currentUser }, { dispatch }) => {
     const iconRef = ref(firebaseStorage, 'image');
-    uploadBytes(iconRef, icon)
-      .then((snap) => {
-        getDownloadURL(snap.ref).then((url) => {
-          dispatch(setIcon(url));
-        });
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    const snap = await uploadBytes(iconRef, image);
+    const url = await getDownloadURL(snap.ref);
+    updateProfile(currentUser, { photoURL: url });
+    dispatch(setIcon(url));
   },
 );
 
@@ -94,6 +94,18 @@ const userSlice = createSlice({
           game.complete = true;
           return game;
         }
+      });
+    },
+    authUser(state, { payload }) {
+      state.status = 'idle';
+      state.signedIn = true;
+      state.email = payload.email;
+      state.userId = payload.uid;
+      state.icon = payload.icon;
+      state.error = null;
+      state.todaysGames = state.todaysGames.map((game) => {
+        game.available = true;
+        return game;
       });
     },
     logOut(state) {
@@ -138,6 +150,7 @@ const userSlice = createSlice({
         state.signedIn = true;
         state.email = payload.email;
         state.userId = payload.uid;
+        state.icon = payload.icon;
         state.error = null;
         state.todaysGames = state.todaysGames.map((game) => {
           game.available = true;
@@ -162,6 +175,7 @@ export const {
   setUser,
   logOut,
   setIcon,
+  authUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

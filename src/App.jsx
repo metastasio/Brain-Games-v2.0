@@ -24,6 +24,7 @@ import {
   Square,
 } from './components/games/index.js';
 import { Game } from './components/Game.jsx';
+import { useAuth } from './hooks/useAuth.js';
 import { ThemeContext } from './services/themeContext.js';
 
 const Layout = () => (
@@ -93,10 +94,11 @@ const router = createBrowserRouter([
 
 function App() {
   const [theme, setTheme] = useState('dark');
-
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
   };
+
+  useAuth();
 
   useEffect(() => {
     document.body.dataset.theme = theme;

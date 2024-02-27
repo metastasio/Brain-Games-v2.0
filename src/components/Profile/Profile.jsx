@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
 import { logOut, postImage } from '../../store/userSlice';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const currentUser = useAuth();
   const { userId, email, todaysGames } = useSelector((state) => state.user);
   const playedGames = todaysGames
     .filter((game) => game.complete === true)
@@ -17,7 +19,7 @@ export const Profile = () => {
   const handleSubmit = (e) => {
     const data = new FormData(e.target);
     e.preventDefault();
-    dispatch(postImage(data.get('image')));
+    dispatch(postImage({ image: data.get('image'), currentUser }));
     e.target.reset();
   };
 
@@ -40,13 +42,13 @@ export const Profile = () => {
         </span>
       </p>
 
-      <button className='profile-button-logout' onClick={handleClick}>
-        {t('profile.logOut')}
-      </button>
       <form onSubmit={handleSubmit}>
         <input type='file' name='image' />
         <button type='submit'>Change profile picture</button>
       </form>
+      <button className='profile-button-logout' onClick={handleClick}>
+        {t('profile.logOut')}
+      </button>
     </div>
   );
 };
