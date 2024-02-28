@@ -1,20 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useGameValues } from '../hooks';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Restricted';
 import {
+  setScore,
+  updateTotalScore,
   decreaseCurrentScore,
   increaseCurrentScore,
-  updateTotalScore,
 } from '../store/userSlice';
 
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { currentGameScore, todaysGames } = useSelector((state) => state.user);
+  const { todaysGames, userId } = useSelector(
+    (state) => state.user,
+  );
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
@@ -24,7 +27,8 @@ export const Game = ({ CurrentGame, name }) => {
     setStatus('success');
     setCounter((counter) => counter + 1);
     if (counter + 1 === config.winCondition) {
-      dispatch(updateTotalScore({ currentGameScore, name }));
+      dispatch(updateTotalScore(name));
+      dispatch(setScore(userId));
     }
   };
 

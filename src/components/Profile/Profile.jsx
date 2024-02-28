@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
-import { logOut, postImage } from '../../store/userSlice';
 import { useAuth } from '../../hooks/useAuth';
+import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
   const { t } = useTranslation();

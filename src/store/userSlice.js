@@ -1,5 +1,6 @@
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { ref as dbRef, runTransaction } from 'firebase/database';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -8,7 +9,7 @@ import {
 } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
-import { firebaseStorage } from '../services/firebase';
+import { database, firebaseStorage } from '../services/firebase';
 
 const games = getRandomGames().map((game, i) => ({
   name: game,
@@ -62,6 +63,19 @@ export const postImage = createAsyncThunk(
   },
 );
 
+export const setScore = createAsyncThunk(
+  'user/setScore',
+  async (uid, { getState }) => {
+    const db = database;
+    const state = getState();
+    const scoreRef = dbRef(db, `/userScore/${uid}`);
+
+    runTransaction(scoreRef, (score) => {
+      return score + state.user.currentGameScore;
+    });
+  },
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -87,8 +101,9 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
+      console.log(payload);
       state.todaysGames.map((game) => {
-        if (game.name === payload.name && !game.complete) {
+        if (game.name === payload && !game.complete) {
           state.totalScore += state.currentGameScore;
           state.progress++;
           game.complete = true;
