@@ -52,6 +52,23 @@ const isPrime = (num) => {
   return num > 1;
 };
 
+const getUsersLevel = (score) => {
+  if (score >= 3000 && score < 6000) {
+    return 'intermediate';
+  }
+  if (score >= 6000 && score < 9000) {
+    return 'advanced';
+  }
+  if (score >= 9000 && score < 15000) {
+    return 'expert';
+  }
+  if (score >= 15000) {
+    return 'grand master';
+  } else {
+    return 'beginner';
+  }
+};
+
 export {
   getRandomNumber,
   getRandomSign,
@@ -59,4 +76,5 @@ export {
   getRandomLine,
   gcd,
   isPrime,
+  getUsersLevel,
 };

@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
 import { useAuth } from '../../hooks/useAuth';
+import { getUsersLevel } from '../../services/utils';
 import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentUser = useAuth();
-  const { userId, email, todaysGames } = useSelector((state) => state.user);
+  const { userId, email, todaysGames, totalScore } = useSelector(
+    (state) => state.user,
+  );
+  const level = getUsersLevel(totalScore);
   const playedGames = todaysGames
     .filter((game) => game.complete === true)
     .map((item) => item.name)
@@ -41,6 +45,8 @@ export const Profile = () => {
           {playedGames ? playedGames : t('games.completed')}
         </span>
       </p>
+
+      <p>{level}</p>
 
       <form onSubmit={handleSubmit}>
         <input type='file' name='image' />

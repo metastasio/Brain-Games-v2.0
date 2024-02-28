@@ -1,4 +1,10 @@
-import { ref as dbRef, runTransaction } from 'firebase/database';
+import {
+  child,
+  ref as dbRef,
+  get,
+  getDatabase,
+  runTransaction,
+} from 'firebase/database';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {
@@ -41,10 +47,17 @@ export const signUserIn = createAsyncThunk(
     try {
       const auth = getAuth();
       const response = await signInWithEmailAndPassword(auth, email, password);
+
+      const dbReadRef = dbRef(getDatabase());
+      const updatedScore = await get(
+        child(dbReadRef, `userScore/${response.user.uid}`),
+      );
+
       return {
         email: response.user.email,
         uid: response.user.uid,
         icon: response.user.photoURL,
+        totalScore: updatedScore.toJSON(),
       };
     } catch (error) {
       return rejectWithValue(error.code);
@@ -66,13 +79,13 @@ export const postImage = createAsyncThunk(
 export const setScore = createAsyncThunk(
   'user/setScore',
   async (uid, { getState }) => {
-    const db = database;
     const state = getState();
-    const scoreRef = dbRef(db, `/userScore/${uid}`);
-
-    runTransaction(scoreRef, (score) => {
+    const scoreRef = dbRef(database, `/userScore/${uid}`);
+    const result = await runTransaction(scoreRef, (score) => {
       return score + state.user.currentGameScore;
     });
+    const totalScore = result.toJSON();
+    return totalScore.snapshot;
   },
 );
 
@@ -101,7 +114,6 @@ const userSlice = createSlice({
       state.currentGameScore = 0;
     },
     updateTotalScore(state, { payload }) {
-      console.log(payload);
       state.todaysGames.map((game) => {
         if (game.name === payload && !game.complete) {
           state.totalScore += state.currentGameScore;
@@ -166,6 +178,7 @@ const userSlice = createSlice({
         state.email = payload.email;
         state.userId = payload.uid;
         state.icon = payload.icon;
+        state.totalScore = payload.totalScore;
         state.error = null;
         state.todaysGames = state.todaysGames.map((game) => {
           game.available = true;
@@ -179,6 +192,10 @@ const userSlice = createSlice({
       .addCase(signUserIn.rejected, (state, { payload }) => {
         state.status = 'error';
         state.error = payload;
+      })
+      .addCase(setScore.fulfilled, (state, { payload }) => {
+        console.log(payload, 'PAYLOAD');
+        state.totalScore = payload;
       });
   },
 });
