@@ -11,6 +11,7 @@ export function useAuth() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(userAuth, (user) => {
+      console.log(user, 'USERRRRRR')
       setCurrentUser(user);
       dispatch(
         authUser({ email: user.email, uid: user.uid, icon: user.photoURL }),
@@ -19,5 +20,5 @@ export function useAuth() {
 
     return unsub;
   }, [dispatch]);
-  return currentUser;
+  return currentUser;git
 }
