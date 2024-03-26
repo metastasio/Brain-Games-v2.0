@@ -52,40 +52,54 @@ const isPrime = (num) => {
   return num > 1;
 };
 
-const levels = [
-  'beginner',
-  'intermediate',
-  'advanced',
-  'expert',
-  'grand master',
-];
+// const levels = [
+//   'beginner',
+//   'intermediate',
+//   'advanced',
+//   'expert',
+//   'grand master',
+// ];
 
-const getUsersLevel = (score) => {
-  if (score >= 3000 && score < 6000) {
-    return levels[1];
-  }
-  if (score >= 6000 && score < 9000) {
-    return levels[2];
-  }
-  if (score >= 9000 && score < 15000) {
-    return levels[3];
-  }
-  if (score >= 15000) {
-    return levels[4];
-  } else {
-    return levels[0];
-  }
+const levels = {
+  beginner: { min: 0, max: 3000 },
+  intermediate: { min: 3000, max: 6000 },
+  advanced: { min: 6000, max: 9000 },
+  expert: { min: 9000, max: 12000 },
+  'grand master': { min: 12000, max: Infinity },
 };
 
-const getNextLevel = (currentLevel) => {
-  if (currentLevel === 'grand master') {
+const getUsersLevel = (currentScore) => {
+  const levelEntries = Object.entries(levels);
+  let lvl = '';
+
+  for (let level of levelEntries) {
+    if (currentScore >= level[1].min && currentScore <= level[1].max) {
+      lvl = level[0];
+    }
+  }
+
+  return lvl;
+};
+
+const getNextLevel = (currentLvl) => {
+  if (currentLvl === 'grand master') {
     return 'Congratulations, you are the Grand Master';
   }
 
-  const currentLevelId = levels.indexOf(currentLevel);
-  const nextLevelId = currentLevelId + 1;
-  return levels[nextLevelId];
+  const levelNames = Object.keys(levels);
+  const nextLevelIndex = levelNames.indexOf(currentLvl) + 1;
+  const nextLevel = levelNames[nextLevelIndex];
+  return nextLevel;
 };
+
+// const getLevelPercentage = (currentPoints) => {
+//   let currentPointsPercentage;
+//   if (currentPoints < 0) {
+//     currentPointsPercentage = 0;
+//   }
+
+//   const max = maxPointsPerLvl + 3000;
+// };
 
 export {
   getRandomNumber,
@@ -95,6 +109,6 @@ export {
   gcd,
   isPrime,
   getUsersLevel,
-  // levels,
   getNextLevel,
+  // getLevelPercentage,
 };

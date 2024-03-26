@@ -82,9 +82,8 @@ export const Profile = () => {
 
       <div className='profile-level-progress'>
         <div className='profile-progress'>
-          <div className='profile-bar'>{totalScore}</div>
+          <progress className='profile-bar' value={75} max={100} />
         </div>
-
         <p>{level}</p>
         <hr />
         <p>{nextLevel}</p>
