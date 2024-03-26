@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
 import { useAuth } from '../../hooks/useAuth';
-import { getUsersLevel } from '../../services/utils';
+import { getNextLevel, getUsersLevel } from '../../services/utils';
 import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
@@ -18,6 +18,7 @@ export const Profile = () => {
     (state) => state.user,
   );
   const level = getUsersLevel(totalScore);
+  const nextLevel = getNextLevel(level);
   const playedGames = todaysGames
     .filter((game) => game.complete === true)
     .map((item) => item.name)
@@ -25,7 +26,7 @@ export const Profile = () => {
     .join(', ');
 
   const handleChange = (e) => setNewProfilePic(Boolean(e.target.value));
-  
+
   const handleSubmit = (e) => {
     const data = new FormData(e.target);
     e.preventDefault();
@@ -79,7 +80,15 @@ export const Profile = () => {
         </span>
       </p>
 
-      <p>{level}</p>
+      <div className='profile-level-progress'>
+        <div className='profile-progress'>
+          <div className='profile-bar'>{totalScore}</div>
+        </div>
+
+        <p>{level}</p>
+        <hr />
+        <p>{nextLevel}</p>
+      </div>
 
       <button className='profile-button-logout' onClick={handleClick}>
         {t('profile.logOut')}

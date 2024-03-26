@@ -52,21 +52,39 @@ const isPrime = (num) => {
   return num > 1;
 };
 
+const levels = [
+  'beginner',
+  'intermediate',
+  'advanced',
+  'expert',
+  'grand master',
+];
+
 const getUsersLevel = (score) => {
   if (score >= 3000 && score < 6000) {
-    return 'intermediate';
+    return levels[1];
   }
   if (score >= 6000 && score < 9000) {
-    return 'advanced';
+    return levels[2];
   }
   if (score >= 9000 && score < 15000) {
-    return 'expert';
+    return levels[3];
   }
   if (score >= 15000) {
-    return 'grand master';
+    return levels[4];
   } else {
-    return 'beginner';
+    return levels[0];
   }
+};
+
+const getNextLevel = (currentLevel) => {
+  if (currentLevel === 'grand master') {
+    return 'Congratulations, you are the Grand Master';
+  }
+
+  const currentLevelId = levels.indexOf(currentLevel);
+  const nextLevelId = currentLevelId + 1;
+  return levels[nextLevelId];
 };
 
 export {
@@ -77,4 +95,6 @@ export {
   gcd,
   isPrime,
   getUsersLevel,
+  // levels,
+  getNextLevel,
 };
