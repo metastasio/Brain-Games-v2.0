@@ -52,20 +52,12 @@ const isPrime = (num) => {
   return num > 1;
 };
 
-// const levels = [
-//   'beginner',
-//   'intermediate',
-//   'advanced',
-//   'expert',
-//   'grand master',
-// ];
-
 const levels = {
   beginner: { min: 0, max: 3000 },
   intermediate: { min: 3000, max: 6000 },
   advanced: { min: 6000, max: 9000 },
   expert: { min: 9000, max: 12000 },
-  'grand master': { min: 12000, max: Infinity },
+  'grandmaster': { min: 12000, max: Infinity },
 };
 
 const getUsersLevel = (currentScore) => {
@@ -77,12 +69,11 @@ const getUsersLevel = (currentScore) => {
       lvl = level[0];
     }
   }
-
   return lvl;
 };
 
 const getNextLevel = (currentLvl) => {
-  if (currentLvl === 'grand master') {
+  if (currentLvl === 'grandmaster') {
     return 'Congratulations, you are the Grand Master';
   }
 
@@ -92,14 +83,19 @@ const getNextLevel = (currentLvl) => {
   return nextLevel;
 };
 
-// const getLevelPercentage = (currentPoints) => {
-//   let currentPointsPercentage;
-//   if (currentPoints < 0) {
-//     currentPointsPercentage = 0;
-//   }
+const getLevelPercentage = (currentPoints, currentLvl) => {
+  if (currentPoints <= 0) {
+    return 0;
+  }
+  if (currentLvl === 'grandmaster') {
+    return 100;
+  }
 
-//   const max = maxPointsPerLvl + 3000;
-// };
+  const max = levels[currentLvl].max;
+  const min = levels[currentLvl].min;
+  const percent = ((currentPoints * 100) / max).toFixed(2);
+  return [min, max, percent]
+};
 
 export {
   getRandomNumber,
@@ -110,5 +106,5 @@ export {
   isPrime,
   getUsersLevel,
   getNextLevel,
-  // getLevelPercentage,
+  getLevelPercentage,
 };

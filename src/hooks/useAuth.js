@@ -20,5 +20,5 @@ export function useAuth() {
 
     return unsub;
   }, [dispatch]);
-  return currentUser;git
+  return currentUser;
 }
