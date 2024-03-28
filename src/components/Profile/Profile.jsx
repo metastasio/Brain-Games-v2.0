@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
 import { useAuth } from '../../hooks/useAuth';
-import { getLevelPercentage, getNextLevel, getUsersLevel } from '../../services/utils';
+import { getNextLevel, getProgressData, getUsersLevel } from '../../services/utils';
 import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
@@ -19,7 +19,7 @@ export const Profile = () => {
   );
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
-  const progress = getLevelPercentage(totalScore, level);
+  const progress = getProgressData(totalScore, level);
   const playedGames = todaysGames
     .filter((game) => game.complete === true)
     .map((item) => item.name)

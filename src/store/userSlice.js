@@ -43,21 +43,17 @@ export const signUserUp = createAsyncThunk(
 
 export const signUserIn = createAsyncThunk(
   'user/getUser',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue, dispatch }) => {
     try {
       const auth = getAuth();
       const response = await signInWithEmailAndPassword(auth, email, password);
-
-      const dbReadRef = dbRef(getDatabase());
-      const updatedScore = await get(
-        child(dbReadRef, `userScore/${response.user.uid}`),
-      );
+      const totalScore = await dispatch(getScore(response.user.uid)).unwrap();
 
       return {
         email: response.user.email,
         uid: response.user.uid,
         icon: response.user.photoURL,
-        totalScore: updatedScore.toJSON(),
+        totalScore,
       };
     } catch (error) {
       return rejectWithValue(error.code);
@@ -73,6 +69,19 @@ export const postImage = createAsyncThunk(
     const url = await getDownloadURL(snap.ref);
     updateProfile(currentUser, { photoURL: url });
     dispatch(setIcon(url));
+  },
+);
+
+export const getScore = createAsyncThunk(
+  'user/getScore',
+  async (uid, { rejectWithValue }) => {
+    try {
+      const dbReadRef = dbRef(getDatabase());
+      const updatedScore = await get(child(dbReadRef, `userScore/${uid}`));
+      return updatedScore.toJSON();
+    } catch (error) {
+      return rejectWithValue(error.code);
+    }
   },
 );
 
@@ -124,12 +133,14 @@ const userSlice = createSlice({
       });
     },
     authUser(state, { payload }) {
+      console.log(payload, 'payload');
       state.status = 'idle';
       state.signedIn = true;
       state.email = payload.email;
       state.userId = payload.uid;
       state.icon = payload.icon;
       state.error = null;
+      state.totalScore = payload.totalScore;
       state.todaysGames = state.todaysGames.map((game) => {
         game.available = true;
         return game;
@@ -173,17 +184,7 @@ const userSlice = createSlice({
         state.error = payload;
       })
       .addCase(signUserIn.fulfilled, (state, { payload }) => {
-        state.status = 'idle';
-        state.signedIn = true;
-        state.email = payload.email;
-        state.userId = payload.uid;
-        state.icon = payload.icon;
-        state.totalScore = payload.totalScore;
-        state.error = null;
-        state.todaysGames = state.todaysGames.map((game) => {
-          game.available = true;
-          return game;
-        });
+        userSlice.caseReducers.authUser(state, { payload });
       })
       .addCase(signUserIn.pending, (state) => {
         state.status = 'loading';
@@ -194,7 +195,6 @@ const userSlice = createSlice({
         state.error = payload;
       })
       .addCase(setScore.fulfilled, (state, { payload }) => {
-        console.log(payload, 'PAYLOAD');
         state.totalScore = payload;
       });
   },

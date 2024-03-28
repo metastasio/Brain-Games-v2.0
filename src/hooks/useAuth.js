@@ -1,24 +1,25 @@
 import { useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { userAuth } from '../services/firebase';
-import { authUser } from '../store/userSlice';
+import { authUser, getScore } from '../store/userSlice';
 
 export function useAuth() {
-  const [currentUser, setCurrentUser] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(userAuth, (user) => {
-      console.log(user, 'USERRRRRR')
-      setCurrentUser(user);
+    const unsub = onAuthStateChanged(userAuth, async (user) => {
+      const totalScore = await dispatch(getScore(user.uid)).unwrap();
       dispatch(
-        authUser({ email: user.email, uid: user.uid, icon: user.photoURL }),
+        authUser({
+          email: user.email,
+          uid: user.uid,
+          icon: user.photoURL,
+          totalScore,
+        }),
       );
     });
-
     return unsub;
   }, [dispatch]);
-  return currentUser;
 }

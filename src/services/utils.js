@@ -83,7 +83,7 @@ const getNextLevel = (currentLvl) => {
   return nextLevel;
 };
 
-const getLevelPercentage = (currentPoints, currentLvl) => {
+const getProgressData = (currentPoints, currentLvl) => {
   if (currentPoints <= 0) {
     return 0;
   }
@@ -106,5 +106,5 @@ export {
   isPrime,
   getUsersLevel,
   getNextLevel,
-  getLevelPercentage,
+  getProgressData,
 };
