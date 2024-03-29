@@ -84,6 +84,8 @@
   border: 2px solid var(--green);
   border-radius: 50%;
   object-fit: cover;
+  position: relative;
+  top: 15px;
 }
 
 .header-theme {
