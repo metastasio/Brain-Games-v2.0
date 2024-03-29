@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
 import { useAuth } from '../../hooks/useAuth';
-import { getNextLevel, getProgressData, getUsersLevel } from '../../services/utils';
+import {
+  getNextLevel,
+  getProgressData,
+  getUsersLevel,
+} from '../../services/utils';
 import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
@@ -19,7 +23,7 @@ export const Profile = () => {
   );
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
-  const progress = getProgressData(totalScore, level);
+  const [min, max, percents] = getProgressData(totalScore, level);
   const playedGames = todaysGames
     .filter((game) => game.complete === true)
     .map((item) => item.name)
@@ -81,13 +85,18 @@ export const Profile = () => {
         </span>
       </p>
 
-      <div className='profile-level-progress'>
-        <div className='profile-progress'>
-          <progress className='profile-bar' value={75} max={100} />
+      <div className='profile-progress'>
+        <div className='profile-progress-levels'>
+          <p>{level}</p><p>{nextLevel}</p>
         </div>
-        <p>{level}</p>
-        <hr />
-        <p>{nextLevel}</p>
+
+        <div className='profile-progress-container'>
+          <progress className='profile-bar' value={percents} max={100} />
+        </div>
+
+        <div className='profile-progress-points'>
+          <p>{max}</p><p>{min}</p>
+        </div>
       </div>
 
       <button className='profile-button-logout' onClick={handleClick}>

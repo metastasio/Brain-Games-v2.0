@@ -100,13 +100,44 @@
   .profile-progress {
     width: 400px;
   }
-  
+
   .profile-bar {
     width: 100%;
-    height: 30px;
-    background-color: var(--green);
-    text-align: center; 
-    line-height: 30px; 
+    height: 20px;
+    accent-color: var(--green);
+    text-align: center;
+    line-height: 30px;
     color: var(--white);
   }
+
+  .profile-progress-levels,
+  .profile-progress-points {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  .profile-progress-levels > p,
+  .profile-progress-points > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--small);
+  }
+
+  .profile-progress-points > p {
+    color: var(--lightlime);
+  }
+
+}
+
+[data-theme='light'] .profile-progress-points > p {
+  color: var(--white);
+}
+[data-theme='light'] .custom-file-input + label {
+  color: var(--white);
+  text-decoration: underline dotted var(--green);
+}
+[data-theme='light'] .custom-file-input + label:hover {
+  color: var(--green);
+  text-decoration: none;
 }
