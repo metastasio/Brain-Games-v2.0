@@ -187,6 +187,12 @@ const userSlice = createSlice({
       })
       .addCase(setScore.fulfilled, (state, { payload }) => {
         state.totalScore = payload;
+      })
+      .addCase(postImage.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(postImage.fulfilled, (state) => {
+        state.status = 'idle';
       });
   },
 });

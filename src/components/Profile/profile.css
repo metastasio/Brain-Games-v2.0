@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  gap: var(--h6);
+  gap: var(--h5);
   border: 1px dotted var(--blue);
   border-radius: var(--base-radius);
   box-shadow: var(--blue) 0 0 12px;
@@ -67,7 +67,7 @@
 }
 
 .custom-file-input + label {
-  padding-top: var(--xs);
+  /* padding-top: var(--xs); */
   font-size: var(--small);
   color: var(--lightlime);
   text-decoration: underline dotted var(--blue);
@@ -82,7 +82,7 @@
 }
 
 .profile-form-button {
-  margin: 0 auto;
+  margin: 0 auto var(--small);
   padding: var(--xs);
   color: var(--green);
   display: block;
@@ -91,14 +91,41 @@
   border-radius: var(--base-radius);
 }
 
+.profile-form-button:hover {
+  cursor: pointer;
+}
+
+.profile-button-logout {
+  margin: var(--h3) 0 0 0;
+  padding: var(--small);
+  color: var(--lightlime);
+  display: block;
+  background-color: transparent;
+  border: 1px dotted var(--lightlime);
+  border-radius: var(--base-radius);
+}
+
+.profile-button-logout:hover {
+  cursor: pointer;
+  background-color: var(--lightlime20);
+}
+
 .profile-label {
   margin: 0;
-  padding: 100;
+}
+
+.profile-form-spinner {
+  font-size: var(--lg);
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  animation: rotate-animation 4s infinite linear;
 }
 
 @layer progress {
   .profile-progress {
     width: 400px;
+    margin: var(--h3) 0 0 0;
   }
 
   .profile-bar {
@@ -127,7 +154,6 @@
   .profile-progress-points > p {
     color: var(--lightlime);
   }
-
 }
 
 [data-theme='light'] .profile-progress-points > p {

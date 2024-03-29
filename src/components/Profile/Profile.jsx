@@ -18,7 +18,7 @@ export const Profile = () => {
   const [newProfilePic, setNewProfilePic] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useAuth();
-  const { email, todaysGames, totalScore, icon } = useSelector(
+  const { email, todaysGames, totalScore, icon, status } = useSelector(
     (state) => state.user,
   );
   const level = getUsersLevel(totalScore);
@@ -87,7 +87,8 @@ export const Profile = () => {
 
       <div className='profile-progress'>
         <div className='profile-progress-levels'>
-          <p>{level}</p><p>{nextLevel}</p>
+          <p>{level}</p>
+          <p>{nextLevel}</p>
         </div>
 
         <div className='profile-progress-container'>
@@ -95,13 +96,17 @@ export const Profile = () => {
         </div>
 
         <div className='profile-progress-points'>
-          <p>{max}</p><p>{min}</p>
+          <p>{max}</p>
+          <p>{min}</p>
         </div>
       </div>
 
       <button className='profile-button-logout' onClick={handleClick}>
         {t('profile.logOut')}
       </button>
+      {status === 'loading' ? (
+        <span className='profile-form-spinner'>&#127922;</span>
+      ) : null}
     </div>
   );
 };
