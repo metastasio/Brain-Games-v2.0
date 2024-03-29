@@ -133,14 +133,13 @@ const userSlice = createSlice({
       });
     },
     authUser(state, { payload }) {
-      console.log(payload, 'payload');
       state.status = 'idle';
       state.signedIn = true;
       state.email = payload.email;
       state.userId = payload.uid;
-      state.icon = payload.icon;
+      state.icon = payload?.icon;
       state.error = null;
-      state.totalScore = payload.totalScore;
+      state.totalScore = payload?.totalScore;
       state.todaysGames = state.todaysGames.map((game) => {
         game.available = true;
         return game;
@@ -165,15 +164,7 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signUserUp.fulfilled, (state, { payload }) => {
-        state.status = 'idle';
-        state.signedIn = true;
-        state.email = payload.email;
-        state.userId = payload.uid;
-        state.error = null;
-        state.todaysGames = state.todaysGames.map((game) => {
-          game.available = true;
-          return game;
-        });
+        userSlice.caseReducers.authUser(state, { payload });
       })
       .addCase(signUserUp.pending, (state) => {
         state.status = 'loading';
