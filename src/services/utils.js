@@ -74,7 +74,7 @@ const getUsersLevel = (currentScore) => {
 
 const getNextLevel = (currentLvl) => {
   if (currentLvl === 'grandmaster') {
-    return 'Congratulations, you are the Grand Master';
+    return 'newGrandMaster';
   }
 
   const levelNames = Object.keys(levels);
@@ -88,7 +88,7 @@ const getProgressData = (currentPoints, currentLvl) => {
     return 0;
   }
   if (currentLvl === 'grandmaster') {
-    return 100;
+    return [levels.grandmaster.min, currentPoints, 100];
   }
 
   const max = levels[currentLvl].max;

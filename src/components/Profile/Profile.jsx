@@ -59,7 +59,7 @@ export const Profile = () => {
       <form onSubmit={handleSubmit}>
         {newProfilePic ? (
           <button className='profile-form-button' type='submit'>
-            Submit
+            {t('profile.submitPicture')}
           </button>
         ) : null}
         <input
@@ -70,7 +70,7 @@ export const Profile = () => {
           onChange={handleChange}
         />
         <label className='profile-label' htmlFor='profile-picture'>
-          Change profile picture
+          {t('profile.changePicture')}
         </label>
       </form>
 
@@ -87,8 +87,14 @@ export const Profile = () => {
 
       <div className='profile-progress'>
         <div className='profile-progress-levels'>
-          <p>{level}</p>
-          <p>{nextLevel}</p>
+          {nextLevel === 'newGrandMaster' ? (
+            <p>{t('profile.newGrandMaster')}</p>
+          ) : (
+            <div>
+              <p>{t(`profile.${level}`)}</p>
+              <p>{t(`profile.${nextLevel}`)}</p>
+            </div>
+          )}
         </div>
 
         <div className='profile-progress-container'>
@@ -96,8 +102,8 @@ export const Profile = () => {
         </div>
 
         <div className='profile-progress-points'>
-          <p>{max}</p>
           <p>{min}</p>
+          <p>{max}</p>
         </div>
       </div>
 

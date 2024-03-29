@@ -106,6 +106,14 @@ export default {
       logOut: 'Выйти',
       id: 'Ваш ID',
       email: 'Ваш e-mail',
+      changePicture: 'Сменить фото профиля',
+      submitPicture: 'Загрузить',
+      beginner: 'Начинающий',
+      intermediate: 'Средний',
+      advanced: 'Продвинутый',
+      expert: 'Эксперт',
+      grandmaster: 'Великий магистр',
+      newGrandMaster: 'Вы - Великий Магистр'
     },
   },
 };

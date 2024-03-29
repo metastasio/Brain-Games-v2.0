@@ -23,6 +23,7 @@ export const getScore = createAsyncThunk(
     try {
       const dbReadRef = dbRef(getDatabase());
       const updatedScore = await get(child(dbReadRef, `userScore/${uid}`));
+
       return updatedScore.toJSON();
     } catch (error) {
       return rejectWithValue(error.code);

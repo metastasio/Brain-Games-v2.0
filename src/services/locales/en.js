@@ -7,7 +7,7 @@ export default {
       ru: 'Russian',
       en: 'English',
       label: 'Select language',
-      theme: 'Toggle theme'
+      theme: 'Toggle theme',
     },
     main: {
       welcome: 'Welcome to the <strong>Brain Games!</strong>',
@@ -106,6 +106,14 @@ export default {
       logOut: 'Log out',
       id: 'Your ID',
       email: 'Your e-mail',
-    }
+      changePicture: 'Change profile picture',
+      submitPicture: 'Submit',
+      beginner: 'Beginner',
+      intermediate: 'Intermediate',
+      advanced: 'Advanced',
+      expert: 'Expert',
+      grandmaster: 'Grand master',
+      newGrandMaster: 'You are the Grand Master',
+    },
   },
 };
