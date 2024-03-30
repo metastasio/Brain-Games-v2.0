@@ -13,7 +13,8 @@ import './games.css';
 
 export const Games = () => {
   const { t } = useTranslation();
-  const { signedIn, todaysGames } = useSelector((state) => state.user);
+  const { signedIn } = useSelector((state) => state.user);
+  const { todaysGames } = useSelector((state) => state.games);
   const [currentGame, setCurrentGame] = useState(0);
 
   const handleNext = () => {

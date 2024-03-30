@@ -1,10 +1,4 @@
-import {
-  child,
-  ref as dbRef,
-  get,
-  getDatabase,
-  runTransaction,
-} from 'firebase/database';
+import { ref as dbRef, getDatabase, runTransaction } from 'firebase/database';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {
@@ -14,15 +8,8 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import { getRandomGames } from '../services/getRandomGames';
 import { firebaseStorage } from '../services/firebase';
-
-const games = getRandomGames().map((game, i) => ({
-  name: game,
-  available: i < 4 - 1,
-  complete: false,
-  id: game,
-}));
+import { getScore } from './gameSlice';
 
 export const signUserUp = createAsyncThunk(
   'user/signUserUp',
@@ -72,19 +59,6 @@ export const postImage = createAsyncThunk(
   },
 );
 
-export const getScore = createAsyncThunk(
-  'user/getScore',
-  async (uid, { rejectWithValue }) => {
-    try {
-      const dbReadRef = dbRef(getDatabase());
-      const updatedScore = await get(child(dbReadRef, `userScore/${uid}`));
-      return updatedScore.toJSON();
-    } catch (error) {
-      return rejectWithValue(error.code);
-    }
-  },
-);
-
 export const setScore = createAsyncThunk(
   'user/setScore',
   async (uid, { getState }) => {
@@ -102,10 +76,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     signedIn: false,
-    totalScore: 0,
-    currentGameScore: 0,
-    progress: 0,
-    todaysGames: games,
     email: null,
     userId: null,
     status: 'idle',
@@ -113,25 +83,6 @@ const userSlice = createSlice({
     error: null,
   },
   reducers: {
-    increaseCurrentScore(state) {
-      state.currentGameScore += 100;
-    },
-    decreaseCurrentScore(state) {
-      state.currentGameScore -= 5;
-    },
-    resetCurrentGameScore(state) {
-      state.currentGameScore = 0;
-    },
-    updateTotalScore(state, { payload }) {
-      state.todaysGames.map((game) => {
-        if (game.name === payload && !game.complete) {
-          state.totalScore += state.currentGameScore;
-          state.progress++;
-          game.complete = true;
-          return game;
-        }
-      });
-    },
     authUser(state, { payload }) {
       state.status = 'idle';
       state.signedIn = true;
@@ -139,23 +90,12 @@ const userSlice = createSlice({
       state.userId = payload.uid;
       state.icon = payload?.icon;
       state.error = null;
-      state.totalScore = payload?.totalScore ?? 0;
-      state.todaysGames = state.todaysGames.map((game) => {
-        game.available = true;
-        return game;
-      });
     },
     logOut(state) {
       state.signedIn = false;
       state.email = null;
       state.userId = null;
       state.icon = null;
-      state.todaysGames = state.todaysGames.map((game, i) => ({
-        name: game.name,
-        available: i < 4 - 1,
-        complete: false,
-        id: game.name,
-      }));
     },
     setIcon(state, { payload }) {
       state.icon = payload;
@@ -185,9 +125,6 @@ const userSlice = createSlice({
         state.status = 'error';
         state.error = payload;
       })
-      .addCase(setScore.fulfilled, (state, { payload }) => {
-        state.totalScore = payload;
-      })
       .addCase(postImage.pending, (state) => {
         state.status = 'loading';
       })
@@ -196,15 +133,6 @@ const userSlice = createSlice({
       });
   },
 });
-export const {
-  increaseCurrentScore,
-  decreaseCurrentScore,
-  updateTotalScore,
-  resetCurrentGameScore,
-  setUser,
-  logOut,
-  setIcon,
-  authUser,
-} = userSlice.actions;
+export const { setUser, logOut, setIcon, authUser } = userSlice.actions;
 
 export default userSlice.reducer;

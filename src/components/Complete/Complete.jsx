@@ -10,7 +10,8 @@ import './complete.css';
 export const Complete = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { totalScore, progress, signedIn } = useSelector((state) => state.user);
+  const { signedIn } = useSelector((state) => state.user);
+  const { progress, totalScore } = useSelector((state) => state.games);
 
   useEffect(() => {
     if (

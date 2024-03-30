@@ -10,14 +10,13 @@ import {
   updateTotalScore,
   decreaseCurrentScore,
   increaseCurrentScore,
-} from '../store/userSlice';
+} from '../store/gameSlice';
 
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { todaysGames, userId } = useSelector(
-    (state) => state.user,
-  );
+  const { userId } = useSelector((state) => state.user);
+  const { todaysGames } = useSelector((state) => state.games);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);

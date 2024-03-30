@@ -17,9 +17,8 @@ export const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [newProfilePic, setNewProfilePic] = useState(false);
-  const { email, todaysGames, totalScore, icon, status } = useSelector(
-    (state) => state.user,
-  );
+  const { email, icon, status } = useSelector((state) => state.user);
+  const { todaysGames, totalScore } = useSelector((state) => state.games);
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
   const [min, max, percents] = getProgressData(totalScore, level);
@@ -35,7 +34,9 @@ export const Profile = () => {
     const auth = getAuth();
     const data = new FormData(e.target);
     e.preventDefault();
-    dispatch(postImage({ image: data.get('image'), currentUser: auth.currentUser }));
+    dispatch(
+      postImage({ image: data.get('image'), currentUser: auth.currentUser }),
+    );
     e.target.reset();
     setNewProfilePic(false);
   };

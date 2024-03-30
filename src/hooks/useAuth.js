@@ -3,7 +3,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 
 import { userAuth } from '../services/firebase';
-import { authUser, getScore } from '../store/userSlice';
+import { authUser } from '../store/userSlice';
+import { getScore } from '../store/gameSlice';
 
 export function useAuth() {
   const dispatch = useDispatch();

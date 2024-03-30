@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import './stepper.css';
 
 export const Stepper = () => {
-  const { signedIn, todaysGames } = useSelector((state) => state.user);
+  const { signedIn } = useSelector((state) => state.user);
+  const { todaysGames } = useSelector((state) => state.games);
   const completeGames = todaysGames.filter((game) => game.complete);
 
   const isComplete = (i) => {
