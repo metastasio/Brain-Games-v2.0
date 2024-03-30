@@ -96,6 +96,10 @@ a:hover {
   pointer-events: none;
 }
 
+input:focus {
+  outline:none;
+}
+
 [data-theme='light'] {
 	background-color: var(--blue);
 }

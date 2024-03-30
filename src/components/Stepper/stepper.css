@@ -97,8 +97,11 @@
   left: calc(50% + 20px);
 }
 
-[data-theme='light'] .stepper-item.unavailable .step-counter,
-[data-theme='light'] .stepper-item.unavailable::after {
+[data-theme='light'] .stepper-item.unavailable .step-counter {
   color: var(--lightlime60);
   border: 2px solid var(--lightlime60);
+}
+[data-theme='light'] .stepper-item.unavailable::after {
+  color: var(--lightlime60);
+  border: 1px solid var(--lightlime60);
 }
