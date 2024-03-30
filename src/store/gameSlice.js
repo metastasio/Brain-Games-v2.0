@@ -9,7 +9,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { database } from '../services/firebase';
 import { getRandomGames } from '../services/getRandomGames';
-import { authUser, logOut } from './userSlice';
+import { authUser, logOut, signUserIn } from './userSlice';
 
 const games = getRandomGames().map((game, i) => ({
   name: game,
@@ -38,7 +38,7 @@ export const setScore = createAsyncThunk(
     const state = getState();
     const scoreRef = dbRef(database, `/userScore/${uid}`);
     const result = await runTransaction(scoreRef, (score) => {
-      return score + state.user.currentGameScore;
+      return score + state.games.currentGameScore;
     });
     const totalScore = result.toJSON();
     return totalScore.snapshot;
@@ -87,6 +87,9 @@ const gameSlice = createSlice({
           complete: false,
           id: game.name,
         }));
+      })
+      .addCase(signUserIn.fulfilled, (state, { payload }) => {
+        state.totalScore = payload?.totalScore ?? 0;
       })
       .addCase(authUser, (state, { payload }) => {
         state.totalScore = payload?.totalScore ?? 0;

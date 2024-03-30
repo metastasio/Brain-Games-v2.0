@@ -1,4 +1,3 @@
-import { ref as dbRef, getDatabase, runTransaction } from 'firebase/database';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {
@@ -8,8 +7,8 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import { firebaseStorage } from '../services/firebase';
 import { getScore } from './gameSlice';
+import { firebaseStorage } from '../services/firebase';
 
 export const signUserUp = createAsyncThunk(
   'user/signUserUp',
@@ -56,19 +55,6 @@ export const postImage = createAsyncThunk(
     const url = await getDownloadURL(snap.ref);
     updateProfile(currentUser, { photoURL: url });
     dispatch(setIcon(url));
-  },
-);
-
-export const setScore = createAsyncThunk(
-  'user/setScore',
-  async (uid, { getState }) => {
-    const state = getState();
-    const scoreRef = dbRef(getDatabase(), `/userScore/${uid}`);
-    const result = await runTransaction(scoreRef, (score) => {
-      return score + state.user.currentGameScore;
-    });
-    const totalScore = result.toJSON();
-    return totalScore.snapshot;
   },
 );
 

@@ -7,7 +7,7 @@ import { Stepper } from '../../Stepper/Stepper';
 import { getRandomNumber } from '../../../services/utils';
 import { Trans, useTranslation } from 'react-i18next';
 import './congrats.css';
-import { resetCurrentGameScore } from '../../../store/gameSlice';
+import { resetCurrentGameScore, setScore } from '../../../store/gameSlice';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
@@ -27,6 +27,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   };
 
   const resetAll = () => {
+    dispatch(setScore());
     resetCounter();
     resetStatus();
     dispatch(resetCurrentGameScore());
