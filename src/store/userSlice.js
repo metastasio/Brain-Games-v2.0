@@ -133,7 +133,6 @@ const userSlice = createSlice({
       });
     },
     authUser(state, { payload }) {
-      console.log(payload.totalScore, 'TOALSCORE AUTH USER REDUCER')
       state.status = 'idle';
       state.signedIn = true;
       state.email = payload.email;

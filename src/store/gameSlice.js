@@ -9,6 +9,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { database } from '../services/firebase';
 import { getRandomGames } from '../services/getRandomGames';
+import { authUser, logOut } from './userSlice';
 
 const games = getRandomGames().map((game, i) => ({
   name: game,
@@ -51,7 +52,6 @@ const gameSlice = createSlice({
     currentGameScore: 0,
     progress: 0,
     todaysGames: games,
-    userId: null,
     status: 'idle',
     error: null,
   },
@@ -77,9 +77,26 @@ const gameSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(setScore.fulfilled, (state, { payload }) => {
-      state.totalScore = payload;
-    });
+    builder
+      .addCase(setScore.fulfilled, (state, { payload }) => {
+        state.totalScore = payload;
+      })
+      .addCase(logOut, (state) => {
+        state.totalScore = 0;
+        state.todaysGames = state.todaysGames.map((game, i) => ({
+          name: game.name,
+          available: i < 4 - 1,
+          complete: false,
+          id: game.name,
+        }));
+      })
+      .addCase(authUser, (state, { payload }) => {
+        state.totalScore = payload.totalScore === null ? 0 : payload.totalScore;
+        state.todaysGames = state.todaysGames.map((game) => {
+          game.available = true;
+          return game;
+        });
+      });
   },
 });
 export const {
