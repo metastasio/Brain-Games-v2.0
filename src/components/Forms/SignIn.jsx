@@ -33,41 +33,38 @@ export const SignIn = () => {
     <div className='form-wrapper'>
       <form action='' onSubmit={handleSubmit}>
         <h2 className='h3 form-header'>{t('form.signIn')}</h2>
-        <fieldset>
-          <div className='form-block'>
-            <label className='form-label' htmlFor='email'>
-              {t('form.email')}
-            </label>
-            <input
-              autoFocus
-              className='form-input'
-              type='email'
-              id='email'
-              placeholder='E-mail'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-        </fieldset>
 
-        <fieldset>
-          <div className='form-block'>
-            <label className='form-label' htmlFor='password'>
-              {t('form.password')}
-            </label>
-            <input
-              className='form-input'
-              type='password'
-              id='password'
-              placeholder='Password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <p role='alert' className='form-errors'>
-              {error ? t(`errors.${error}`) : null}
-            </p>
-          </div>
-        </fieldset>
+        <div className='form-block'>
+          <label className='form-label' htmlFor='email'>
+            {t('form.email')}
+          </label>
+          <input
+            autoFocus
+            className='form-input'
+            type='email'
+            id='email'
+            placeholder='E-mail'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className='form-block'>
+          <label className='form-label' htmlFor='password'>
+            {t('form.password')}
+          </label>
+          <input
+            className='form-input'
+            type='password'
+            id='password'
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <p role='alert' className='form-errors'>
+            {error ? t(`errors.${error}`) : null}
+          </p>
+        </div>
 
         <button className={classNames}>{t('form.enter')}</button>
         {status === 'loading' ? (

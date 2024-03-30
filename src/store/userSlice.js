@@ -15,7 +15,7 @@ import {
 } from 'firebase/auth';
 
 import { getRandomGames } from '../services/getRandomGames';
-import { database, firebaseStorage } from '../services/firebase';
+import { firebaseStorage } from '../services/firebase';
 
 const games = getRandomGames().map((game, i) => ({
   name: game,
@@ -89,7 +89,7 @@ export const setScore = createAsyncThunk(
   'user/setScore',
   async (uid, { getState }) => {
     const state = getState();
-    const scoreRef = dbRef(database, `/userScore/${uid}`);
+    const scoreRef = dbRef(getDatabase(), `/userScore/${uid}`);
     const result = await runTransaction(scoreRef, (score) => {
       return score + state.user.currentGameScore;
     });
@@ -139,7 +139,7 @@ const userSlice = createSlice({
       state.userId = payload.uid;
       state.icon = payload?.icon;
       state.error = null;
-      state.totalScore = payload.totalScore === null ? 0 : payload.totalScore;
+      state.totalScore = payload?.totalScore ?? 0;
       state.todaysGames = state.todaysGames.map((game) => {
         game.available = true;
         return game;

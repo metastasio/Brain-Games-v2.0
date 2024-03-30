@@ -19,7 +19,7 @@ const games = getRandomGames().map((game, i) => ({
 }));
 
 export const getScore = createAsyncThunk(
-  'user/getScore',
+  'games/getScore',
   async (uid, { rejectWithValue }) => {
     try {
       const dbReadRef = dbRef(getDatabase());
@@ -33,7 +33,7 @@ export const getScore = createAsyncThunk(
 );
 
 export const setScore = createAsyncThunk(
-  'user/setScore',
+  'games/setScore',
   async (uid, { getState }) => {
     const state = getState();
     const scoreRef = dbRef(database, `/userScore/${uid}`);
@@ -46,14 +46,12 @@ export const setScore = createAsyncThunk(
 );
 
 const gameSlice = createSlice({
-  name: 'user',
+  name: 'games',
   initialState: {
     totalScore: 0,
     currentGameScore: 0,
     progress: 0,
     todaysGames: games,
-    status: 'idle',
-    error: null,
   },
   reducers: {
     increaseCurrentScore(state) {
@@ -91,7 +89,7 @@ const gameSlice = createSlice({
         }));
       })
       .addCase(authUser, (state, { payload }) => {
-        state.totalScore = payload.totalScore === null ? 0 : payload.totalScore;
+        state.totalScore = payload?.totalScore ?? 0;
         state.todaysGames = state.todaysGames.map((game) => {
           game.available = true;
           return game;

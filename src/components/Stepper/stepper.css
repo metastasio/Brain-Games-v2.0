@@ -103,5 +103,5 @@
 }
 [data-theme='light'] .stepper-item.unavailable::after {
   color: var(--lightlime60);
-  border: 1px solid var(--lightlime60);
+  border-bottom: 2px solid var(--lightlime60);
 }

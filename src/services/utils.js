@@ -57,7 +57,7 @@ const levels = {
   intermediate: { min: 3000, max: 6000 },
   advanced: { min: 6000, max: 9000 },
   expert: { min: 9000, max: 12000 },
-  'grandmaster': { min: 12000, max: Infinity },
+  grandmaster: { min: 12000, max: Infinity },
 };
 
 const getUsersLevel = (currentScore) => {
@@ -84,18 +84,19 @@ const getNextLevel = (currentLvl) => {
 };
 
 const getProgressData = (currentPoints, currentLvl) => {
-  if (currentPoints <= 0) {
-    return 0;
+  let { min, max } = levels[currentLvl];
+
+  if (currentPoints < 0) {
+    min = 0;
   }
   if (currentLvl === 'grandmaster') {
     return [levels.grandmaster.min, currentPoints, 100];
   }
 
-  const {min, max} = levels[currentLvl];
-  const maxPoints = 3000;
+  const maxPoints = max - min;
   const minPoints = currentPoints - min;
   const percent = ((minPoints * 100) / maxPoints).toFixed(2);
-  return [min, max, percent]
+  return [min, max, percent];
 };
 
 export {

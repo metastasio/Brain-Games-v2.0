@@ -1,3 +1,4 @@
+import { getAuth } from 'firebase/auth';
 import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -5,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './profile.css';
-import { useAuth } from '../../hooks/useAuth';
 import {
   getNextLevel,
   getProgressData,
@@ -15,9 +15,8 @@ import { logOut, postImage } from '../../store/userSlice';
 
 export const Profile = () => {
   const { t } = useTranslation();
-  const [newProfilePic, setNewProfilePic] = useState(false);
   const dispatch = useDispatch();
-  const currentUser = useAuth();
+  const [newProfilePic, setNewProfilePic] = useState(false);
   const { email, todaysGames, totalScore, icon, status } = useSelector(
     (state) => state.user,
   );
@@ -33,9 +32,10 @@ export const Profile = () => {
   const handleChange = (e) => setNewProfilePic(Boolean(e.target.value));
 
   const handleSubmit = (e) => {
+    const auth = getAuth();
     const data = new FormData(e.target);
     e.preventDefault();
-    dispatch(postImage({ image: data.get('image'), currentUser }));
+    dispatch(postImage({ image: data.get('image'), currentUser: auth.currentUser }));
     e.target.reset();
     setNewProfilePic(false);
   };
@@ -90,10 +90,10 @@ export const Profile = () => {
           {nextLevel === 'newGrandMaster' ? (
             <p>{t('profile.newGrandMaster')}</p>
           ) : (
-            <div>
+            <>
               <p>{t(`profile.${level}`)}</p>
               <p>{t(`profile.${nextLevel}`)}</p>
-            </div>
+            </>
           )}
         </div>
 
