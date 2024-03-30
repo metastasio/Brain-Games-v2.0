@@ -133,13 +133,14 @@ const userSlice = createSlice({
       });
     },
     authUser(state, { payload }) {
+      console.log(payload.totalScore, 'TOALSCORE AUTH USER REDUCER')
       state.status = 'idle';
       state.signedIn = true;
       state.email = payload.email;
       state.userId = payload.uid;
       state.icon = payload?.icon;
       state.error = null;
-      state.totalScore = payload?.totalScore;
+      state.totalScore = payload.totalScore === null ? 0 : payload.totalScore;
       state.todaysGames = state.todaysGames.map((game) => {
         game.available = true;
         return game;

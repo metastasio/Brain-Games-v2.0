@@ -91,9 +91,10 @@ const getProgressData = (currentPoints, currentLvl) => {
     return [levels.grandmaster.min, currentPoints, 100];
   }
 
-  const max = levels[currentLvl].max;
-  const min = levels[currentLvl].min;
-  const percent = ((currentPoints * 100) / max).toFixed(2);
+  const {min, max} = levels[currentLvl];
+  const maxPoints = 3000;
+  const minPoints = currentPoints - min;
+  const percent = ((minPoints * 100) / maxPoints).toFixed(2);
   return [min, max, percent]
 };
 
