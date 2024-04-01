@@ -24,7 +24,6 @@ export default {
       conditions: 'Чтобы пройти игру нужно дать 5 правильных ответов',
       correct: 'Правильно!🌟',
       correctPoints: '+100 очков',
-      completed: 'Сегодня вы еще не проходили игры',
       incorrect: 'Неправильно 😥',
       incorrectPoints: '-5 очков, попробуйте еще!',
       counter: 'Правильных ответов:',
@@ -102,7 +101,7 @@ export default {
       'auth/network-request-failed': 'Нет сети, проверьте подключение',
     },
     profile: {
-      games: 'Вы завершили',
+      games: 'Ваши игры сегодня:',
       logOut: 'Выйти',
       id: 'Ваш ID',
       email: 'Ваш e-mail',

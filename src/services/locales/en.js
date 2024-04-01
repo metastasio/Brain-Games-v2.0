@@ -24,7 +24,6 @@ export default {
       conditions: "The game is complete once you've given 5 correct answers",
       correct: 'Correct! 🌟',
       correctPoints: '+100 points',
-      completed: "You haven't completed any games today",
       incorrect: 'Incorrect 😥',
       incorrectPoints: '-5 points, try again!',
       counter: 'Correct answers:',
@@ -102,7 +101,7 @@ export default {
       'auth/network-request-failed': 'Network error',
     },
     profile: {
-      games: 'Today you completed',
+      games: 'Today your games are:',
       logOut: 'Log out',
       id: 'Your ID',
       email: 'Your e-mail',

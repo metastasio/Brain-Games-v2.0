@@ -1,3 +1,4 @@
+// import cn from 'classnames';
 import { getAuth } from 'firebase/auth';
 import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -22,11 +23,12 @@ export const Profile = () => {
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
   const [min, max, percents] = getProgressData(totalScore, level);
-  const playedGames = todaysGames
-    .filter((game) => game.complete === true)
-    .map((item) => item.name)
-    .map((name) => t(`games.${name}.name`))
-    .join(', ');
+
+  // const playedGames = todaysGames
+  //   .filter((game) => game.complete === true)
+  //   .map((item) => item.name)
+  //   .map((name) => t(`games.${name}.name`))
+  //   .join(', ');
 
   const handleChange = (e) => setNewProfilePic(Boolean(e.target.value));
 
@@ -79,12 +81,22 @@ export const Profile = () => {
         {t('profile.email')}:{' '}
         <span className='profile-field-span'>{email}</span>
       </p>
-      <p className='profile-field-games'>
-        {t('profile.games')}:{' '}
-        <span className='profile-field-span'>
-          {playedGames ? playedGames : t('games.completed')}
-        </span>
-      </p>
+
+      <div>
+        <p className='profile-field-games'>{t('profile.games')}</p>
+        <ol className='profile-games-list'>
+          {todaysGames.map((game) => (
+            <li
+              className={game.complete ? 'complete' : 'incomplete'}
+              key={game.id}
+            >
+              <span className='profile-game-name'>
+                {t(`games.${game.name}.name`)}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
 
       <div className='profile-progress'>
         <div className='profile-progress-levels'>

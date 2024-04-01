@@ -9,6 +9,9 @@
   vertical-align: middle;
 }
 
+.submit-answer:hover {
+  cursor: pointer;
+}
 .submit-answer {
   background-color: var(--lightlime60);
   border-radius: 0 var(--base-radius) var(--base-radius) 0;
