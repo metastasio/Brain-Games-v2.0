@@ -42,33 +42,35 @@ export const Profile = () => {
 
   return (
     <div className='profile-wrapper'>
-      {icon ? (
-        <img className='profile-icon icon' src={icon} alt='Profile picture' />
-      ) : (
-        <FontAwesomeIcon
-          className='profile-icon'
-          icon={faBrain}
-          alt="User's avatar default brain"
-        />
-      )}
+      
+        {icon ? (
+          <img className='profile-icon icon' src={icon} alt='Profile picture' />
+        ) : (
+          <FontAwesomeIcon
+            className='profile-icon'
+            icon={faBrain}
+            alt="User's avatar default brain"
+          />
+        )}
 
-      <form onSubmit={handleSubmit}>
-        {newProfilePic ? (
-          <button className='profile-form-button' type='submit'>
-            {t('profile.submitPicture')}
-          </button>
-        ) : null}
-        <input
-          id='profile-picture'
-          type='file'
-          className='custom-file-input'
-          name='image'
-          onChange={handleChange}
-        />
-        <label className='profile-label' htmlFor='profile-picture'>
-          {t('profile.changePicture')}
-        </label>
-      </form>
+        <form onSubmit={handleSubmit}>
+          {newProfilePic ? (
+            <button className='profile-form-button' type='submit'>
+              {t('profile.submitPicture')}
+            </button>
+          ) : null}
+          <input
+            id='profile-picture'
+            type='file'
+            className='profile-file-input'
+            name='image'
+            onChange={handleChange}
+          />
+          <label className='profile-label' htmlFor='profile-picture'>
+            {t('profile.changePicture')}
+          </label>
+        </form>
+     
 
       <p className='profile-field-email'>
         {t('profile.email')}:{' '}
