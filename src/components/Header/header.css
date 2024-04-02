@@ -107,7 +107,7 @@
   color: var(--darkblue);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 960px) {
   .header li:first-child {
     flex-basis: auto;
     text-align: left;
