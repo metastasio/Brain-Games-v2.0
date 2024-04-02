@@ -37,11 +37,15 @@
   box-shadow: var(--white) 0 0 6px;
 }
 
-[data-theme='light'], .main-description {
-	color: var(--lightlime);
+[data-theme='light'] .main-description {
+  color: var(--lightlime);
+}
+
+[data-theme='light'] .main h2 {
+  color: var(--white);
 }
 
 [data-theme='light'] .main-start a:hover {
-	background-color: var(--green);
+  background-color: var(--green);
   color: var(--darkblue);
 }
