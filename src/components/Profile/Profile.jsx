@@ -1,4 +1,3 @@
-// import cn from 'classnames';
 import { getAuth } from 'firebase/auth';
 import { faBrain } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -9,10 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import './profile.css';
 import {
   getNextLevel,
-  getProgressData,
   getUsersLevel,
+  getProgressData,
 } from '../../services/utils';
-import { logOut, postImage } from '../../store/userSlice';
+import { postImage, signUserOut } from '../../store/userSlice';
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -23,12 +22,6 @@ export const Profile = () => {
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
   const [min, max, percents] = getProgressData(totalScore, level);
-
-  // const playedGames = todaysGames
-  //   .filter((game) => game.complete === true)
-  //   .map((item) => item.name)
-  //   .map((name) => t(`games.${name}.name`))
-  //   .join(', ');
 
   const handleChange = (e) => setNewProfilePic(Boolean(e.target.value));
 
@@ -44,7 +37,7 @@ export const Profile = () => {
   };
 
   const handleClick = () => {
-    dispatch(logOut());
+    dispatch(signUserOut());
   };
 
   return (

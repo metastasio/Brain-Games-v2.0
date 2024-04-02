@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
 
 import { userAuth } from '../services/firebase';
 import { authUser } from '../store/userSlice';
@@ -11,15 +11,17 @@ export function useAuth() {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(userAuth, async (user) => {
-      const totalScore = await dispatch(getScore(user.uid)).unwrap();
-      dispatch(
-        authUser({
-          email: user.email,
-          uid: user.uid,
-          icon: user.photoURL,
-          totalScore,
-        }),
-      );
+      if (user) {
+        const totalScore = await dispatch(getScore(user.uid)).unwrap();
+        dispatch(
+          authUser({
+            email: user.email,
+            uid: user.uid,
+            icon: user.photoURL,
+            totalScore,
+          }),
+        );
+      }
     });
     return unsub;
   }, [dispatch]);

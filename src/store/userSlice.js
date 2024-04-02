@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 
@@ -41,6 +42,19 @@ export const signUserIn = createAsyncThunk(
         icon: response.user.photoURL,
         totalScore,
       };
+    } catch (error) {
+      return rejectWithValue(error.code);
+    }
+  },
+);
+
+export const signUserOut = createAsyncThunk(
+  'user/logUserOut',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      const auth = getAuth();
+      await signOut(auth);
+      dispatch(logOut());
     } catch (error) {
       return rejectWithValue(error.code);
     }
