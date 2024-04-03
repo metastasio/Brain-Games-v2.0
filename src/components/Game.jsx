@@ -10,7 +10,9 @@ import {
   updateTotalScore,
   decreaseCurrentScore,
   increaseCurrentScore,
+  resetCurrentGameScore,
 } from '../store/gameSlice';
+import { useEffect } from 'react';
 
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
@@ -20,6 +22,10 @@ export const Game = ({ CurrentGame, name }) => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);
+
+  useEffect(() => {
+    dispatch(resetCurrentGameScore());
+  }, [dispatch]);
 
   const onSuccess = () => {
     dispatch(increaseCurrentScore());
