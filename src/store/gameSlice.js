@@ -63,10 +63,9 @@ const gameSlice = createSlice({
     resetCurrentGameScore(state) {
       state.currentGameScore = 0;
     },
-    updateTotalScore(state, { payload }) {
+    updateTodaysGames(state, { payload }) {
       state.todaysGames.map((game) => {
         if (game.name === payload && !game.complete) {
-          state.totalScore += state.currentGameScore;
           state.progress++;
           game.complete = true;
           return game;
@@ -103,7 +102,7 @@ const gameSlice = createSlice({
 export const {
   increaseCurrentScore,
   decreaseCurrentScore,
-  updateTotalScore,
+  updateTodaysGames,
   resetCurrentGameScore,
 } = gameSlice.actions;
 

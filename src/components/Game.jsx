@@ -7,10 +7,10 @@ import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Restricted';
 import {
   setScore,
-  updateTotalScore,
   decreaseCurrentScore,
   increaseCurrentScore,
   resetCurrentGameScore,
+  updateTodaysGames,
 } from '../store/gameSlice';
 import { useEffect } from 'react';
 
@@ -32,7 +32,7 @@ export const Game = ({ CurrentGame, name }) => {
     setStatus('success');
     setCounter((counter) => counter + 1);
     if (counter + 1 === config.winCondition) {
-      dispatch(updateTotalScore(name));
+      dispatch(updateTodaysGames(name));
       dispatch(setScore(userId));
     }
   };
