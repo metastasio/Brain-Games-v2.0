@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useGameValues } from '../hooks';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Restricted';
+import { selectGameData, selectUserData } from '../store/stateSelectors';
 import {
   setScore,
   decreaseCurrentScore,
@@ -12,13 +14,12 @@ import {
   resetCurrentGameScore,
   updateTodaysGames,
 } from '../store/gameSlice';
-import { useEffect } from 'react';
 
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { userId } = useSelector((state) => state.user);
-  const { todaysGames } = useSelector((state) => state.games);
+  const { userId } = useSelector(selectUserData);
+  const { todaysGames } = useSelector(selectGameData);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus(0);

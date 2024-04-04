@@ -9,12 +9,13 @@ import {
 
 import { GameItem } from '../GameItem/GamеItem';
 import { Restricted } from '../Restricted';
+import { selectGameData, selectUserData } from '../../store/stateSelectors';
 import './games.css';
 
 export const Games = () => {
   const { t } = useTranslation();
-  const { signedIn } = useSelector((state) => state.user);
-  const { todaysGames } = useSelector((state) => state.games);
+  const { signedIn } = useSelector(selectUserData);
+  const { todaysGames } = useSelector(selectGameData);
   const [currentGame, setCurrentGame] = useState(0);
 
   const handleNext = () => {

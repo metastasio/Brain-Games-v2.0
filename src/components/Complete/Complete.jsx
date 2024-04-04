@@ -5,13 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import routes from '../../services/routes';
 import { config } from '../../services/config';
+import { selectGameData, selectUserData } from '../../store/stateSelectors';
 import './complete.css';
 
 export const Complete = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { signedIn } = useSelector((state) => state.user);
-  const { progress, totalScore } = useSelector((state) => state.games);
+  const { signedIn } = useSelector(selectUserData);
+  const { progress, totalScore } = useSelector(selectGameData);
 
   useEffect(() => {
     if (

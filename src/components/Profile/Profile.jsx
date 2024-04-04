@@ -5,20 +5,21 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './profile.css';
+import { postImage, signUserOut } from '../../store/userSlice';
+import { selectGameData, selectUserData } from '../../store/stateSelectors';
 import {
   getNextLevel,
   getUsersLevel,
   getProgressData,
 } from '../../services/utils';
-import { postImage, signUserOut } from '../../store/userSlice';
+import './profile.css';
 
 export const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [newProfilePic, setNewProfilePic] = useState(false);
-  const { email, icon, status } = useSelector((state) => state.user);
-  const { todaysGames, totalScore } = useSelector((state) => state.games);
+  const { email, icon, status } = useSelector(selectUserData);
+  const { todaysGames, totalScore } = useSelector(selectGameData);
   const level = getUsersLevel(totalScore);
   const nextLevel = getNextLevel(level);
   const [min, max, percents] = getProgressData(totalScore, level);
@@ -42,35 +43,33 @@ export const Profile = () => {
 
   return (
     <div className='profile-wrapper'>
-      
-        {icon ? (
-          <img className='profile-icon icon' src={icon} alt='Profile picture' />
-        ) : (
-          <FontAwesomeIcon
-            className='profile-icon'
-            icon={faBrain}
-            alt="User's avatar default brain"
-          />
-        )}
+      {icon ? (
+        <img className='profile-icon icon' src={icon} alt='Profile picture' />
+      ) : (
+        <FontAwesomeIcon
+          className='profile-icon'
+          icon={faBrain}
+          alt="User's avatar default brain"
+        />
+      )}
 
-        <form onSubmit={handleSubmit}>
-          {newProfilePic ? (
-            <button className='profile-form-button' type='submit'>
-              {t('profile.submitPicture')}
-            </button>
-          ) : null}
-          <input
-            id='profile-picture'
-            type='file'
-            className='profile-file-input'
-            name='image'
-            onChange={handleChange}
-          />
-          <label className='profile-label' htmlFor='profile-picture'>
-            {t('profile.changePicture')}
-          </label>
-        </form>
-     
+      <form onSubmit={handleSubmit}>
+        {newProfilePic ? (
+          <button className='profile-form-button' type='submit'>
+            {t('profile.submitPicture')}
+          </button>
+        ) : null}
+        <input
+          id='profile-picture'
+          type='file'
+          className='profile-file-input'
+          name='image'
+          onChange={handleChange}
+        />
+        <label className='profile-label' htmlFor='profile-picture'>
+          {t('profile.changePicture')}
+        </label>
+      </form>
 
       <p className='profile-field-email'>
         {t('profile.email')}:{' '}

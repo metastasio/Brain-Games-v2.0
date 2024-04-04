@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import './forms.css';
 import routes from '../../services/routes';
 import { signUserIn } from '../../store/userSlice';
+import { selectUserData } from '../../store/stateSelectors';
 
 export const SignIn = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, status } = useSelector((state) => state.user);
+  const { error, status } = useSelector(selectUserData);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

@@ -8,13 +8,14 @@ import { faBrain, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 import i18n from '../../services/locales';
 import routes from '../../services/routes';
+import { selectGameData, selectUserData } from '../../store/stateSelectors';
 import './header.css';
 
 export const Header = () => {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { signedIn, icon } = useSelector((state) => state.user);
-  const { totalScore } = useSelector((state) => state.games);
+  const { signedIn, icon } = useSelector(selectUserData);
+  const { totalScore } = useSelector(selectGameData);
   const handleSelect = (e) => {
     i18n.changeLanguage(e.target.value);
   };

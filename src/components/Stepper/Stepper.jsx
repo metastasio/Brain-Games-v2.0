@@ -2,10 +2,11 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
 import './stepper.css';
+import { selectGameData, selectUserData } from '../../store/stateSelectors';
 
 export const Stepper = () => {
-  const { signedIn } = useSelector((state) => state.user);
-  const { todaysGames } = useSelector((state) => state.games);
+  const { signedIn } = useSelector(selectUserData);
+  const { todaysGames } = useSelector(selectGameData);
   const completeGames = todaysGames.filter((game) => game.complete);
 
   const isComplete = (i) => {

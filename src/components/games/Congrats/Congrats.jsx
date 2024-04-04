@@ -4,27 +4,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import routes from '../../../services/routes';
 import { config } from '../../../services/config';
 import { Stepper } from '../../Stepper/Stepper';
-import { getRandomNumber } from '../../../services/utils';
+// import { getRandomNumber } from '../../../services/utils';
 import { resetCurrentGameScore } from '../../../store/gameSlice';
 import { Trans, useTranslation } from 'react-i18next';
+import {
+  selectGameData,
+  selectNextGame,
+  selectUserData,
+} from '../../../store/stateSelectors';
 import './congrats.css';
 
 export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { signedIn } = useSelector((state) => state.user);
-  const { progress, currentGameScore, todaysGames } = useSelector(
-    (state) => state.games,
-  );
+  const { signedIn } = useSelector(selectUserData);
+  const { progress, currentGameScore } = useSelector(selectGameData);
 
-  const getNextGame = () => {
-    const availableGames = todaysGames.filter(
-      (game) => game.available && !game.complete,
-    );
-    const randomIndex = getRandomNumber(0, availableGames.length - 1);
-    return availableGames[randomIndex].name;
-  };
+  // const getNextGame = () => {
+  //   const availableGames = todaysGames.filter(
+  //     (game) => game.available && !game.complete,
+  //   );
+  //   const randomIndex = getRandomNumber(0, availableGames.length - 1);
+  //   return availableGames[randomIndex].name;
+  // };
+
+  const nextGame = useSelector(selectNextGame);
 
   const resetAll = () => {
     resetCounter();
@@ -40,7 +45,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
     ) {
       navigate(routes.complete());
     } else {
-      navigate(routes[getNextGame()]());
+      navigate(routes[nextGame]());
     }
   };
 
