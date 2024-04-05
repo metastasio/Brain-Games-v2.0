@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import routes from '../../../services/routes';
 import { config } from '../../../services/config';
 import { Stepper } from '../../Stepper/Stepper';
-// import { getRandomNumber } from '../../../services/utils';
+import { getRandomNumber } from '../../../services/utils';
 import { resetCurrentGameScore } from '../../../store/gameSlice';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -20,16 +20,10 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const dispatch = useDispatch();
   const { signedIn } = useSelector(selectUserData);
   const { progress, currentGameScore } = useSelector(selectGameData);
-
-  // const getNextGame = () => {
-  //   const availableGames = todaysGames.filter(
-  //     (game) => game.available && !game.complete,
-  //   );
-  //   const randomIndex = getRandomNumber(0, availableGames.length - 1);
-  //   return availableGames[randomIndex].name;
-  // };
-
-  const nextGame = useSelector(selectNextGame);
+  
+  const availableGames = useSelector(selectNextGame);
+  const randomIndex = getRandomNumber(0, availableGames.length - 1);
+  const nextGame = availableGames[randomIndex]?.name;
 
   const resetAll = () => {
     resetCounter();
