@@ -20,7 +20,8 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const dispatch = useDispatch();
   const { signedIn } = useSelector(selectUserData);
   const { progress, currentGameScore } = useSelector(selectGameData);
-  
+
+  const currentProgressCap = signedIn ? config.authUser : config.unAuthUser;
   const availableGames = useSelector(selectNextGame);
   const randomIndex = getRandomNumber(0, availableGames.length - 1);
   const nextGame = availableGames[randomIndex]?.name;
@@ -33,10 +34,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
 
   const handleNext = () => {
     resetAll();
-    if (
-      (signedIn && progress === config.authUser) ||
-      (!signedIn && progress === config.unAuthUser)
-    ) {
+    if (progress === currentProgressCap) {
       navigate(routes.complete());
     } else {
       navigate(routes[nextGame]());
