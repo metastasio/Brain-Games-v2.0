@@ -12,13 +12,6 @@ import { getRandomGames } from '../services/getRandomGames';
 import { authUser, logOut, signUserIn } from './userSlice';
 import { toggleGames } from '../services/utils';
 
-// const games = getRandomGames().map((game, i) => ({
-//   name: game,
-//   available: i < 4 - 1,
-//   complete: false,
-//   id: game,
-// }));
-
 const games = toggleGames(getRandomGames());
 
 export const getScore = createAsyncThunk(
@@ -39,12 +32,15 @@ export const setScore = createAsyncThunk(
   'games/setScore',
   async (uid, { getState }) => {
     const state = getState();
-    const scoreRef = dbRef(database, `/userScore/${uid}`);
-    const result = await runTransaction(scoreRef, (score) => {
-      return score + state.games.currentGameScore;
-    });
-    const totalScore = result.toJSON();
-    return totalScore.snapshot;
+    if (uid) {
+      const scoreRef = dbRef(database, `/userScore/${uid}`);
+      const result = await runTransaction(scoreRef, (score) => {
+        return score + state.games.currentGameScore;
+      });
+      const totalScore = result.toJSON();
+      return totalScore.snapshot;
+    }
+    return state.games.totalScore + state.games.currentGameScore;
   },
 );
 
@@ -83,13 +79,7 @@ const gameSlice = createSlice({
       })
       .addCase(logOut, (state) => {
         state.totalScore = 0;
-        // state.todaysGames = state.todaysGames.map((game, i) => ({
-        //   name: game.name,
-        //   available: i < 4 - 1,
-        //   complete: false,
-        //   id: game.name,
-        // }));
-        state.todaysGames = toggleGames(state.todaysGames, false);
+        state.todaysGames = toggleGames(state.todaysGames);
       })
       .addCase(signUserIn.fulfilled, (state, { payload }) => {
         state.totalScore = payload?.totalScore ?? 0;

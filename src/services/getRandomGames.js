@@ -8,9 +8,7 @@ export const getRandomGames = () => {
   while (randomGames.length < 5) {
     let randomIndex = getRandomNumber(0, gamesList.length);
     let gameNames = randomGames.map(game => game.name);
-    console.log(gameNames, 'GAME NAMES');
     if (!gameNames.includes(gamesList[randomIndex])) {
-      // randomGames.push(gamesList[randomIndex]);
       randomGames.push({
         name: gamesList[randomIndex],
         available: false,
