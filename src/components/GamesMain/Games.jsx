@@ -29,6 +29,8 @@ export const Games = () => {
     );
   };
 
+  // throw new Error('kek');
+
   return (
     <section className='games-container'>
       <h2 className='workout'>{t('games.desc')}</h2>

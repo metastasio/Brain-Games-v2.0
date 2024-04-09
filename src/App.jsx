@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -26,11 +27,14 @@ import {
 import { Game } from './components/Game.jsx';
 import { useAuth } from './hooks/useAuth.js';
 import { ThemeContext } from './services/themeContext.js';
+import { ErrorFallback } from './components/ErrorFallback.jsx';
 
 const Layout = () => (
   <>
     <Header />
-    <Outlet />
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Outlet />
+    </ErrorBoundary>
     <Footer />
   </>
 );
