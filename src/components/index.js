@@ -3,7 +3,7 @@ export { Footer } from './Footer/Footer';
 export { Games } from './GamesMain/Games';
 export { Header } from './Header/Header';
 export { Main } from './Main/Main';
-export { NotFound } from './NotFound/NotFound';
+export { NotFound } from './Errors/NotFound';
 export { Profile } from './Profile/Profile';
 export { ProtectedRoute } from './ProtectedRoute';
 export { SignIn } from './Forms/SignIn';

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
-import { Restricted } from './Restricted';
+import { Restricted } from './Errors/Restricted';
 import { selectGameData, selectUserData } from '../store/stateSelectors';
 import {
   setScore,

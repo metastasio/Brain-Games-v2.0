@@ -99,6 +99,7 @@ export default {
       'auth/missing-email': 'Введите e-mail',
       'auth/invalid-credential': 'Неверный e-mail или пароль',
       'auth/network-request-failed': 'Нет сети, проверьте подключение',
+      error: 'Что-то пошло не так',
     },
     profile: {
       games: 'Ваши игры сегодня:',
@@ -112,7 +113,7 @@ export default {
       advanced: 'Продвинутый',
       expert: 'Эксперт',
       grandmaster: 'Великий магистр',
-      newGrandMaster: 'Вы - Великий Магистр'
+      newGrandMaster: 'Вы - Великий Магистр',
     },
   },
 };

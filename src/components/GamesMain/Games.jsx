@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { GameItem } from '../GameItem/GamеItem';
-import { Restricted } from '../Restricted';
+import { Restricted } from '../Errors/Restricted';
 import { selectGameData, selectUserData } from '../../store/stateSelectors';
 import './games.css';
 
@@ -28,8 +28,6 @@ export const Games = () => {
       currentGame === 0 ? todaysGames.length - 1 : currentGame - 1,
     );
   };
-
-  // throw new Error('kek');
 
   return (
     <section className='games-container'>

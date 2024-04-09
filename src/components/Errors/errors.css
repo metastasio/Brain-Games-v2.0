@@ -1,4 +1,4 @@
-.not-found-wrapper {
+.error-wrapper {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--h3) var(--h3);
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.not-found-text {
+.error-text {
   font-size: var(--h4);
   color: var(--lightgreen);
 }

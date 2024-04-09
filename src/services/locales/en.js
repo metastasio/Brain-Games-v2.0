@@ -99,6 +99,7 @@ export default {
       'auth/missing-email': 'Enter your e-mail',
       'auth/invalid-credential': 'Wrong e-mail or password',
       'auth/network-request-failed': 'Network error',
+      error: 'Something went wrong',
     },
     profile: {
       games: 'Today your games are:',

@@ -27,7 +27,7 @@ import {
 import { Game } from './components/Game.jsx';
 import { useAuth } from './hooks/useAuth.js';
 import { ThemeContext } from './services/themeContext.js';
-import { ErrorFallback } from './components/ErrorFallback.jsx';
+import { ErrorFallback } from './components/Errors/ErrorFallback.jsx';
 
 const Layout = () => (
   <>
