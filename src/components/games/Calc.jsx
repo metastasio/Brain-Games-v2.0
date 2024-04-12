@@ -16,7 +16,7 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
   const [userAnswer, setValue] = useState('');
   const [sign, setSign] = useState(() => getRandomSign());
   const correctAnswer = getExpression(number1, number2, sign);
-  let blocker = useBlocker(
+  const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
   );

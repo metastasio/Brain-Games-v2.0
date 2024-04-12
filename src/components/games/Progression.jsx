@@ -16,7 +16,7 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
   const [randomLine, setRandomLine] = useState(() => getRandomLine());
   const correctAnswer = randomLine[number - 1];
 
-  let blocker = useBlocker(
+  const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
   );

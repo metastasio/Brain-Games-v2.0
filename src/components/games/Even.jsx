@@ -10,7 +10,7 @@ import './gameWrapper.css';
 export const Even = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
   const [number, setNumber] = useRandomNumber();
-  let blocker = useBlocker(
+  const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
   );

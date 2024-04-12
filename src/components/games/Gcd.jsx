@@ -15,7 +15,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
   const [number2, setNumber2] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
   const correctAnswer = gcd(number1, number2);
-  let blocker = useBlocker(
+  const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
   );
