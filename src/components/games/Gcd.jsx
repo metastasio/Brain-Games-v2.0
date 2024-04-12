@@ -48,9 +48,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
           userAnswer={userAnswer}
         />
 
-        <div className='game-feedback'>
           <Feedback result={status} />
-        </div>
 
         <AnswersCount count={counter} />
       </div>

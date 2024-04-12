@@ -6,9 +6,11 @@ export const Feedback = ({ result }) => {
   const { t } = useTranslation();
 
   return (
-    <p className='feedback'>
-      {t(`games.${result}.text`)}{' '}
-      <span className='points'>{t(`games.${result}.points`)}</span>
-    </p>
+    <div className='game-feedback'>
+      <p className='feedback'>
+        {t(`games.${result}.text`)}{' '}
+        <span className='points'>{t(`games.${result}.points`)}</span>
+      </p>
+    </div>
   );
 };

@@ -48,13 +48,10 @@ export const Square = ({ counter, status, onSuccess, onFailure }) => {
           userAnswer={userAnswer}
         />
 
-        <div className='game-feedback'>
-          <Feedback result={status} />
-        </div>
+        <Feedback result={status} />
 
         <AnswersCount count={counter} />
       </div>
-
     </section>
   );
 };
