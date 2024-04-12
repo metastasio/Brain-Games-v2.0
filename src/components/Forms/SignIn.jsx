@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,23 +7,21 @@ import './forms.css';
 import routes from '../../services/routes';
 import { signUserIn } from '../../store/userSlice';
 import { selectUserData } from '../../store/stateSelectors';
+import { Form } from './Form';
 
 export const SignIn = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error, status } = useSelector(selectUserData);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const classNames = cn({
     'form-button': true,
     disabled: status === 'loading',
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(signUserIn({ email, password }))
+  const handleSubmit = (payload) => {
+    dispatch(signUserIn(payload))
       .unwrap()
       .then(() => navigate(routes.games()))
       .catch(console.log);
@@ -32,46 +29,17 @@ export const SignIn = () => {
 
   return (
     <div className='form-wrapper'>
-      <form action='' onSubmit={handleSubmit}>
-        <h2 className='h3 form-header'>{t('form.signIn')}</h2>
+      <h2 className='h3 form-header'>{t('form.signIn')}</h2>
+      <Form
+        formId='sign-in'
+        handleSubmit={handleSubmit}
+        error={error}
+        isLoading={status === 'loading'}
+      />
 
-        <div className='form-block'>
-          <label className='form-label' htmlFor='email'>
-            {t('form.email')}
-          </label>
-          <input
-            autoFocus
-            className='form-input'
-            type='email'
-            id='email'
-            placeholder='E-mail'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className='form-block'>
-          <label className='form-label' htmlFor='password'>
-            {t('form.password')}
-          </label>
-          <input
-            className='form-input'
-            type='password'
-            id='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <p role='alert' className='form-errors'>
-            {error ? t(`errors.${error}`) : null}
-          </p>
-        </div>
-
-        <button className={classNames}>{t('form.enter')}</button>
-        {status === 'loading' ? (
-          <span className='form-spinner'>&#127922;</span>
-        ) : null}
-      </form>
+      <button form='sign-in' className={classNames}>
+        {t('form.enter')}
+      </button>
 
       <p className='form-hint'>
         {t('form.signedIn')}{' '}
