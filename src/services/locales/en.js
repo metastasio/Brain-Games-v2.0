@@ -22,11 +22,19 @@ export default {
       yes: 'Yes',
       no: 'No',
       conditions: "The game is complete once you've given 5 correct answers",
-      correct: 'Correct! 🌟',
-      correctPoints: '+100 points',
-      incorrect: 'Incorrect 😥',
-      incorrectPoints: '-5 points, try again!',
       counter: 'Correct answers:',
+      success: {
+        text: 'Correct! 🌟',
+        points: '+100 points',
+      },
+      failed: {
+        text: 'Incorrect 😥',
+        points: '-5 points, try again!',
+      },
+      inProgress: {
+        text: '',
+        points: '',
+      },
       square: {
         name: 'Find the Square',
         task: 'Find the area of a rectangle using the given length and width',

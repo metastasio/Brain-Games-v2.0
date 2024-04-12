@@ -22,7 +22,7 @@ export const Game = ({ CurrentGame, name }) => {
   const { todaysGames } = useSelector(selectGameData);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus(0);
+  const resetStatus = () => setStatus('inProgress');
 
   useEffect(() => {
     dispatch(resetCurrentGameScore());
