@@ -99,13 +99,11 @@ const getProgressData = (currentPoints, currentLvl) => {
   return [min, max, percent];
 };
 
-const toggleGames = (games, close = true) => {
-  const randomGames = games.map((game, i) => {
-    game.available = close ? i < 4 - 1 : true;
-    return game;
-  });
-  return randomGames;
-};
+const toggleGames = (games, close = true) =>
+  games.map((game, i) => ({
+    ...game,
+    available: close ? i < 4 - 1 : true,
+  }));
 
 export {
   getRandomNumber,
