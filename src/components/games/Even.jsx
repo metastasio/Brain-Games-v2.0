@@ -4,20 +4,13 @@ import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
 
-export const Even = ({ counter, status, onSuccess, onFailure }) => {
+export const Even = ({ counter, status, onNext }) => {
   const { t } = useTranslation();
   const [number, setNumber] = useRandomNumber();
-  const isCorrect = (answer, num) => {
-    return (num % 2 === 0) === answer;
-  };
+  const isCorrect = (answer, num) => (num % 2 === 0) === answer;
 
   const handleClick = (value) => {
-    if (isCorrect(value, number)) {
-      onSuccess();
-    } else {
-      onFailure();
-    }
-    setNumber();
+    onNext(isCorrect(value, number), setNumber);
   };
 
   return (
@@ -27,10 +20,9 @@ export const Even = ({ counter, status, onSuccess, onFailure }) => {
         <div className='game-expression'>
           <span>{number}</span>
         </div>
-
         <Buttons handleClick={handleClick} />
 
-          <Feedback result={status} />
+        <Feedback result={status} />
 
         <AnswersCount count={counter} />
       </div>

@@ -6,7 +6,7 @@ import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
 
-export const Progression = ({ counter, status, onSuccess, onFailure }) => {
+export const Progression = ({ counter, status, onNext }) => {
   const { t } = useTranslation();
   const [number, setNumber] = useRandomNumber();
   const [userAnswer, setValue] = useState('');
@@ -22,15 +22,11 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (userAnswer === correctAnswer) {
-      onSuccess();
-    } else {
-      onFailure();
-    }
-    setValue('');
-    setNumber();
-    setRandomLine(() => getRandomLine());
+    onNext(userAnswer === correctAnswer, () => {
+      setValue('');
+      setNumber();
+      setRandomLine(() => getRandomLine());
+    });
   };
 
   return (

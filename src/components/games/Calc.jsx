@@ -6,7 +6,7 @@ import { getExpression, getRandomSign } from '../../services/utils';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
 
-export const Calc = ({ counter, status, onSuccess, onFailure }) => {
+export const Calc = ({ counter, status, onNext }) => {
   const { t } = useTranslation();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
@@ -23,16 +23,12 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (userAnswer === correctAnswer) {
-      onSuccess();
-    } else {
-      onFailure();
-    }
-    setValue('');
-    setNumber1();
-    setNumber2();
-    setSign(getRandomSign());
+    onNext(userAnswer === correctAnswer, () => {
+      setValue('');
+      setNumber1();
+      setNumber2();
+      setSign(getRandomSign());
+    });
   };
 
   return (

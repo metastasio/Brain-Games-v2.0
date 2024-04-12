@@ -27,11 +27,17 @@ export const Game = ({ CurrentGame, name }) => {
   const resetStatus = () => setStatus('inProgress');
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+      counter !== 0 &&
+      counter !== 5 &&
+      currentLocation.pathname !== nextLocation.pathname,
   );
 
-const onLeave = () => blocker.proceed();
-const onStay = () => blocker.reset();
+  const onLeave = () => {
+    resetCounter();
+    dispatch(resetCurrentGameScore());
+    blocker.proceed();
+  };
+  const onStay = () => blocker.reset();
 
   useEffect(() => {
     dispatch(resetCurrentGameScore());
@@ -52,6 +58,15 @@ const onStay = () => blocker.reset();
     setStatus('failed');
   };
 
+  const handleGoNext = (isCorrect, cleanup) => {
+    if (isCorrect) {
+      onSuccess();
+    } else {
+      onFailure();
+    }
+    cleanup();
+  };
+
   const isAvailable = todaysGames.filter(
     (game) => game.name === name && game.available,
   );
@@ -70,12 +85,7 @@ const onStay = () => blocker.reset();
   }
   return (
     <>
-      <CurrentGame
-        counter={counter}
-        status={status}
-        onFailure={onFailure}
-        onSuccess={onSuccess}
-      />
+      <CurrentGame counter={counter} status={status} onNext={handleGoNext} />
 
       {blocker.state === 'blocked'
         ? createPortal(

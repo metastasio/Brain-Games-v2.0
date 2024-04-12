@@ -6,7 +6,7 @@ import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
 import './gameWrapper.css';
 
-export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
+export const Gcd = ({ counter, status, onNext }) => {
   const { t } = useTranslation();
   const [number1, setNumber1] = useRandomNumber();
   const [number2, setNumber2] = useRandomNumber();
@@ -22,15 +22,11 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (userAnswer === correctAnswer) {
-      onSuccess();
-    } else {
-      onFailure();
-    }
-    setValue('');
-    setNumber1();
-    setNumber2();
+    onNext(userAnswer === correctAnswer, () => {
+      setValue('');
+      setNumber1();
+      setNumber2();
+    });
   };
 
   return (
@@ -48,7 +44,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
           userAnswer={userAnswer}
         />
 
-          <Feedback result={status} />
+        <Feedback result={status} />
 
         <AnswersCount count={counter} />
       </div>

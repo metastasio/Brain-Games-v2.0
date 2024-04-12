@@ -5,18 +5,13 @@ import { isPrime } from '../../services/utils';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
 
-export const Prime = ({ counter, onFailure, onSuccess, status }) => {
+export const Prime = ({ counter, onNext, status }) => {
   const { t } = useTranslation();
 
   const [number, setNumber] = useRandomNumber();
 
   const handleClick = (value) => {
-    if (isPrime(number) === value) {
-      onSuccess();
-    } else {
-      onFailure();
-    }
-    setNumber();
+    onNext(isPrime(number) === value, setNumber);
   };
 
   return (
@@ -29,11 +24,10 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
 
         <Buttons handleClick={handleClick} />
 
-          <Feedback result={status} />
+        <Feedback result={status} />
 
         <AnswersCount count={counter} />
       </div>
-
     </section>
   );
 };
