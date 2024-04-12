@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Errors/Restricted';
-import { selectGameData, selectUserData } from '../store/stateSelectors';
+import { selectGameData } from '../store/stateSelectors';
 import {
   setScore,
   decreaseCurrentScore,
@@ -18,7 +18,6 @@ import {
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { userId } = useSelector(selectUserData);
   const { todaysGames } = useSelector(selectGameData);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
@@ -34,7 +33,7 @@ export const Game = ({ CurrentGame, name }) => {
     setCounter((counter) => counter + 1);
     if (counter + 1 === config.winCondition) {
       dispatch(updateTodaysGames(name));
-      dispatch(setScore(userId));
+      dispatch(setScore());
     }
   };
 

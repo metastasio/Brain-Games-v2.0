@@ -30,8 +30,9 @@ export const getScore = createAsyncThunk(
 
 export const setScore = createAsyncThunk(
   'games/setScore',
-  async (uid, { getState }) => {
+  async (_, { getState }) => {
     const state = getState();
+    const uid = state.user.userId;
     if (uid) {
       const scoreRef = dbRef(database, `/userScore/${uid}`);
       const result = await runTransaction(scoreRef, (score) => {
