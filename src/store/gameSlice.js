@@ -1,11 +1,5 @@
-import {
-  get,
-  child,
-  getDatabase,
-  ref as dbRef,
-  runTransaction,
-} from 'firebase/database';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { get, child, ref as dbRef, runTransaction } from 'firebase/database';
 
 import { database } from '../services/firebase';
 import { getRandomGames } from '../services/getRandomGames';
@@ -19,7 +13,7 @@ export const getScore = createAsyncThunk(
   'games/getScore',
   async (uid, { rejectWithValue }) => {
     try {
-      const dbReadRef = dbRef(getDatabase());
+      const dbReadRef = dbRef(database);
       const updatedScore = await get(child(dbReadRef, `userScore/${uid}`));
 
       return updatedScore.toJSON();
