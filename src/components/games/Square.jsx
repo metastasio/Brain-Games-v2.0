@@ -51,13 +51,13 @@ export const Square = ({ counter, status, onSuccess, onFailure }) => {
           <span>{t('games.square.width')}:</span>
           <span>{number2}</span>
         </div>
-        <div className='game-controls'>
-          <AnswerForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            userAnswer={userAnswer}
-          />
-        </div>
+
+        <AnswerForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          userAnswer={userAnswer}
+        />
+
         <div className='game-feedback'>
           <Feedback result={status} />
         </div>

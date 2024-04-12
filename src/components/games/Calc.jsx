@@ -54,16 +54,17 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
           <span>{sign}</span>
           <span>{number2}</span>
         </div>
-        <div className='game-controls'>
-          <AnswerForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            userAnswer={userAnswer}
-          />
-        </div>
+
+        <AnswerForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          userAnswer={userAnswer}
+        />
+
         <div className='game-feedback'>
           <Feedback result={status} />
         </div>
+
         <AnswersCount count={counter} />
       </div>
 

@@ -36,12 +36,13 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
         <div className='game-expression'>
           <span>{number}</span>
         </div>
-        <div className='game-controls'>
-          <Buttons handleClick={handleClick} />
-        </div>
+
+        <Buttons handleClick={handleClick} />
+
         <div className='game-feedback'>
           <Feedback result={status} />
         </div>
+
         <AnswersCount count={counter} />
       </div>
 

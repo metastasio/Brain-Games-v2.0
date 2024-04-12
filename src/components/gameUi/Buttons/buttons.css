@@ -19,3 +19,7 @@
 .game-button.no {
   margin-left: var(--xs);
 }
+
+.game-controls {
+  max-height: 50px;
+}

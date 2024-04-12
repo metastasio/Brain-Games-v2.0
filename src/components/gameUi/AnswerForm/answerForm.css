@@ -29,3 +29,7 @@
     -webkit-appearance: none;
   }
 }
+
+.game-controls {
+  max-height: 50px;
+}

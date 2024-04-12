@@ -53,16 +53,17 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
             <span key={item}>{item === correctAnswer ? '..' : item} </span>
           ))}
         </div>
-        <div className='game-controls'>
-          <AnswerForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            userAnswer={userAnswer}
-          />
-        </div>
+
+        <AnswerForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          userAnswer={userAnswer}
+        />
+
         <div className='game-feedback'>
           <Feedback result={status} />
         </div>
+
         <AnswersCount count={counter} />
       </div>
 

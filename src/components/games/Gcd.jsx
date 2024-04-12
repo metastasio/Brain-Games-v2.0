@@ -22,7 +22,7 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
 
   const onLeave = () => blocker.proceed();
   const onStay = () => blocker.reset();
-  
+
   const handleChange = (e) => {
     const value = Number.isNaN(e.target.valueAsNumber)
       ? ''
@@ -51,16 +51,17 @@ export const Gcd = ({ counter, status, onFailure, onSuccess }) => {
           <span>{number1}</span>
           <span>{number2}</span>
         </div>
-        <div className='game-controls'>
-          <AnswerForm
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            userAnswer={userAnswer}
-          />
-        </div>
+
+        <AnswerForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          userAnswer={userAnswer}
+        />
+
         <div className='game-feedback'>
           <Feedback result={status} />
         </div>
+
         <AnswersCount count={counter} />
       </div>
 
