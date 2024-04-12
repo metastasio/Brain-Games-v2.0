@@ -11,6 +11,7 @@ import { database } from '../services/firebase';
 import { getRandomGames } from '../services/getRandomGames';
 import { authUser, logOut, signUserIn } from './userSlice';
 import { toggleGames } from '../services/utils';
+import { config } from '../services/config';
 
 const games = toggleGames(getRandomGames());
 
@@ -87,10 +88,7 @@ const gameSlice = createSlice({
       })
       .addCase(authUser, (state, { payload }) => {
         state.totalScore = payload?.totalScore ?? 0;
-        state.todaysGames = state.todaysGames.map((game) => {
-          game.available = true;
-          return game;
-        });
+        state.todaysGames = toggleGames(state.todaysGames, config.authUser);
       });
   },
 });

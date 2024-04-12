@@ -1,3 +1,5 @@
+import { config } from './config';
+
 const getRandomNumber = (min = 1, max = 10) =>
   Math.floor(Math.random() * (max - min) + min);
 
@@ -99,10 +101,10 @@ const getProgressData = (currentPoints, currentLvl) => {
   return [min, max, percent];
 };
 
-const toggleGames = (games, close = true) =>
+const toggleGames = (games, max = config.unAuthUser) =>
   games.map((game, i) => ({
     ...game,
-    available: close ? i < 4 - 1 : true,
+    available: i < max,
   }));
 
 export {
