@@ -13,15 +13,13 @@ export const Complete = () => {
   const navigate = useNavigate();
   const { signedIn } = useSelector(selectUserData);
   const { progress, totalScore } = useSelector(selectGameData);
+  const currentProgressCap = signedIn ? config.authUser : config.unAuthUser;
 
   useEffect(() => {
-    if (
-      (!signedIn && progress !== config.unAuthUser) ||
-      (signedIn && progress !== config.authUser)
-    ) {
+    if (progress !== currentProgressCap) {
       navigate(routes.mainPage());
     }
-  }, [navigate, progress, signedIn]);
+  }, [currentProgressCap, navigate, progress, signedIn]);
 
   return (
     <section className='complete-wrapper'>
