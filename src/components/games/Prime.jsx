@@ -1,9 +1,6 @@
-import { useBlocker } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useRandomNumber } from '../../hooks/';
 
-import { Modal } from '../Modal/Modal';
 import { isPrime } from '../../services/utils';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
@@ -12,13 +9,6 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
   const { t } = useTranslation();
 
   const [number, setNumber] = useRandomNumber();
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
-  );
-
-  const onLeave = () => blocker.proceed();
-  const onStay = () => blocker.reset();
 
   const handleClick = (value) => {
     if (isPrime(number) === value) {
@@ -46,12 +36,6 @@ export const Prime = ({ counter, onFailure, onSuccess, status }) => {
         <AnswersCount count={counter} />
       </div>
 
-      {blocker.state === 'blocked'
-        ? createPortal(
-            <Modal onLeave={onLeave} onStay={onStay} />,
-            document.body,
-          )
-        : null}
     </section>
   );
 };

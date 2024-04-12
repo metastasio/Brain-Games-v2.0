@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { useBlocker } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks';
 import { getExpression, getRandomSign } from '../../services/utils';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
@@ -16,13 +13,6 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
   const [userAnswer, setValue] = useState('');
   const [sign, setSign] = useState(() => getRandomSign());
   const correctAnswer = getExpression(number1, number2, sign);
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
-  );
-
-  const onLeave = () => blocker.proceed();
-  const onStay = () => blocker.reset();
 
   const handleChange = (e) => {
     const value = Number.isNaN(e.target.valueAsNumber)
@@ -67,13 +57,6 @@ export const Calc = ({ counter, status, onSuccess, onFailure }) => {
 
         <AnswersCount count={counter} />
       </div>
-
-      {blocker.state === 'blocked'
-        ? createPortal(
-            <Modal onLeave={onLeave} onStay={onStay} />,
-            document.body,
-          )
-        : null}
     </section>
   );
 };

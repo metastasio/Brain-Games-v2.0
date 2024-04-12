@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
+import { useBlocker } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import { useGameValues } from '../hooks';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Modal } from './Modal/Modal';
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Errors/Restricted';
@@ -22,6 +25,13 @@ export const Game = ({ CurrentGame, name }) => {
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus('inProgress');
+  const blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
+  );
+
+const onLeave = () => blocker.proceed();
+const onStay = () => blocker.reset();
 
   useEffect(() => {
     dispatch(resetCurrentGameScore());
@@ -59,11 +69,20 @@ export const Game = ({ CurrentGame, name }) => {
     );
   }
   return (
-    <CurrentGame
-      counter={counter}
-      status={status}
-      onFailure={onFailure}
-      onSuccess={onSuccess}
-    />
+    <>
+      <CurrentGame
+        counter={counter}
+        status={status}
+        onFailure={onFailure}
+        onSuccess={onSuccess}
+      />
+
+      {blocker.state === 'blocked'
+        ? createPortal(
+            <Modal onLeave={onLeave} onStay={onStay} />,
+            document.body,
+          )
+        : null}
+    </>
   );
 };

@@ -1,8 +1,5 @@
-import { useBlocker } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Modal } from '../Modal/Modal';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, Buttons } from '../gameUi';
 import './gameWrapper.css';
@@ -10,13 +7,6 @@ import './gameWrapper.css';
 export const Even = ({ counter, status, onSuccess, onFailure }) => {
   const { t } = useTranslation();
   const [number, setNumber] = useRandomNumber();
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
-  );
-
-  const onLeave = () => blocker.proceed();
-  const onStay = () => blocker.reset();
   const isCorrect = (answer, num) => {
     return (num % 2 === 0) === answer;
   };
@@ -46,13 +36,6 @@ export const Even = ({ counter, status, onSuccess, onFailure }) => {
 
         <AnswersCount count={counter} />
       </div>
-
-      {blocker.state === 'blocked'
-        ? createPortal(
-            <Modal onLeave={onLeave} onStay={onStay} />,
-            document.body,
-          )
-        : null}
     </section>
   );
 };

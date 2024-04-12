@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { useBlocker } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Modal } from '../Modal/Modal';
 import { getRandomLine } from '../../services/utils';
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
@@ -15,14 +12,6 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
   const [userAnswer, setValue] = useState('');
   const [randomLine, setRandomLine] = useState(() => getRandomLine());
   const correctAnswer = randomLine[number - 1];
-
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      counter !== 0 && currentLocation.pathname !== nextLocation.pathname,
-  );
-
-  const onLeave = () => blocker.proceed();
-  const onStay = () => blocker.reset();
 
   const handleChange = (e) => {
     const value = Number.isNaN(e.target.valueAsNumber)
@@ -67,12 +56,6 @@ export const Progression = ({ counter, status, onSuccess, onFailure }) => {
         <AnswersCount count={counter} />
       </div>
 
-      {blocker.state === 'blocked'
-        ? createPortal(
-            <Modal onLeave={onLeave} onStay={onStay} />,
-            document.body,
-          )
-        : null}
     </section>
   );
 };
