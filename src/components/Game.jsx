@@ -24,13 +24,13 @@ export const Game = ({ CurrentGame, name }) => {
   const {
     status,
     counter,
-    setStatus,
     setCounter,
     setFailedStatus,
     setSuccessStatus,
+    setDefaultStatus,
   } = useGameValues();
   const resetCounter = () => setCounter(0);
-  const resetStatus = () => setStatus('inProgress');
+  const resetStatus = setDefaultStatus();
   const isAvailable = useSelector(selectAvailableGame(name));
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -53,7 +53,6 @@ export const Game = ({ CurrentGame, name }) => {
   const onSuccess = () => {
     dispatch(increaseCurrentScore());
     setSuccessStatus();
-    // setStatus('success');
     setCounter((counter) => counter + 1);
     if (counter + 1 === config.winCondition) {
       dispatch(updateTodaysGames(name));
@@ -64,7 +63,6 @@ export const Game = ({ CurrentGame, name }) => {
   const onFailure = () => {
     dispatch(decreaseCurrentScore());
     setFailedStatus();
-    // setStatus('failed');
   };
 
   const handleGoNext = (isCorrect, cleanup) => {
