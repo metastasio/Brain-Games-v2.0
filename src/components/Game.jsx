@@ -21,7 +21,14 @@ import {
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { status, setStatus, counter, setCounter } = useGameValues();
+  const {
+    status,
+    counter,
+    setStatus,
+    setCounter,
+    setFailedStatus,
+    setSuccessStatus,
+  } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus('inProgress');
   const isAvailable = useSelector(selectAvailableGame(name));
@@ -45,7 +52,8 @@ export const Game = ({ CurrentGame, name }) => {
 
   const onSuccess = () => {
     dispatch(increaseCurrentScore());
-    setStatus('success');
+    setSuccessStatus();
+    // setStatus('success');
     setCounter((counter) => counter + 1);
     if (counter + 1 === config.winCondition) {
       dispatch(updateTodaysGames(name));
@@ -55,7 +63,8 @@ export const Game = ({ CurrentGame, name }) => {
 
   const onFailure = () => {
     dispatch(decreaseCurrentScore());
-    setStatus('failed');
+    setFailedStatus();
+    // setStatus('failed');
   };
 
   const handleGoNext = (isCorrect, cleanup) => {
@@ -66,7 +75,7 @@ export const Game = ({ CurrentGame, name }) => {
     }
     cleanup();
   };
-  
+
   if (!isAvailable.length) {
     return <Restricted />;
   }

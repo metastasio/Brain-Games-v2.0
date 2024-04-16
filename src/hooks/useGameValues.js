@@ -4,5 +4,15 @@ export const useGameValues = () => {
   const [counter, setCounter] = useState(0);
   const [status, setStatus] = useState('inProgress');
 
-  return { counter, setCounter, status, setStatus };
+  const setFailedStatus = () => setStatus('failed');
+  const setSuccessStatus = () => setStatus('success');
+
+  return {
+    status,
+    counter,
+    setStatus,
+    setCounter,
+    setFailedStatus,
+    setSuccessStatus,
+  };
 };
