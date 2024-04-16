@@ -27,9 +27,10 @@ export const Game = ({ CurrentGame, name }) => {
     setCounter,
     setFailedStatus,
     setSuccessStatus,
-    setDefaultValues,
+    setDefaultCounter,
+    setDefaultStatus,
   } = useGameValues();
-  const resetCounter = () => setCounter(0);
+
   const isAvailable = useSelector(selectAvailableGame(name));
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -39,7 +40,7 @@ export const Game = ({ CurrentGame, name }) => {
   );
 
   const onLeave = () => {
-    resetCounter();
+    setDefaultCounter();
     dispatch(resetCurrentGameScore());
     blocker.proceed();
   };
@@ -81,7 +82,10 @@ export const Game = ({ CurrentGame, name }) => {
     return (
       <Congrats
         name={t(`games.${name}.name`)}
-        resetValues={setDefaultValues}
+        resetValues={() => {
+          setDefaultCounter();
+          setDefaultStatus();
+        }}
       />
     );
   }

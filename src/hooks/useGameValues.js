@@ -6,17 +6,15 @@ export const useGameValues = () => {
 
   const setFailedStatus = () => setStatus('failed');
   const setSuccessStatus = () => setStatus('success');
-  const setDefaultValues = () => {
-    setStatus('inProgress');
-    setCounter(0);
-  };
-
+  const setDefaultStatus = () => setStatus('inProgress');
+  const setDefaultCounter = () => setCounter(0);
   return {
     status,
     counter,
     setCounter,
-    setDefaultValues,
+    setDefaultStatus,
     setSuccessStatus,
     setFailedStatus,
+    setDefaultCounter,
   };
 };
