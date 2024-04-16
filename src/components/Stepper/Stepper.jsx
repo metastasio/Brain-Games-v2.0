@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
 import './stepper.css';
+import { config } from '../../services/config';
 import {
   selectGameData,
   selectUserData,
@@ -18,10 +19,10 @@ export const Stepper = () => {
       return i <= completeGames.length - 1;
     }
     if (!signedIn) {
-      if (completeGames.length !== 3) {
+      if (completeGames.length !== config.unAuthUser) {
         return i <= completeGames.length - 1;
       }
-      return i !== 2 && i !== 3;
+      return i !== config.unAuthUser - 1 && i !== config.unAuthUser;
     }
   };
 
