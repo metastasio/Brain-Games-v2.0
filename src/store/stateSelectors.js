@@ -7,4 +7,9 @@ const selectNextGame = createSelector(selectGameData, (data) =>
   data.todaysGames.filter((game) => game.available && !game.complete),
 );
 
-export { selectUserData, selectGameData, selectNextGame };
+const selectCompleteGames = createSelector(selectGameData, (data) =>
+  data.todaysGames.filter((game) => game.complete),
+);
+
+
+export { selectUserData, selectGameData, selectNextGame, selectCompleteGames };
