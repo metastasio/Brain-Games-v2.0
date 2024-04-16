@@ -27,7 +27,7 @@ export const Game = ({ CurrentGame, name }) => {
     setCounter,
     setFailedStatus,
     setSuccessStatus,
-    setDefaultStatus,
+    setDefaultValues,
   } = useGameValues();
   const resetCounter = () => setCounter(0);
   const isAvailable = useSelector(selectAvailableGame(name));
@@ -81,8 +81,7 @@ export const Game = ({ CurrentGame, name }) => {
     return (
       <Congrats
         name={t(`games.${name}.name`)}
-        resetCounter={resetCounter}
-        resetStatus={setDefaultStatus}
+        resetValues={setDefaultValues}
       />
     );
   }

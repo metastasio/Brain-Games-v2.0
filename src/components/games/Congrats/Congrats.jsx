@@ -14,7 +14,7 @@ import {
 } from '../../../store/stateSelectors';
 import './congrats.css';
 
-export const Congrats = ({ name, resetCounter, resetStatus }) => {
+export const Congrats = ({ name, resetValues }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,8 +27,7 @@ export const Congrats = ({ name, resetCounter, resetStatus }) => {
   const nextGame = availableGames[randomIndex]?.name;
 
   const resetAll = () => {
-    resetCounter();
-    resetStatus();
+    resetValues();
     dispatch(resetCurrentGameScore());
   };
 
