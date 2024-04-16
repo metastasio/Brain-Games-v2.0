@@ -14,7 +14,7 @@
 
 .form-header {
   color: var(--lightlime);
-  padding: var(--h3) 0;
+  padding: var(--h3) 0 var(--h5);
 }
 
 .form-label {
@@ -41,6 +41,10 @@
 
 .form-block {
   padding-bottom: var(--h3);
+}
+
+.form-block:last-of-type {
+  padding-bottom: var(--h6);
 }
 
 @layer buttons-links {

@@ -9,7 +9,7 @@ import { Modal } from './Modal/Modal';
 import { config } from '../services/config';
 import { Congrats } from './games/Congrats/Congrats';
 import { Restricted } from './Errors/Restricted';
-import { selectGameData } from '../store/stateSelectors';
+import { selectAvailableGame } from '../store/stateSelectors';
 import {
   setScore,
   decreaseCurrentScore,
@@ -21,10 +21,10 @@ import {
 export const Game = ({ CurrentGame, name }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { todaysGames } = useSelector(selectGameData);
   const { status, setStatus, counter, setCounter } = useGameValues();
   const resetCounter = () => setCounter(0);
   const resetStatus = () => setStatus('inProgress');
+  const isAvailable = useSelector(selectAvailableGame(name));
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       counter !== 0 &&
@@ -66,10 +66,7 @@ export const Game = ({ CurrentGame, name }) => {
     }
     cleanup();
   };
-
-  const isAvailable = todaysGames.filter(
-    (game) => game.name === name && game.available,
-  );
+  
   if (!isAvailable.length) {
     return <Restricted />;
   }
