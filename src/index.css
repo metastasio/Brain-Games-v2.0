@@ -74,6 +74,12 @@ a {
   text-decoration: none;
 }
 
+.main-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--h3);
+}
+
 a:hover {
   color: var(--blue);
 }
@@ -102,6 +108,10 @@ input:focus {
 
 [data-theme='light'] {
 	background-color: var(--blue);
+}
+
+[data-theme='light'] .hint {
+	color: var(--darkblue);
 }
 
 [data-theme='light'] a:hover {

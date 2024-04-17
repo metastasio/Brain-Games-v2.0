@@ -1,7 +1,4 @@
 .game-wrapper {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 var(--h3) var(--h3) var(--h3);
   text-align: center;
   display: flex;
   flex-flow: column;

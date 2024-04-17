@@ -1,6 +1,4 @@
 .games-container {
-  margin: 0 auto;
-  padding: 0 var(--h3) var(--h3) var(--h3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +47,10 @@
   padding-bottom: var(--h3);
 }
 .reminder-link {
-  color: var(--lightgreen);
+  font-weight: bold;
+  color: var(--white);
+  text-decoration: underline;
+  text-decoration-line: dotted;
 }
 
 .games-reminder {

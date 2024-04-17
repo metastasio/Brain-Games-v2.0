@@ -33,7 +33,9 @@ const Layout = () => (
   <>
     <Header />
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <Outlet />
+      <div className='main-container'>
+        <Outlet />
+      </div>
     </ErrorBoundary>
     <Footer />
   </>
