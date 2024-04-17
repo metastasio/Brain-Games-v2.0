@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import './errors.css';
 
-export const ErrorFallback = ({ error }) => {
+export const ErrorFallback = ({ error, resetErrorBoundary }) => {
   const { t } = useTranslation();
 
   return (
@@ -9,6 +9,7 @@ export const ErrorFallback = ({ error }) => {
       <div role='alert'>
         <p className='h3'>{t('errors.error')}:</p>
         <pre className='error-text'>{error.message}</pre>
+        <button onClick={resetErrorBoundary}>Try again</button>
       </div>
     </section>
   );
