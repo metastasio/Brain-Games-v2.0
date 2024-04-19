@@ -21,6 +21,7 @@
 
 .answer-input {
   border-radius: var(--base-radius) 0 0 var(--base-radius);
+  padding-left: var(--xs);
   appearance: none;
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;

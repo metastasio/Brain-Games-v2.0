@@ -1,5 +1,5 @@
 .form-wrapper {
-  min-width: 420px;
+  max-width: 420px;
   margin: 0 auto;
   padding: 0 var(--lg) var(--h3);
   text-align: center;
@@ -27,6 +27,7 @@
   padding: var(--xs);
   border: none;
   background-color: var(--lightlime20);
+  color: var(--lightlime);
   border: 1px dotted var(--lightlime);
   border-radius: var(--base-radius);
   font-size: var(--h6);
@@ -34,7 +35,7 @@
 }
 
 ::placeholder {
-  color: var(--darkblue);
+  color: var(--lightlime60);
   /* Firefox */
   opacity: 1;
 }

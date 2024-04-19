@@ -1,5 +1,5 @@
 .profile-wrapper {
-  min-width: 420px;
+  max-width: 420px;
   margin: 0 auto;
   padding: var(--h6) var(--h2);
   display: flex;
