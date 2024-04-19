@@ -55,8 +55,11 @@
 
 .games-reminder {
   height: 96px;
-  text-align: center;
   display: inline;
+}
+
+.games-reminder > .error-wrapper .error-text {
+  font-size: var(--h6);
 }
 
 [data-theme='light'] .reminder {

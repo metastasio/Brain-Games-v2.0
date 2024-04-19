@@ -9,7 +9,7 @@ export const ErrorFallback = ({ error, resetErrorBoundary }) => {
       <div role='alert'>
         <p className='h3'>{t('errors.error')}:</p>
         <pre className='error-text'>{error.message}</pre>
-        <button onClick={resetErrorBoundary}>Try again</button>
+        <button className='error-reset-button' onClick={resetErrorBoundary}>Try again</button>
       </div>
     </section>
   );
