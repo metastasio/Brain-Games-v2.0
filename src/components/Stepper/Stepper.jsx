@@ -15,15 +15,11 @@ export const Stepper = () => {
   const completeGames = useSelector(selectCompleteGames);
 
   const isComplete = (i) => {
-    if (signedIn) {
-      return i <= completeGames.length - 1;
+    const [skip3Step, skip4Step] = [2, 3];
+    if (!signedIn && completeGames.length === config.unAuthUser) {
+      return i !== skip3Step && i !== skip4Step;
     }
-    if (!signedIn) {
-      if (completeGames.length !== config.unAuthUser) {
-        return i <= completeGames.length - 1;
-      }
-      return i !== config.unAuthUser - 1 && i !== config.unAuthUser;
-    }
+    return i <= completeGames.length - 1;
   };
 
   const classNames = (i) =>
