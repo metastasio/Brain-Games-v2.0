@@ -17,8 +17,10 @@ export const Stepper = () => {
   const isComplete = (i) => {
     const [skip3Step, skip4Step] = [2, 3];
     if (!signedIn && completeGames.length === config.unAuthUser) {
+      // По дизайну для неавторизованного пользователя в степпере должны быть неактивны шаги 3 и 4
       return i !== skip3Step && i !== skip4Step;
     }
+
     return i <= completeGames.length - 1;
   };
 
