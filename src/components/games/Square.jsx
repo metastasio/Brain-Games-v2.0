@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useRandomNumber } from '../../hooks/';
 import { Task, Feedback, AnswersCount, AnswerForm } from '../gameUi';
+import './gameWrapper.css';
 
 export const Square = ({ counter, status, onNext }) => {
   const { t } = useTranslation();

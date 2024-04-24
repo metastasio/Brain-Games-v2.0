@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
-import './stepper.css';
 import { config } from '../../services/config';
 import {
   selectGameData,
   selectUserData,
   selectCompleteGames,
 } from '../../store/stateSelectors';
+import './stepper.css';
 
 export const Stepper = () => {
   const { signedIn } = useSelector(selectUserData);

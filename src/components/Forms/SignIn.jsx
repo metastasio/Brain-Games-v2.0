@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './forms.css';
 import routes from '../../services/routes';
+import { Form } from './Form';
 import { signUserIn } from '../../store/userSlice';
 import { selectUserData } from '../../store/stateSelectors';
-import { Form } from './Form';
+import './forms.css';
 
 export const SignIn = () => {
   const { t } = useTranslation();

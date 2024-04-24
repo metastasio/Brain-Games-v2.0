@@ -15,7 +15,6 @@ import {
   ProtectedRoute,
   Header,
 } from './components';
-import './App.css';
 import {
   Calc,
   Even,
@@ -28,6 +27,7 @@ import { Game } from './components/Game.jsx';
 import { useAuth } from './hooks/useAuth.js';
 import { ThemeContext } from './services/themeContext.js';
 import { ErrorFallback } from './components/Errors/ErrorFallback.jsx';
+import './App.css';
 
 const Layout = () => (
   <>
