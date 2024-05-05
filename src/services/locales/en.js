@@ -52,7 +52,7 @@ export default {
       prime: {
         name: 'Prime Number',
         task: 'Answer "yes" if the given number is prime, otherwise answer "no".',
-        hint: 'A prime number is a natural number greater than 1 which has only two factors, 1 and the number itself',
+        hint: 'A prime number is a natural number greater than 1 which has only two factors: 1 and the number itself',
       },
       even: {
         name: 'Even numbers',
